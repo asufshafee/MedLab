@@ -1,0 +1,222 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/_10sdp"
+    android:paddingLeft="@dimen/_10sdp"
+    android:paddingRight="@dimen/_10sdp"
+    android:paddingTop="@dimen/_6sdp"
+    tools:context="com.webmarke8.app.medlab.Fragments.Home">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="@dimen/_5sdp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:id="@+id/Tips"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <com.joooonho.SelectableRoundedImageView
+                android:id="@+id/image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/home_banner"
+                app:sriv_border_color="@android:color/transparent"
+                app:sriv_border_width="4dip"
+                app:sriv_left_bottom_corner_radius="7dip"
+                app:sriv_left_top_corner_radius="7dip"
+                app:sriv_oval="false"
+                app:sriv_right_bottom_corner_radius="7dip"
+                app:sriv_right_top_corner_radius="7dip" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="bottom"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/_10sdp"
+                android:paddingRight="@dimen/_10sdp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/Heading"
+                    android:gravity="center"
+                    android:text="Eat Nuts:"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/_17sdp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/Heading"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="@dimen/_15sdp"
+                    android:gravity="center"
+                    android:text="Despite being high  in fat, nuts are incredibly \n nutritious and healthy ... (more)"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/_12sdp" />
+            </LinearLayout>
+
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_weight="2"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/_4sdp"
+            android:layout_weight="1">
+
+            <RelativeLayout
+                android:id="@+id/Schedule"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <com.joooonho.SelectableRoundedImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/schedule"
+                    app:sriv_border_color="@android:color/transparent"
+                    app:sriv_border_width="4dip"
+                    app:sriv_left_bottom_corner_radius="7dip"
+                    app:sriv_left_top_corner_radius="7dip"
+                    app:sriv_oval="false"
+                    app:sriv_right_bottom_corner_radius="7dip"
+                    app:sriv_right_top_corner_radius="7dip" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center|bottom"
+                    android:padding="@dimen/_8sdp"
+                    android:text="Schedule\na house call"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/_12sdp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <com.joooonho.SelectableRoundedImageView
+                    android:id="@+id/News"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/news"
+                    app:sriv_border_color="@android:color/transparent"
+                    app:sriv_border_width="4dip"
+                    app:sriv_left_bottom_corner_radius="7dip"
+                    app:sriv_left_top_corner_radius="7dip"
+                    app:sriv_oval="false"
+                    app:sriv_right_bottom_corner_radius="7dip"
+                    app:sriv_right_top_corner_radius="7dip" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center|bottom"
+                    android:padding="@dimen/_8sdp"
+                    android:text="News"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/_12sdp" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:layout_weight="1">
+
+            <RelativeLayout
+                android:layout_width="0dp"
+
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <com.joooonho.SelectableRoundedImageView
+                    android:id="@+id/Company"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/insurance"
+                    app:sriv_border_color="@android:color/transparent"
+                    app:sriv_border_width="4dip"
+                    app:sriv_left_bottom_corner_radius="7dip"
+                    app:sriv_left_top_corner_radius="7dip"
+                    app:sriv_oval="false"
+                    app:sriv_right_bottom_corner_radius="7dip"
+                    app:sriv_right_top_corner_radius="7dip" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center|bottom"
+                    android:padding="@dimen/_8sdp"
+                    android:text="Insurance\nCompanies"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/_12sdp" />
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+
+                <com.joooonho.SelectableRoundedImageView
+                    android:id="@+id/ContectUS"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/contact_us"
+                    app:sriv_border_color="@android:color/transparent"
+                    app:sriv_border_width="4dip"
+                    app:sriv_left_bottom_corner_radius="7dip"
+                    app:sriv_left_top_corner_radius="7dip"
+                    app:sriv_oval="false"
+                    app:sriv_right_bottom_corner_radius="7dip"
+                    app:sriv_right_top_corner_radius="7dip" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center|bottom"
+                    android:padding="@dimen/_8sdp"
+                    android:text="Contact us"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/_12sdp" />
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
