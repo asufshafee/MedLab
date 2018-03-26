@@ -6,7 +6,9 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
 
+import com.labo.kaji.fragmentanimations.CubeAnimation;
 import com.webmarke8.app.medlab.R;
 
 /**
@@ -25,6 +27,10 @@ public class BMI_Calculater extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_bmi__calculater, container, false);
+    }
+    @Override
+    public Animation onCreateAnimation(int transit, boolean enter, int nextAnim) {
+        return CubeAnimation.create(CubeAnimation.RIGHT, enter, 500);
     }
 
 }

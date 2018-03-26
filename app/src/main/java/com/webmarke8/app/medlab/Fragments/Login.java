@@ -4,13 +4,20 @@ package com.webmarke8.app.medlab.Fragments;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.EditText;
 
+import com.google.gson.Gson;
 import com.medialablk.easytoast.EasyToast;
 import com.webmarke8.app.medlab.Activities.MainActivity;
+import com.webmarke8.app.medlab.Objects.JsonParserLogin;
+import com.webmarke8.app.medlab.Objects.Login_Object;
 import com.webmarke8.app.medlab.R;
 import com.webmarke8.app.medlab.Session.GlobalActions;
 import com.webmarke8.app.medlab.Session.MyApplication;
@@ -46,6 +53,7 @@ public class Login extends Fragment {
     MyApplication myApplication;
     EditText Username, Password;
     Dialog Progress;
+    CheckBox Remember;
 
     public Login() {
         // Required empty public constructor
@@ -61,6 +69,7 @@ public class Login extends Fragment {
         ((MainActivity) getActivity()).HideToolbarWithBack();
         myApplication = (MyApplication) getActivity().getApplicationContext();
         Progress = AppUtils.LoadingSpinner(getActivity());
+        Remember = (CheckBox) view.findViewById(R.id.Remember);
 
         Username = (EditText) view.findViewById(R.id.Username);
         Password = (EditText) view.findViewById(R.id.Password);
@@ -68,37 +77,36 @@ public class Login extends Fragment {
         view.findViewById(R.id.Login).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Login(prepareLoginJsonRequest());
+                Login();
             }
         });
 
         return view;
     }
 
-    private String prepareLoginJsonRequest() {
 
-        String request = "";
-        request += "{";
-        request += "\"device\":{";
-        request += "\"Platform\":" + "\"Android\"" + ",";
-        request += "\"Resolution\":" + "\"" + myApplication.RESOLUATION + "\"" + ",";
-        request += "\"Version\":" + "\"" + myApplication.APP_VERSION + "\"";
-        request += "},";
-        request += "\"request\":{";
-        request += "\"Countryid\":" + "\"" + myApplication.COUNTERY_ID + "\"" + ",";
-        request += "\"Password\":" + "\"" + Username.getText().toString().trim() + "\"" + ",";
-        request += "\"RegId\":" + "\"" + GlobalActions.getDataToSharedPrefrences(SharedPrefrenceKeys.REGISTRATION_ID, getActivity().getApplicationContext()) + "\"" + ",";
-        request += "\"UserName\":" + "\"" + Password.getText().toString().trim() + "\"";
-        request += "},";
+    private void Login() {
 
-        request += "\"userId\":" + "\"" + myApplication.USER_ID + "\"";
-        request += "}";
-        return request;
-    }
+        Gson gson = new Gson();
+        final JsonParserLogin jsonParserLogin = new JsonParserLogin();
+        JsonParserLogin.DeviceObject deviceObject = new JsonParserLogin.DeviceObject();
+        JsonParserLogin.RequestObject requestObject = new JsonParserLogin.RequestObject();
+        deviceObject.setPlatform("Android");
+        deviceObject.setResolution(myApplication.RESOLUATION);
+        deviceObject.setVersion(myApplication.APP_VERSION);
+        requestObject.setCountryid(Integer.parseInt(myApplication.COUNTERY_ID));
+        requestObject.setPassword(Password.getText().toString().trim());
+        requestObject.setRegId(GlobalActions.getDataToSharedPrefrences(SharedPrefrenceKeys.REGISTRATION_ID, getActivity().getApplicationContext()));
+        requestObject.setUserName(Username.getText().toString().trim());
+        jsonParserLogin.setWSPassword("Medl@p$app17");
+        jsonParserLogin.setWSUsername("Medlabs");
+        jsonParserLogin.setUserId(myApplication.USER_ID);
+        jsonParserLogin.setDevice(deviceObject);
+        jsonParserLogin.setRequest(requestObject);
 
-    private void Login(final String JsonRequest) {
+        final String request = gson.toJson(jsonParserLogin);
 
-
+        Progress.show();
         String Url = myApplication.LinkedUserLogin;
         StringRequest stringRequest = new StringRequest(Request.Method.POST,
                 Url, new Response.Listener<String>() {
@@ -107,21 +115,36 @@ public class Login extends Fragment {
             public void onResponse(String response) {
 
                 Progress.dismiss();
-                if (response.contains("success")) {
+                if (response.contains("Success")) {
 
-//                    try {
-//                        JSONObject jsonObject = new JSONObject(response);
-//                        GetRiderResponse(String.valueOf(jsonObject.getInt("success")));
-//                        myApplication.ClearCart();
-//                        ((MainActivity) getActivity()).Bandge(0);
-//                    } catch (Exception Ex) {
-//                        EasyToast.error(getActivity(), "Something Went Wrong!!");
-//
-//                    }
+
+                    Gson gson = new Gson();
+                    Login_Object login_object = new Login_Object();
+                    login_object = gson.fromJson(response, Login_Object.class);
+                    if (Remember.isChecked()) {
+                        myApplication.setIslogged(login_object,jsonParserLogin);
+                    }else {
+                        myApplication.setSaveToken(login_object);
+                    }
+
+                    Fragment fragment = null;
+                    Class fragmentClass = null;
+
+                    fragmentClass = Test_Result_Screen.class;
+                    try {
+                        fragment = (Fragment) fragmentClass.newInstance();
+                        Bundle bundle = new Bundle();
+                        bundle.putSerializable("login_object",login_object);
+                        fragment.setArguments(bundle);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    FragmentManager fragmentManager = ((AppCompatActivity) getActivity()).getSupportFragmentManager();
+                    fragmentManager.beginTransaction().replace(R.id.container, fragment, "Test Results").setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).addToBackStack(null).commit();
 
 
                 } else {
-                    EasyToast.error(getActivity(), "Something Went Wrong!! Quantity issus");
+                    EasyToast.error(getActivity(), "Something Went Wrong!!");
                 }
 
             }
@@ -149,17 +172,17 @@ public class Login extends Fragment {
             public Map<String, String> getHeaders() throws AuthFailureError {
 
                 Map<String, String> headers = new HashMap<>();
-                headers.put("Accept", "application/json");
                 headers.put("Content-Type", "application/json");
                 return headers;
             }
 
+
             @Override
             public byte[] getBody() throws AuthFailureError {
                 try {
-                    return JsonRequest == null ? null : JsonRequest.getBytes("utf-8");
+                    return request == null ? null : request.getBytes("utf-8");
                 } catch (UnsupportedEncodingException uee) {
-                    VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s", JsonRequest, "utf-8");
+                    VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s", request, "utf-8");
                     return null;
                 }
             }
@@ -167,8 +190,9 @@ public class Login extends Fragment {
 
             @Override
             public String getBodyContentType() {
-                return "application/json; charset=utf-8";
+                return "application/json";
             }
+
         };
 
         stringRequest.setRetryPolicy(new DefaultRetryPolicy(5000,

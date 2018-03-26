@@ -23,7 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/toolbar_with_search"
-        android:layout_marginBottom="@dimen/_43sdp" />
+        android:layout_marginBottom="@dimen/_30sdp" />
 
     <include layout="@layout/tabs_layout"></include>
 

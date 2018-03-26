@@ -10,12 +10,14 @@ import android.view.animation.Animation;
 
 import com.labo.kaji.fragmentanimations.CubeAnimation;
 import com.webmarke8.app.medlab.Activities.MainActivity;
+import com.webmarke8.app.medlab.Objects.JsonParserVisited;
 import com.webmarke8.app.medlab.R;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class Test_Directory_Details extends Fragment {
+
 
 
     public Test_Directory_Details() {
@@ -30,13 +32,13 @@ public class Test_Directory_Details extends Fragment {
         View view = inflater.inflate(R.layout.fragment_test__directory__details, container, false);
         ((MainActivity) getActivity()).Change_Tittle("Test Directory");
         ((MainActivity) getActivity()).ShowBack_toolbar();
+
         view.findViewById(R.id.Click).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
             }
         });
-
 
 
         return view;

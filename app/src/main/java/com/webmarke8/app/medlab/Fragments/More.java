@@ -19,6 +19,8 @@ import com.webmarke8.app.medlab.R;
 public class More extends Fragment {
 
 
+    Boolean Tint1 = false, Tint2 = false, Tint3 = false;
+
     public More() {
         // Required empty public constructor
     }
@@ -31,6 +33,7 @@ public class More extends Fragment {
         View view = inflater.inflate(R.layout.fragment_more, container, false);
         ((MainActivity) getActivity()).Change_Tittle("More");
         ((MainActivity) getActivity()).HideToolbarWithBack();
+
 
         view.findViewById(R.id.ManageMyHealth).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,6 +56,13 @@ public class More extends Fragment {
         });
 
         return view;
+    }
+    public void Refresh()
+    {
+        if (Tint1)
+        {
+
+        }
     }
 
 }

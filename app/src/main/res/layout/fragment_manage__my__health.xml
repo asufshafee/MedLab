@@ -1,7 +1,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
     android:id="@+id/Click"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
     android:orientation="vertical"
@@ -11,6 +11,7 @@
 
 
     <LinearLayout
+        android:id="@+id/Water"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/_7sdp"
@@ -18,17 +19,17 @@
         android:gravity="center|left">
 
         <ImageView
+            android:id="@+id/WaterIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/water_icon"
-            android:tint="@color/red" />
+            android:src="@drawable/water_icon" />
 
         <TextView
+            android:id="@+id/WaterName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingStart="@dimen/_7sdp"
-            android:text="Water Remainder"
-            android:textColor="@color/red" />
+            android:text="Water Remainder" />
     </LinearLayout>
 
     <TextView
@@ -37,6 +38,7 @@
         android:background="@drawable/input_line" />
 
     <LinearLayout
+        android:id="@+id/BMI"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/_7sdp"
@@ -44,11 +46,13 @@
         android:gravity="center|left">
 
         <ImageView
+            android:id="@+id/BMIIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/bmi_icon" />
 
         <TextView
+            android:id="@+id/BmiName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingStart="@dimen/_7sdp"
@@ -61,6 +65,7 @@
         android:background="@drawable/input_line" />
 
     <LinearLayout
+        android:id="@+id/Time"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/_7sdp"
@@ -68,11 +73,13 @@
         android:gravity="center|left">
 
         <ImageView
+            android:id="@+id/TimeIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/time_used" />
 
         <TextView
+            android:id="@+id/TimeName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingStart="@dimen/_7sdp"

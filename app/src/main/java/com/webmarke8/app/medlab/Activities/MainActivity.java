@@ -17,7 +17,9 @@ import com.webmarke8.app.medlab.Fragments.More;
 import com.webmarke8.app.medlab.Fragments.Notifications;
 import com.webmarke8.app.medlab.Fragments.Sehtak_Bill;
 import com.webmarke8.app.medlab.Fragments.Test_Directory;
+import com.webmarke8.app.medlab.Fragments.Test_Result_Screen;
 import com.webmarke8.app.medlab.R;
+import com.webmarke8.app.medlab.Session.MyApplication;
 
 import org.w3c.dom.Text;
 
@@ -28,11 +30,14 @@ public class MainActivity extends AppCompatActivity {
     ImageView Home, Heart, More, Location, Result;
     Boolean HomeSelected = true, HeartSelected = false, MoreSelected = false, LocationSelected = false, ResultSelected = false;
 
+    MyApplication myApplication;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        myApplication = (MyApplication) getApplicationContext();
 
         Home = (ImageView) findViewById(R.id.Home);
         Heart = (ImageView) findViewById(R.id.Heart);
@@ -137,8 +142,16 @@ public class MainActivity extends AppCompatActivity {
         if (ResultSelected) {
             if (getCurrentFragment() != null && getCurrentFragment().getTag().equals("MedLabs")) {
 
-            } else ShowTopFragment(new Login(), "MedLabs");
-            Change_Tittle("MedLabs");
+            } else {
+                if (!myApplication.isLoggedIn()) {
+                    Change_Tittle("MedLabs");
+                    ShowTopFragment(new Login(), "MedLabs");
+                } else {
+                    Change_Tittle("Test Results");
+                    ShowTopFragment(new Test_Result_Screen(), "Test Results");
+                }
+            }
+
             Result.setImageDrawable(getResources().getDrawable(R.drawable.result_icon_selected));
             More.setImageDrawable(getResources().getDrawable(R.drawable.more_icon));
             Location.setImageDrawable(getResources().getDrawable(R.drawable.location_icon));
@@ -208,6 +221,21 @@ public class MainActivity extends AppCompatActivity {
         view.setVisibility(View.VISIBLE);
     }
 
+    public void ShowShare_toolbar() {
+
+        ImageView Share = (ImageView) findViewById(R.id.Share);
+        Share.setImageDrawable(getResources().getDrawable(R.drawable.share_icon));
+
+    }
+
+    public void HideShare_toolbar() {
+
+        ImageView Share = (ImageView) findViewById(R.id.Share);
+        Share.setImageDrawable(getResources().getDrawable(R.drawable.menu_dot));
+
+    }
+
+
     public void Back() {
 
         findViewById(R.id.Beck).setOnClickListener(new View.OnClickListener() {
@@ -227,7 +255,7 @@ public class MainActivity extends AppCompatActivity {
 
                     }
                     String Tittle = getCurrentFragment().getTag();
-                    if (getCurrentFragment().getTag().equals("More") || getCurrentFragment().getTag().equals("Labs Locations") || getCurrentFragment().getTag().equals("MedLabs") || getCurrentFragment().getTag().equals("SEHTAK BIL DENIA") || getCurrentFragment().getTag().equals("HOME PAGE")) {
+                    if (getCurrentFragment().getTag().equals("More") || getCurrentFragment().getTag().equals("Labs Locations") || getCurrentFragment().getTag().equals("MedLabs") || getCurrentFragment().getTag().equals("SEHTAK BIL DENIA") || getCurrentFragment().getTag().equals("HOME PAGE") || getCurrentFragment().getTag().equals("Test Results")) {
                         HideToolbarWithBack();
                     }
                 }
@@ -245,5 +273,11 @@ public class MainActivity extends AppCompatActivity {
         } else {
             super.onBackPressed();
         }
+    }
+
+    public void ChangeTintColors(ImageView imageView, TextView textView, Fragment fragment, String Tag) {
+        imageView.setColorFilter(getResources().getColor(R.color.red), android.graphics.PorterDuff.Mode.MULTIPLY);
+        textView.setTextColor(getResources().getColor(R.color.red));
+        ShowFragment(fragment, Tag);
     }
 }

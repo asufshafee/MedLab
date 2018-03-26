@@ -6,7 +6,10 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
 
+import com.labo.kaji.fragmentanimations.CubeAnimation;
+import com.webmarke8.app.medlab.Activities.MainActivity;
 import com.webmarke8.app.medlab.R;
 
 /**
@@ -24,7 +27,21 @@ public class Time_Used extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_time__used, container, false);
+        View view = inflater.inflate(R.layout.fragment_time__used, container, false);
+        ((MainActivity) getActivity()).Change_Tittle("Time Used");
+        ((MainActivity) getActivity()).ShowBack_toolbar();
+        ((MainActivity) getActivity()).ShowShare_toolbar();
+        return view;
     }
 
+    @Override
+    public Animation onCreateAnimation(int transit, boolean enter, int nextAnim) {
+        return CubeAnimation.create(CubeAnimation.RIGHT, enter, 500);
+    }
+
+    @Override
+    public void onDestroy() {
+        ((MainActivity) getActivity()).HideShare_toolbar();
+        super.onDestroy();
+    }
 }

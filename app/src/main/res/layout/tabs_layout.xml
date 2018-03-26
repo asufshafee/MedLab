@@ -13,21 +13,23 @@
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_15sdp"
+            android:layout_height="20dp"
             android:layout_alignParentBottom="true"
             android:background="#FFFFFF" />
 
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="70dp"
+            android:scaleType="fitXY"
             android:layout_alignParentBottom="true"
             android:src="@drawable/footer" />
 
         <LinearLayout
             android:layout_width="match_parent"
+            android:layout_marginBottom="@dimen/_2sdp"
             android:layout_height="match_parent"
             android:gravity="bottom"
-            android:paddingBottom="15dp">
+            android:paddingBottom="7dp">
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -38,8 +40,8 @@
 
                 <ImageView
                     android:id="@+id/Home"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:src="@drawable/home_icon" />
             </LinearLayout>
 
@@ -52,8 +54,8 @@
 
                 <ImageView
                     android:id="@+id/Heart"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:src="@drawable/heart_iconn" />
             </LinearLayout>
 
@@ -63,12 +65,12 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:onClick="Result"
-                android:paddingBottom="15dp">
+                android:paddingBottom="11dp">
 
                 <ImageView
                     android:id="@+id/Result"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
                     android:src="@drawable/result_icon" />
             </LinearLayout>
 
@@ -81,24 +83,22 @@
 
                 <ImageView
                     android:id="@+id/Location"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:src="@drawable/location_icon" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/_3sdp"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:onClick="More">
 
                 <ImageView
                     android:id="@+id/More"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="@dimen/_5sdp"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:src="@drawable/more_icon" />
             </LinearLayout>
         </LinearLayout>

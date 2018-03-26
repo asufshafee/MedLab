@@ -179,7 +179,6 @@
 
 
                 <RelativeLayout
-                    android:id="@+id/AboutUS"
                     android:layout_width="0dp"
                     android:layout_height="160dp"
                     android:layout_weight="1">
@@ -203,6 +202,7 @@
 
 
                 <RelativeLayout
+                    android:id="@+id/AboutUS"
                     android:layout_width="0dp"
                     android:layout_height="160dp"
                     android:layout_weight="1">

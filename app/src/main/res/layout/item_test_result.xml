@@ -3,11 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingStart="@dimen/_5sdp"
+    android:paddingBottom="@dimen/_2sdp"
     android:paddingEnd="@dimen/_5sdp"
-    android:paddingBottom="@dimen/_1sdp"
-    android:paddingTop="@dimen/_1sdp"
-    >
+    android:paddingStart="@dimen/_5sdp"
+    android:paddingTop="@dimen/_2sdp">
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
@@ -30,36 +29,38 @@
                 android:layout_weight="1"
                 android:orientation="vertical">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center|left"
-                        android:paddingStart="@dimen/_5sdp"
-                        android:text="Notification Tittle"
-                        android:textColor="#b8332e"
-                        android:textSize="@dimen/_13sdp"
-                        android:textStyle="bold" />
-                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
+                    android:paddingEnd="@dimen/_10sdp"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
+
                     <TextView
+                        android:id="@+id/Name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center|left"
+                        android:lines="1"
                         android:paddingEnd="@dimen/_10sdp"
                         android:paddingStart="@dimen/_5sdp"
-                        android:text="20.12.2017"
+                        android:text="Jess (Jessica Alba) Gwen (Steffani) Rosie (Huntington-Whiteley) .."
                         android:textColor="#979ea4"
-                        android:textSize="@dimen/_9sdp"
+                        android:textSize="@dimen/_11sdp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/FileName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center|left"
+                        android:lines="1"
+                        android:paddingEnd="@dimen/_10sdp"
+                        android:paddingStart="@dimen/_5sdp"
+                        android:text="Jess (Jessica Alba) Gwen (Steffani) Rosie (Huntington-Whiteley) .."
+                        android:textColor="#979ea4"
+                        android:textSize="@dimen/_11sdp"
                         android:textStyle="bold" />
 
                 </LinearLayout>
