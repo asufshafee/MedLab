@@ -70,6 +70,7 @@ public class Visited_Result_Adapter extends RecyclerView.Adapter<Visited_Result_
 //                deviceObject.setVersion(myApplication.APP_VERSION);
 //                jsonParserVisited.setDevice(deviceObject);
 
+
                 Fragment fragment = null;
                 Class fragmentClass = null;
 
