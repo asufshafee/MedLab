@@ -59,6 +59,7 @@ public class Visited_Result_Adapter extends RecyclerView.Adapter<Visited_Result_
             public void onClick(View v) {
 
 //                JsonParserVisited jsonParserVisited = new JsonParserVisited();
+
 //                JsonParserVisited.DeviceObject deviceObject = new JsonParserVisited.DeviceObject();
 //                jsonParserVisited.setToken(myApplication.getLoginSessionLogin().getToken());
 //                jsonParserVisited.setUserId(List.get(position).getFileNo());
