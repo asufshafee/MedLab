@@ -59,13 +59,12 @@ public class Login extends Fragment {
         // Required empty public constructor
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_login, container, false);
-        ((MainActivity) getActivity()).Change_Tittle("MedLabs");
+//        ((MainActivity) getActivity()).Change_Tittle("MedLabs");
         ((MainActivity) getActivity()).HideToolbarWithBack();
         myApplication = (MyApplication) getActivity().getApplicationContext();
         Progress = AppUtils.LoadingSpinner(getActivity());

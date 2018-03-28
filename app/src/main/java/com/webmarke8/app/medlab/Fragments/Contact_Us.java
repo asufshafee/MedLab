@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 
 import com.webmarke8.app.medlab.Activities.MainActivity;
 import com.webmarke8.app.medlab.R;
+import com.webmarke8.app.medlab.Session.MyApplication;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -24,12 +25,21 @@ public class Contact_Us extends Fragment {
     }
 
 
+    MyApplication myApplication;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_contact__us, container, false);
-        ((MainActivity) getActivity()).Change_Tittle("Contact Us");
+
+        myApplication = (MyApplication) getActivity().getApplicationContext();
+        if (myApplication.GetLanguage().equals("en"))
+            ((MainActivity) getActivity()).Change_Tittle("Contact Us");
+        else {
+            ((MainActivity) getActivity()).Change_Tittle(getString(R.string.Contect_Us));
+
+        }
+
         ((MainActivity) getActivity()).ShowBack_toolbar();
 
         view.findViewById(R.id.AboutUS).setOnClickListener(new View.OnClickListener() {

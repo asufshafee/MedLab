@@ -11,7 +11,6 @@
     android:paddingTop="@dimen/_5sdp"
     tools:context="com.webmarke8.app.medlab.Fragments.Lab_Locations_Details">
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -22,9 +21,9 @@
             android:layout_height="wrap_content">
 
             <com.joooonho.SelectableRoundedImageView
-                android:id="@+id/image"
+                android:id="@+id/Image"
                 android:layout_width="match_parent"
-                android:layout_height="180dp"
+                android:layout_height="150dp"
                 android:layout_marginBottom="@dimen/_10sdp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/home_banner"
@@ -65,10 +64,12 @@
                     android:src="@drawable/location_pin_list_item" />
 
                 <TextView
+                    android:id="@+id/Name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center|left"
                     android:paddingStart="@dimen/_5sdp"
+                    android:lines="1"
+                    android:maxLines="1"
                     android:text="Zahran Central laboratory"
                     android:textColor="#b8332e"
                     android:textSize="@dimen/_13sdp"
@@ -114,9 +115,8 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:gravity="center|left"
                             android:paddingStart="@dimen/_5sdp"
-                            android:text="Address"
+                            android:text="@string/ac_locations_details_address"
                             android:textColor="#b8332e"
                             android:textSize="@dimen/_11sdp" />
                     </LinearLayout>
@@ -127,10 +127,11 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/Address"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:gravity="center|left"
                             android:lines="2"
+                            android:maxLines="2"
                             android:paddingEnd="@dimen/_10sdp"
                             android:paddingStart="@dimen/_7sdp"
                             android:text="3rd Circle, lbn khaldoun Street, Beside Al Khalidi Hospital, Building No. 35"
@@ -195,9 +196,8 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:gravity="center|left"
                             android:paddingStart="@dimen/_5sdp"
-                            android:text="Phone"
+                            android:text="@string/ac_locations_details_phoneno"
                             android:textColor="#b8332e"
                             android:textSize="@dimen/_11sdp" />
                     </LinearLayout>
@@ -208,11 +208,12 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/Phone"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center|left|top"
                             android:lines="2"
-                            android:paddingEnd="@dimen/_10sdp"
+                            android:maxLines="2"                            android:paddingEnd="@dimen/_10sdp"
                             android:paddingStart="@dimen/_7sdp"
                             android:paddingTop="@dimen/_2sdp"
                             android:text="087 78234872368"

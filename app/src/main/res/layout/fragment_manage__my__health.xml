@@ -5,6 +5,8 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF"
     android:orientation="vertical"
+    android:layoutDirection="ltr"
+    android:clickable="true"
     android:paddingEnd="@dimen/_15sdp"
     android:paddingStart="@dimen/_15sdp"
     tools:context="com.webmarke8.app.medlab.Fragments.Manage_My_Health">
@@ -22,14 +24,16 @@
             android:id="@+id/WaterIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:tint="@color/textColor"
             android:src="@drawable/water_icon" />
 
         <TextView
             android:id="@+id/WaterName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/textColor"
             android:paddingStart="@dimen/_7sdp"
-            android:text="Water Remainder" />
+            android:text="@string/water_remeinder" />
     </LinearLayout>
 
     <TextView
@@ -48,6 +52,7 @@
         <ImageView
             android:id="@+id/BMIIcon"
             android:layout_width="wrap_content"
+            android:tint="@color/textColor"
             android:layout_height="wrap_content"
             android:src="@drawable/bmi_icon" />
 
@@ -55,8 +60,9 @@
             android:id="@+id/BmiName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/textColor"
             android:paddingStart="@dimen/_7sdp"
-            android:text="BMI Calculator" />
+            android:text="@string/bmi_calculator" />
     </LinearLayout>
 
     <TextView
@@ -74,6 +80,7 @@
 
         <ImageView
             android:id="@+id/TimeIcon"
+            android:tint="@color/textColor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/time_used" />
@@ -81,9 +88,10 @@
         <TextView
             android:id="@+id/TimeName"
             android:layout_width="wrap_content"
+            android:textColor="@color/textColor"
             android:layout_height="wrap_content"
             android:paddingStart="@dimen/_7sdp"
-            android:text="Time Used" />
+            android:text="@string/time_used" />
     </LinearLayout>
 
     <TextView

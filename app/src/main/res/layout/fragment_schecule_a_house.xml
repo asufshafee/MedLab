@@ -22,9 +22,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_10sdp"
-                android:gravity="center|left"
                 android:paddingStart="@dimen/_5sdp"
-                android:text="Please Fill in the input below:"
+                android:text="@string/please_fill_in_the_input_below"
                 android:textColor="@color/red"
                 android:textSize="@dimen/_13sdp"
                 android:textStyle="bold" />
@@ -44,7 +43,7 @@
                     android:background="@color/colorPrimary"
                     android:drawablePadding="@dimen/_10sdp"
                     android:drawableStart="@drawable/user_icon"
-                    android:hint="User Name" />
+                    android:hint="@string/username" />
 
                 <ImageView
                     android:layout_width="match_parent"
@@ -68,7 +67,7 @@
                     android:background="@color/colorPrimary"
                     android:drawablePadding="@dimen/_10sdp"
                     android:drawableStart="@drawable/password_icon"
-                    android:hint="Phone Number"
+                    android:hint="@string/phone_no"
                     android:inputType="phone" />
 
                 <ImageView
@@ -89,13 +88,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="@dimen/_10sdp"
                     android:layout_weight="1"
-                    android:text="When" />
+                    android:text="@string/when" />
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.5"
-                    android:text="Time" />
+                    android:text="@string/time" />
             </LinearLayout>
 
             <LinearLayout
@@ -113,6 +112,7 @@
                         android:id="@+id/Date"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/_10sdp"
                         android:layout_centerInParent="true"
                         android:padding="@dimen/_10sdp"
                         android:text="16th February 2018" />
@@ -163,7 +163,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="@dimen/_10sdp"
                     android:layout_weight="1"
-                    android:text="Chose Country" />
+                    android:text="@string/choose_country" />
 
             </LinearLayout>
 
@@ -185,7 +185,7 @@
                         android:layout_weight="1"
                         android:button="@drawable/country_radio_button"
                         android:padding="@dimen/_5sdp"
-                        android:text="Jordan" />
+                        android:text="@string/jordan" />
 
                     <RadioButton
                         android:id="@+id/Palstine"
@@ -194,7 +194,7 @@
                         android:layout_weight="1"
                         android:button="@drawable/country_radio_button"
                         android:padding="@dimen/_5sdp"
-                        android:text="Palsetine" />
+                        android:text="@string/palsetine" />
                 </RadioGroup>
             </LinearLayout>
 
@@ -202,8 +202,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_15sdp"
-                android:gravity="center|left"
-                android:text="Add Your Address:"
+                android:text="@string/add_your_address"
                 android:textColor="@color/red"
                 android:textSize="@dimen/_11sdp"
                 android:textStyle="bold" />
@@ -218,7 +217,7 @@
                     android:id="@+id/City"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="City"
+                    android:hint="@string/house_call_city"
                     android:inputType="textPostalAddress" />
 
             </android.support.design.widget.TextInputLayout>
@@ -233,7 +232,7 @@
                     android:id="@+id/Area"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Area"
+                    android:hint="@string/house_call_area"
                     android:inputType="textPostalAddress" />
 
             </android.support.design.widget.TextInputLayout>
@@ -248,7 +247,7 @@
                     android:id="@+id/Street"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Street"
+                    android:hint="@string/house_call_street_name"
                     android:inputType="textPostalAddress" />
             </android.support.design.widget.TextInputLayout>
 
@@ -262,7 +261,7 @@
                     android:id="@+id/BuildingNumber"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Building Number"
+                    android:hint="@string/house_call_building_no"
                     android:inputType="textPostalAddress" />
 
             </android.support.design.widget.TextInputLayout>
@@ -277,7 +276,7 @@
                     android:id="@+id/FloorNumber"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Floor Number"
+                    android:hint="@string/house_call_floor_no"
                     android:inputType="textPostalAddress" />
 
             </android.support.design.widget.TextInputLayout>
@@ -304,7 +303,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:gravity="center"
-                    android:text="Submit"
+                    android:text="@string/house_call_submit"
                     android:textColor="@android:color/white" />
             </RelativeLayout>
         </LinearLayout>

@@ -42,10 +42,12 @@
                         android:src="@drawable/location_pin_list_item" />
 
                     <TextView
+                        android:id="@+id/Name"
+                        android:lines="1"
+                        android:maxLines="1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:paddingStart="@dimen/_5sdp"
-                        android:gravity="center|left"
                         android:text="Zahran Central laboratory"
                         android:textColor="#b8332e"
                         android:textSize="@dimen/_13sdp"
@@ -58,10 +60,11 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/Address"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="center|left"
                         android:lines="2"
+                        android:maxLines="2"
                         android:paddingEnd="@dimen/_10sdp"
                         android:text="3rd Circle, lbn khaldoun Street, Beside Al Khalidi Hospital, Building No. 35"
                         android:textColor="#858585"
@@ -72,9 +75,11 @@
             </LinearLayout>
 
             <com.joooonho.SelectableRoundedImageView
+                android:id="@+id/Image"
                 android:layout_width="@dimen/_50sdp"
                 android:layout_height="@dimen/_50sdp"
                 android:src="@drawable/schedule"
+                android:scaleType="fitCenter"
                 app:sriv_border_color="@android:color/transparent"
                 app:sriv_border_width="4dip"
                 app:sriv_left_bottom_corner_radius="12dip"

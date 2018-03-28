@@ -30,10 +30,12 @@ public class Visited_Result_Adapter extends RecyclerView.Adapter<Visited_Result_
     List<Visited_Object.RespOBJObject> List;
     Context context;
     MyApplication myApplication;
+    Visited_Object visited_object;
 
-    public Visited_Result_Adapter(List<Visited_Object.RespOBJObject> list, Context context) {
+    public Visited_Result_Adapter(List<Visited_Object.RespOBJObject> list, Context context, Visited_Object visited_object) {
         this.List = list;
         this.context = context;
+        this.visited_object = visited_object;
         myApplication = (MyApplication) context.getApplicationContext();
     }
 
@@ -71,7 +73,7 @@ public class Visited_Result_Adapter extends RecyclerView.Adapter<Visited_Result_
 //                deviceObject.setVersion(myApplication.APP_VERSION);
 //                jsonParserVisited.setDevice(deviceObject);
 
-
+//                String FileNo, String VisitedID
                 Fragment fragment = null;
                 Class fragmentClass = null;
 
@@ -79,7 +81,9 @@ public class Visited_Result_Adapter extends RecyclerView.Adapter<Visited_Result_
                 try {
                     fragment = (Fragment) fragmentClass.newInstance();
                     Bundle bundle = new Bundle();
-//                    bundle.putSerializable("jsonParserVisited", jsonParserVisited);
+                    bundle.putString("FileNo", visited_object.getFileNo());
+                    bundle.putString("VisitedID", List.get(position).getVisitId());
+                    bundle.putString("Date", List.get(position).getVisitDate());
                     fragment.setArguments(bundle);
                 } catch (Exception e) {
                     e.printStackTrace();

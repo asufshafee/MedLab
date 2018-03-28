@@ -36,7 +36,7 @@
             android:background="@color/colorPrimary"
             android:drawablePadding="@dimen/_10sdp"
             android:drawableStart="@drawable/user_icon"
-            android:hint="User Name" />
+            android:hint="@string/username" />
 
         <ImageView
             android:layout_width="match_parent"
@@ -61,7 +61,7 @@
             android:background="@color/colorPrimary"
             android:drawablePadding="@dimen/_10sdp"
             android:drawableStart="@drawable/password_icon"
-            android:hint="Password" />
+            android:hint="@string/password" />
 
         <ImageView
             android:layout_width="match_parent"
@@ -82,7 +82,7 @@
             android:layout_height="wrap_content"
             android:button="@drawable/check_box"
             android:padding="@dimen/_5sdp"
-            android:text="Remember Me?" />
+            android:text="@string/remember_me" />
     </LinearLayout>
 
     <RelativeLayout

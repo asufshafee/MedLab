@@ -67,7 +67,7 @@ public class Test_Result_Adapter extends RecyclerView.Adapter<Test_Result_Adapte
                 jsonParserVisited.setUserId(List.get(position).getFileNo());
                 jsonParserVisited.setWSPassword("Medl@p$app17");
                 jsonParserVisited.setWSUsername("Medlabs");
-
+                jsonParserVisited.setFileName(List.get(position).getFileNo());
                 deviceObject.setPlatform("Android");
                 deviceObject.setResolution(myApplication.RESOLUATION);
                 deviceObject.setVersion(myApplication.APP_VERSION);

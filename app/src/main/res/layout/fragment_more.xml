@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
+    android:layoutDirection="ltr"
     android:orientation="vertical"
     android:paddingEnd="@dimen/_15sdp"
     android:paddingStart="@dimen/_15sdp"
@@ -18,15 +19,19 @@
         android:gravity="center|left">
 
         <ImageView
+            android:id="@+id/ManageIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/manage_my_health" />
+            android:src="@drawable/manage_my_health"
+            android:tint="@color/textColor" />
 
         <TextView
+            android:id="@+id/ManageName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingStart="@dimen/_7sdp"
-            android:text="Manage My Health" />
+            android:text="Manage My Health"
+            android:textColor="@color/textColor" />
     </LinearLayout>
 
     <TextView
@@ -35,6 +40,7 @@
         android:background="@drawable/input_line" />
 
     <LinearLayout
+        android:id="@+id/Settings"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/_7sdp"
@@ -42,15 +48,19 @@
         android:gravity="center|left">
 
         <ImageView
+            android:id="@+id/SettingsIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/settings" />
+            android:src="@drawable/settings"
+            android:tint="@color/textColor" />
 
         <TextView
+            android:id="@+id/SettingsName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingStart="@dimen/_7sdp"
-            android:text="Settings" />
+            android:text="Settings"
+            android:textColor="@color/textColor" />
     </LinearLayout>
 
     <TextView
@@ -59,6 +69,7 @@
         android:background="@drawable/input_line" />
 
     <LinearLayout
+        android:id="@+id/FeaturedTest"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/_7sdp"
@@ -66,11 +77,13 @@
         android:gravity="center|left">
 
         <ImageView
+            android:id="@+id/TestIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/featured_test" />
 
         <TextView
+            android:id="@+id/TestName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingStart="@dimen/_7sdp"
@@ -83,6 +96,7 @@
         android:background="@drawable/input_line" />
 
     <LinearLayout
+        android:id="@+id/Help"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/_7sdp"
@@ -90,15 +104,19 @@
         android:gravity="center|left">
 
         <ImageView
+            android:id="@+id/HelpIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/help" />
+            android:src="@drawable/help"
+            android:tint="@color/textColor" />
 
         <TextView
+            android:id="@+id/HelpName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingStart="@dimen/_7sdp"
-            android:text="help" />
+            android:text="help"
+            android:textColor="@color/textColor" />
     </LinearLayout>
 
     <TextView
@@ -107,6 +125,7 @@
         android:background="@drawable/input_line" />
 
     <LinearLayout
+        android:id="@+id/Logout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/_7sdp"
@@ -114,15 +133,19 @@
         android:gravity="center|left">
 
         <ImageView
+            android:id="@+id/LogouIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/logout" />
+            android:src="@drawable/logout"
+            android:tint="@color/textColor" />
 
         <TextView
+            android:id="@+id/LogoutName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingStart="@dimen/_7sdp"
-            android:text="Logout" />
+            android:text="Logout"
+            android:textColor="@color/textColor" />
     </LinearLayout>
 
     <TextView

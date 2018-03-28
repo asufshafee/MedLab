@@ -3,6 +3,7 @@
     android:id="@+id/Click"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layoutDirection="ltr"
     android:orientation="vertical"
     android:paddingBottom="@dimen/_10sdp"
     android:paddingLeft="@dimen/_7sdp"
@@ -25,17 +26,24 @@
 
 
         <EditText
+            android:id="@+id/Search"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:hint="@string/search"
+            android:lines="1"
+            android:maxLines="1"
+            android:inputType="text"
+            android:paddingStart="@dimen/_10sdp"
             android:layout_centerInParent="true"
             android:layout_marginStart="@dimen/_60sdp"
             android:background="#FFFFFF" />
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:gravity="center|left"
+            android:gravity="center"
+            android:layout_centerVertical="true"
+            android:paddingRight="@dimen/_8sdp"
             android:paddingLeft="@dimen/_8sdp">
 
             <ImageView
@@ -49,6 +57,7 @@
                 android:layout_width="2dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/_3sdp"
+                android:paddingRight="@dimen/_3sdp"
                 android:background="@drawable/search_seperater"
                 android:padding="@dimen/_3sdp" />
         </LinearLayout>

@@ -16,10 +16,16 @@ import android.view.animation.Animation;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MapStyleOptions;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.labo.kaji.fragmentanimations.CubeAnimation;
 import com.webmarke8.app.medlab.Activities.MainActivity;
+import com.webmarke8.app.medlab.Objects.Locations;
 import com.webmarke8.app.medlab.R;
+import com.webmarke8.app.medlab.Session.MyApplication;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -29,6 +35,9 @@ public class Lab_Locations_Map extends Fragment implements OnMapReadyCallback {
 
     GoogleMap googleMap;
 
+    Locations locations;
+
+    MyApplication myApplication;
 
     public Lab_Locations_Map() {
         // Required empty public constructor
@@ -42,8 +51,15 @@ public class Lab_Locations_Map extends Fragment implements OnMapReadyCallback {
 
         View view = inflater.inflate(R.layout.fragment_lab__locations__map, container, false);
         ((MainActivity) getActivity()).ShowBack_toolbar();
-        ((MainActivity) getActivity()).Change_Tittle("Labs Locations");
+        myApplication = (MyApplication) getActivity().getApplicationContext();
+        if (myApplication.GetLanguage().equals("en"))
+            ((MainActivity) getActivity()).Change_Tittle("Labs Locations");
+        else {
+            ((MainActivity) getActivity()).Change_Tittle(getString(R.string.Labs_Locations));
 
+        }
+
+        locations = (Locations) getArguments().getSerializable("Locations");
 
         SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
@@ -59,6 +75,7 @@ public class Lab_Locations_Map extends Fragment implements OnMapReadyCallback {
     public void onMapReady(GoogleMap googleMa) {
         googleMap = googleMa;
         googleMap.getUiSettings().setMyLocationButtonEnabled(true);
+        googleMap.setInfoWindowAdapter(new WindowMarker());
 //        try {
 //            // Customise the styling of the base map using a JSON object defined
 //            // in a raw resource file.
@@ -84,6 +101,36 @@ public class Lab_Locations_Map extends Fragment implements OnMapReadyCallback {
         }
         googleMap.setMyLocationEnabled(true);
 
+        for (Locations.BranchObObject branchObObject : locations.getBranchOb()) {
+            googleMap.addMarker(new MarkerOptions()
+                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.lab_pin))
+                    .position(new LatLng(Double.parseDouble(branchObObject.getLatitude()), Double.parseDouble(branchObObject.getLongitude()))))
+            ;
+        }
+
+    }
+
+    class WindowMarker implements GoogleMap.InfoWindowAdapter {
+        private final View mymarkerview;
+
+        WindowMarker() {
+            mymarkerview = getLayoutInflater()
+                    .inflate(R.layout.custominfowindow, null);
+        }
+
+        public View getInfoWindow(Marker marker) {
+            render(marker, mymarkerview);
+            return mymarkerview;
+        }
+
+        public View getInfoContents(Marker marker) {
+            return null;
+        }
+
+        private void render(Marker marker, View view) {
+            // Add the code to set the required values
+            // for each element in your custominfowindow layout file
+        }
     }
 
 }

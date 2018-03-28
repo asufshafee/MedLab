@@ -4,39 +4,38 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
+    android:layoutDirection="ltr"
     android:orientation="vertical"
-    android:paddingBottom="@dimen/_13sdp"
+    android:paddingBottom="@dimen/_16sdp"
     android:paddingLeft="@dimen/_10sdp"
     android:paddingRight="@dimen/_10sdp"
-    android:paddingTop="@dimen/_6sdp"
+    android:paddingTop="@dimen/_7sdp"
     tools:context="com.webmarke8.app.medlab.Fragments.Home">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginBottom="@dimen/_5sdp"
+        android:layout_marginBottom="@dimen/_3sdp"
         android:layout_weight="1"
         android:orientation="vertical">
 
         <RelativeLayout
-            android:layout_width="match_parent"
             android:id="@+id/Tips"
+            android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1">
 
-            <com.joooonho.SelectableRoundedImageView
+            <com.makeramen.roundedimageview.RoundedImageView
                 android:id="@+id/image"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
                 android:src="@drawable/home_banner"
-                app:sriv_border_color="@android:color/transparent"
-                app:sriv_border_width="4dip"
-                app:sriv_left_bottom_corner_radius="7dip"
-                app:sriv_left_top_corner_radius="7dip"
-                app:sriv_oval="false"
-                app:sriv_right_bottom_corner_radius="7dip"
-                app:sriv_right_top_corner_radius="7dip" />
+                app:riv_border_color="@android:color/transparent"
+                app:riv_border_width="5dip"
+                app:riv_corner_radius="5dip"
+                app:riv_mutate_background="true"
+                app:riv_oval="false" />
 
 
             <LinearLayout
@@ -75,14 +74,14 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_marginTop="@dimen/_3sdp"
         android:layout_weight="2"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginBottom="@dimen/_4sdp"
+            android:layout_marginBottom="@dimen/_3sdp"
             android:layout_weight="1">
 
             <RelativeLayout
@@ -91,25 +90,23 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1">
 
-                <com.joooonho.SelectableRoundedImageView
+                <com.makeramen.roundedimageview.RoundedImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
                     android:src="@drawable/schedule"
-                    app:sriv_border_color="@android:color/transparent"
-                    app:sriv_border_width="4dip"
-                    app:sriv_left_bottom_corner_radius="7dip"
-                    app:sriv_left_top_corner_radius="7dip"
-                    app:sriv_oval="false"
-                    app:sriv_right_bottom_corner_radius="7dip"
-                    app:sriv_right_top_corner_radius="7dip" />
+                    app:riv_border_color="@android:color/transparent"
+                    app:riv_border_width="5dip"
+                    app:riv_corner_radius="5dip"
+                    app:riv_mutate_background="true"
+                    app:riv_oval="false" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center|bottom"
                     android:padding="@dimen/_8sdp"
-                    android:text="Schedule\na house call"
+                    android:text="@string/Schedule_a_house_call"
                     android:textColor="@android:color/white"
                     android:textSize="@dimen/_12sdp" />
 
@@ -120,26 +117,24 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1">
 
-                <com.joooonho.SelectableRoundedImageView
+                <com.makeramen.roundedimageview.RoundedImageView
                     android:id="@+id/News"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
                     android:src="@drawable/news"
-                    app:sriv_border_color="@android:color/transparent"
-                    app:sriv_border_width="4dip"
-                    app:sriv_left_bottom_corner_radius="7dip"
-                    app:sriv_left_top_corner_radius="7dip"
-                    app:sriv_oval="false"
-                    app:sriv_right_bottom_corner_radius="7dip"
-                    app:sriv_right_top_corner_radius="7dip" />
+                    app:riv_border_color="@android:color/transparent"
+                    app:riv_border_width="5dip"
+                    app:riv_corner_radius="5dip"
+                    app:riv_mutate_background="true"
+                    app:riv_oval="false" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center|bottom"
                     android:padding="@dimen/_8sdp"
-                    android:text="News"
+                    android:text="@string/News"
                     android:textColor="@android:color/white"
                     android:textSize="@dimen/_12sdp" />
 
@@ -150,7 +145,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginTop="@dimen/_4sdp"
+            android:layout_marginTop="@dimen/_3sdp"
             android:layout_weight="1">
 
             <RelativeLayout
@@ -159,26 +154,24 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1">
 
-                <com.joooonho.SelectableRoundedImageView
+                <com.makeramen.roundedimageview.RoundedImageView
                     android:id="@+id/Company"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
                     android:src="@drawable/insurance"
-                    app:sriv_border_color="@android:color/transparent"
-                    app:sriv_border_width="4dip"
-                    app:sriv_left_bottom_corner_radius="7dip"
-                    app:sriv_left_top_corner_radius="7dip"
-                    app:sriv_oval="false"
-                    app:sriv_right_bottom_corner_radius="7dip"
-                    app:sriv_right_top_corner_radius="7dip" />
+                    app:riv_border_color="@android:color/transparent"
+                    app:riv_border_width="5dip"
+                    app:riv_corner_radius="5dip"
+                    app:riv_mutate_background="true"
+                    app:riv_oval="false" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center|bottom"
                     android:padding="@dimen/_8sdp"
-                    android:text="Insurance\nCompanies"
+                    android:text="@string/Insurance_Companies"
                     android:textColor="@android:color/white"
                     android:textSize="@dimen/_12sdp" />
 
@@ -191,26 +184,24 @@
                 android:layout_weight="1">
 
 
-                <com.joooonho.SelectableRoundedImageView
+                <com.makeramen.roundedimageview.RoundedImageView
                     android:id="@+id/ContectUS"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:scaleType="centerCrop"
+                    android:scaleType="center"
                     android:src="@drawable/contact_us"
-                    app:sriv_border_color="@android:color/transparent"
-                    app:sriv_border_width="4dip"
-                    app:sriv_left_bottom_corner_radius="7dip"
-                    app:sriv_left_top_corner_radius="7dip"
-                    app:sriv_oval="false"
-                    app:sriv_right_bottom_corner_radius="7dip"
-                    app:sriv_right_top_corner_radius="7dip" />
+                    app:riv_border_color="@android:color/transparent"
+                    app:riv_border_width="5dip"
+                    app:riv_corner_radius="5dip"
+                    app:riv_mutate_background="true"
+                    app:riv_oval="false" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center|bottom"
                     android:padding="@dimen/_8sdp"
-                    android:text="Contact us"
+                    android:text="@string/Contect_Us"
                     android:textColor="@android:color/white"
                     android:textSize="@dimen/_12sdp" />
 

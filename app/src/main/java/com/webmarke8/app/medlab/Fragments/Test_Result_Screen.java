@@ -69,7 +69,7 @@ public class Test_Result_Screen extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_test__result__screen, container, false);
         myApplication = (MyApplication) getActivity().getApplicationContext();
-        ((MainActivity) getActivity()).Change_Tittle("Test Results");
+//        ((MainActivity) getActivity()).Change_Tittle("Test Results");
         ((MainActivity) getActivity()).HideToolbarWithBack();
         Progress = AppUtils.LoadingSpinner(getActivity());
         List = new ArrayList<>();

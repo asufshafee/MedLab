@@ -43,7 +43,7 @@ public class Schecule_a_house extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_schecule_a_house, container, false);
-        ((MainActivity) getActivity()).Change_Tittle("Schedule a house call");
+//        ((MainActivity) getActivity()).Change_Tittle("Schedule a house call");
         ((MainActivity) getActivity()).ShowBack_toolbar();
         Progress = AppUtils.LoadingSpinner(getActivity());
 

@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.labo.kaji.fragmentanimations.CubeAnimation;
 import com.webmarke8.app.medlab.Activities.MainActivity;
 import com.webmarke8.app.medlab.R;
+import com.webmarke8.app.medlab.Session.MyApplication;
 
 import org.w3c.dom.Text;
 
@@ -29,18 +30,27 @@ public class Manage_My_Health extends Fragment {
 
     ImageView WaterIcon, BMIIcon, TimeIcon;
     TextView WaterName, BMIName, TimeName;
+    MyApplication myApplication;
 
     public Manage_My_Health() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         final View view = inflater.inflate(R.layout.fragment_manage__my__health, container, false);
-        ((MainActivity) getActivity()).Change_Tittle("Manage My Health");
+//        ((MainActivity) getActivity()).Change_Tittle("Manage My Health");
+
+
+        if (myApplication.GetLanguage().equals("ar")) {
+            ((MainActivity) getActivity()).Change_Tittle(getString(R.string.Manage_My_Helth));
+
+        } else {
+            ((MainActivity) getActivity()).Change_Tittle("Manage My Health");
+        }
+
         ((MainActivity) getActivity()).ShowBack_toolbar();
 
         WaterIcon = (ImageView) view.findViewById(R.id.WaterIcon);

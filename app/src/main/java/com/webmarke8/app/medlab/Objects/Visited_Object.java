@@ -2,13 +2,14 @@ package com.webmarke8.app.medlab.Objects;
 
 import com.google.gson.Gson;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by GeeksEra on 3/26/2018.
  */
 
-public class Visited_Object {
+public class Visited_Object implements Serializable {
 
     /**
      * Description : null
@@ -23,6 +24,24 @@ public class Visited_Object {
     private int count;
     private String userId;
     private List<RespOBJObject> RespOBJ;
+    private String FileNo;
+    private String VisitedName;
+
+    public String getFileNo() {
+        return FileNo;
+    }
+
+    public void setFileNo(String fileNo) {
+        FileNo = fileNo;
+    }
+
+    public String getVisitedName() {
+        return VisitedName;
+    }
+
+    public void setVisitedName(String visitedName) {
+        VisitedName = visitedName;
+    }
 
     public static Visited_Object objectFromData(String str) {
 
@@ -69,7 +88,7 @@ public class Visited_Object {
         this.RespOBJ = RespOBJ;
     }
 
-    public static class RespOBJObject {
+    public static class RespOBJObject  implements  Serializable{
         /**
          * IsPaid : true
          * Referral :

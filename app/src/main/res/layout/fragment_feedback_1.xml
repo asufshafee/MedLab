@@ -1,13 +1,342 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:background="#FFFFFF"
+    android:orientation="vertical"
     tools:context="com.webmarke8.app.medlab.Fragments.Feedback_1">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:scrollbars="vertical"
+        tools:ignore="UselessParent">
 
-</FrameLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:gravity="center"
+                android:paddingStart="@dimen/_5sdp"
+                android:text="Please answer all questions"
+                android:textColor="@color/red"
+                android:textSize="@dimen/_13sdp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/Name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:gravity="center"
+                android:lines="1"
+                android:paddingEnd="@dimen/_10sdp"
+                android:paddingStart="@dimen/_5sdp"
+                android:text="@string/TXT_Q_1"
+                android:textColor="#979ea4"
+                android:textSize="@dimen/_11sdp"
+                android:textStyle="bold" />
+
+            <com.willy.ratingbar.ScaleRatingBar xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/simpleRatingBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                app:srb_clearRatingEnabled="true"
+                app:srb_clickable="true"
+                app:srb_drawableEmpty="@drawable/start_uncehcked"
+                app:srb_drawableFilled="@drawable/start_checked"
+                app:srb_isIndicator="false"
+                app:srb_minimumStars="1"
+                app:srb_numStars="5"
+                app:srb_rating="2"
+                app:srb_scrollable="true"
+                app:srb_starHeight="30dp"
+                app:srb_starPadding="10dp"
+                app:srb_starWidth="30dp"
+                app:srb_stepSize="1"></com.willy.ratingbar.ScaleRatingBar>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:gravity="center"
+                android:lines="1"
+                android:paddingEnd="@dimen/_10sdp"
+                android:paddingStart="@dimen/_5sdp"
+                android:text="@string/TXT_Q_2"
+                android:textColor="#979ea4"
+                android:textSize="@dimen/_11sdp"
+                android:textStyle="bold" />
+
+            <com.willy.ratingbar.ScaleRatingBar xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                app:srb_clearRatingEnabled="true"
+                app:srb_clickable="true"
+                app:srb_drawableEmpty="@drawable/start_uncehcked"
+                app:srb_drawableFilled="@drawable/start_checked"
+                app:srb_isIndicator="false"
+                app:srb_minimumStars="1"
+                app:srb_numStars="5"
+                app:srb_rating="2"
+                app:srb_scrollable="true"
+                app:srb_starHeight="30dp"
+                app:srb_starPadding="10dp"
+                app:srb_starWidth="30dp"
+                app:srb_stepSize="1"></com.willy.ratingbar.ScaleRatingBar>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:gravity="center"
+                android:lines="1"
+                android:paddingEnd="@dimen/_10sdp"
+                android:paddingStart="@dimen/_5sdp"
+                android:text="@string/TXT_Q_3"
+                android:textColor="#979ea4"
+                android:textSize="@dimen/_11sdp"
+                android:textStyle="bold" />
+
+            <com.willy.ratingbar.ScaleRatingBar xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                app:srb_clearRatingEnabled="true"
+                app:srb_clickable="true"
+                app:srb_drawableEmpty="@drawable/start_uncehcked"
+                app:srb_drawableFilled="@drawable/start_checked"
+                app:srb_isIndicator="false"
+                app:srb_minimumStars="1"
+                app:srb_numStars="5"
+                app:srb_rating="2"
+                app:srb_scrollable="true"
+                app:srb_starHeight="30dp"
+                app:srb_starPadding="10dp"
+                app:srb_starWidth="30dp"
+                app:srb_stepSize="1"></com.willy.ratingbar.ScaleRatingBar>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:gravity="center"
+                android:lines="1"
+                android:paddingEnd="@dimen/_10sdp"
+                android:paddingStart="@dimen/_5sdp"
+                android:text="@string/TXT_Q_4"
+                android:textColor="#979ea4"
+                android:textSize="@dimen/_11sdp"
+                android:textStyle="bold" />
+
+            <com.willy.ratingbar.ScaleRatingBar xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                app:srb_clearRatingEnabled="true"
+                app:srb_clickable="true"
+                app:srb_drawableEmpty="@drawable/start_uncehcked"
+                app:srb_drawableFilled="@drawable/start_checked"
+                app:srb_isIndicator="false"
+                app:srb_minimumStars="1"
+                app:srb_numStars="5"
+                app:srb_rating="2"
+                app:srb_scrollable="true"
+                app:srb_starHeight="30dp"
+                app:srb_starPadding="10dp"
+                app:srb_starWidth="30dp"
+                app:srb_stepSize="1"></com.willy.ratingbar.ScaleRatingBar>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:gravity="center"
+                android:lines="1"
+                android:paddingEnd="@dimen/_10sdp"
+                android:paddingStart="@dimen/_5sdp"
+                android:text="@string/TXT_Q_5"
+                android:textColor="#979ea4"
+                android:textSize="@dimen/_11sdp"
+                android:textStyle="bold" />
+
+            <com.willy.ratingbar.ScaleRatingBar xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                app:srb_clearRatingEnabled="true"
+                app:srb_clickable="true"
+                app:srb_drawableEmpty="@drawable/start_uncehcked"
+                app:srb_drawableFilled="@drawable/start_checked"
+                app:srb_isIndicator="false"
+                app:srb_minimumStars="1"
+                app:srb_numStars="5"
+                app:srb_rating="2"
+                app:srb_scrollable="true"
+                app:srb_starHeight="30dp"
+                app:srb_starPadding="10dp"
+                app:srb_starWidth="30dp"
+                app:srb_stepSize="1"></com.willy.ratingbar.ScaleRatingBar>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:gravity="center"
+                android:lines="1"
+                android:paddingEnd="@dimen/_10sdp"
+                android:paddingStart="@dimen/_5sdp"
+                android:text="@string/TXT_Q_5"
+                android:textColor="#979ea4"
+                android:textSize="@dimen/_11sdp"
+                android:textStyle="bold" />
+
+            <com.willy.ratingbar.ScaleRatingBar xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                app:srb_clearRatingEnabled="true"
+                app:srb_clickable="true"
+                app:srb_drawableEmpty="@drawable/start_uncehcked"
+                app:srb_drawableFilled="@drawable/start_checked"
+                app:srb_isIndicator="false"
+                app:srb_minimumStars="1"
+                app:srb_numStars="5"
+                app:srb_rating="2"
+                app:srb_scrollable="true"
+                app:srb_starHeight="30dp"
+                app:srb_starPadding="10dp"
+                app:srb_starWidth="30dp"
+                app:srb_stepSize="1"></com.willy.ratingbar.ScaleRatingBar>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:gravity="center"
+                android:lines="1"
+                android:paddingEnd="@dimen/_10sdp"
+                android:paddingStart="@dimen/_5sdp"
+                android:text="@string/TXT_Q_6"
+                android:textColor="#979ea4"
+                android:textSize="@dimen/_11sdp"
+                android:textStyle="bold" />
+
+            <com.willy.ratingbar.ScaleRatingBar xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                app:srb_clearRatingEnabled="true"
+                app:srb_clickable="true"
+                app:srb_drawableEmpty="@drawable/start_uncehcked"
+                app:srb_drawableFilled="@drawable/start_checked"
+                app:srb_isIndicator="false"
+                app:srb_minimumStars="1"
+                app:srb_numStars="5"
+                app:srb_rating="2"
+                app:srb_scrollable="true"
+                app:srb_starHeight="30dp"
+                app:srb_starPadding="10dp"
+                app:srb_starWidth="30dp"
+                app:srb_stepSize="1"></com.willy.ratingbar.ScaleRatingBar>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:gravity="center"
+                android:lines="1"
+                android:paddingEnd="@dimen/_10sdp"
+                android:paddingStart="@dimen/_5sdp"
+                android:text="@string/TXT_Q_8"
+                android:textColor="#979ea4"
+                android:textSize="@dimen/_11sdp"
+                android:textStyle="bold" />
+
+            <com.willy.ratingbar.ScaleRatingBar xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                app:srb_clearRatingEnabled="true"
+                app:srb_clickable="true"
+                app:srb_drawableEmpty="@drawable/start_uncehcked"
+                app:srb_drawableFilled="@drawable/start_checked"
+                app:srb_isIndicator="false"
+                app:srb_minimumStars="1"
+                app:srb_numStars="5"
+                app:srb_rating="2"
+                app:srb_scrollable="true"
+                app:srb_starHeight="30dp"
+                app:srb_starPadding="10dp"
+                app:srb_starWidth="30dp"
+                app:srb_stepSize="1"></com.willy.ratingbar.ScaleRatingBar>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:gravity="center"
+                android:lines="1"
+                android:paddingEnd="@dimen/_10sdp"
+                android:paddingStart="@dimen/_5sdp"
+                android:text="@string/TXT_Q_9"
+                android:textColor="#979ea4"
+                android:textSize="@dimen/_11sdp"
+                android:textStyle="bold" />
+
+            <com.willy.ratingbar.ScaleRatingBar xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                app:srb_clearRatingEnabled="true"
+                app:srb_clickable="true"
+                app:srb_drawableEmpty="@drawable/start_uncehcked"
+                app:srb_drawableFilled="@drawable/start_checked"
+                app:srb_isIndicator="false"
+                app:srb_minimumStars="1"
+                app:srb_numStars="5"
+                app:srb_rating="2"
+                app:srb_scrollable="true"
+                app:srb_starHeight="30dp"
+                app:srb_starPadding="10dp"
+                app:srb_starWidth="30dp"
+                app:srb_stepSize="1"></com.willy.ratingbar.ScaleRatingBar>
+
+            <RelativeLayout
+                android:id="@+id/Next"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_40sdp"
+                android:layout_marginStart="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_25sdp"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/button_background"
+                    android:textColor="@android:color/white" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:text="Next"
+                    android:textColor="@android:color/white" />
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

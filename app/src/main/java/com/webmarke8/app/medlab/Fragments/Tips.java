@@ -39,7 +39,7 @@ public class Tips extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_tips, container, false);
-        ((MainActivity) getActivity()).Change_Tittle("Tips");
+//        ((MainActivity) getActivity()).Change_Tittle("Tips");
         ((MainActivity) getActivity()).ShowBack_toolbar();
 
         view.findViewById(R.id.Click).setOnClickListener(new View.OnClickListener() {

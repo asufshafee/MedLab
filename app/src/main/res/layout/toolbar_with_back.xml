@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="?attr/actionBarSize"
     android:background="@drawable/header"
+    android:layoutDirection="ltr"
     android:orientation="horizontal"
     android:paddingBottom="5dp"
     android:paddingTop="5dp">

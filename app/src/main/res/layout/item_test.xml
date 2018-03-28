@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
+    android:layoutDirection="ltr"
     android:layout_height="wrap_content"
     android:paddingBottom="@dimen/_2sdp"
     android:paddingEnd="@dimen/_5sdp"
@@ -36,10 +37,11 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/Name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="center|left"
                         android:lines="2"
+                        android:maxLines="2"
                         android:paddingEnd="@dimen/_10sdp"
                         android:paddingStart="@dimen/_5sdp"
                         android:text="Jess (Jessica Alba) Gwen (Steffani) Rosie (Huntington-Whiteley) .."

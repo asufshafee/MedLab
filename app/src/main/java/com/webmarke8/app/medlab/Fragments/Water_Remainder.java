@@ -34,7 +34,7 @@ public class Water_Remainder extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_water__remainder, container, false);
-        ((MainActivity) getActivity()).Change_Tittle("Water Remainder");
+//        ((MainActivity) getActivity()).Change_Tittle("Water Remainder");
         ((MainActivity) getActivity()).ShowBack_toolbar();
         ((MainActivity) getActivity()).ShowShare_toolbar();
 
@@ -75,6 +75,8 @@ public class Water_Remainder extends Fragment {
     @Override
     public void onDestroy() {
         ((MainActivity) getActivity()).HideShare_toolbar();
+        ((MainActivity) getActivity()).Change_Tittle("Manage My Health");
+        ((MainActivity) getActivity()).ShowBack_toolbar();
         super.onDestroy();
     }
 

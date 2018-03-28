@@ -10,13 +10,16 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
+import com.webmarke8.app.medlab.DatabasePart.LabwiseBean;
 import com.webmarke8.app.medlab.Fragments.Lab_Locations_Details;
 import com.webmarke8.app.medlab.Fragments.Test_Directory_Details;
 import com.webmarke8.app.medlab.Objects.Test;
 import com.webmarke8.app.medlab.Objects.Tips_Object;
 import com.webmarke8.app.medlab.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -24,14 +27,13 @@ import java.util.List;
  */
 
 public class Test_Adapter extends RecyclerView.Adapter<Test_Adapter.MyHolder> {
-    List<Test> MyMessageList;
+    ArrayList<LabwiseBean> List;
     Context context;
 
-    public Test_Adapter(List<Test> list, Context context) {
-        this.MyMessageList = list;
+    public Test_Adapter(ArrayList<LabwiseBean> list, Context context) {
+        this.List = list;
         this.context = context;
     }
-
     @Override
     public Test_Adapter.MyHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
@@ -45,6 +47,7 @@ public class Test_Adapter extends RecyclerView.Adapter<Test_Adapter.MyHolder> {
     @Override
     public void onBindViewHolder(Test_Adapter.MyHolder holder, final int position) {
 
+        holder.Name.setText(List.get(position).getName());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -56,6 +59,7 @@ public class Test_Adapter extends RecyclerView.Adapter<Test_Adapter.MyHolder> {
                 try {
                     fragment = (Fragment) fragmentClass.newInstance();
                     Bundle bundle = new Bundle();
+                    bundle.putSerializable("Data",List.get(position));
                     fragment.setArguments(bundle);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -69,7 +73,7 @@ public class Test_Adapter extends RecyclerView.Adapter<Test_Adapter.MyHolder> {
 
     @Override
     public int getItemCount() {
-        return 10;
+        return List.size();
     }
 
     @Override
@@ -80,6 +84,7 @@ public class Test_Adapter extends RecyclerView.Adapter<Test_Adapter.MyHolder> {
     class MyHolder extends RecyclerView.ViewHolder {
 
 
+        TextView Name=(TextView)itemView.findViewById(R.id.Name);
         public MyHolder(View itemView) {
             super(itemView);
 

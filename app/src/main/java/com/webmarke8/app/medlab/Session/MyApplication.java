@@ -29,7 +29,7 @@ public class MyApplication extends Application {
     public static Context GLOBAL_CONTEXT = null;
 
     public static String RESOLUATION = "";
-    public static String USER_ID = "";
+    public static String USER_ID = "1";
     public static String COUNTERY_ID = "1";
 
 
@@ -51,6 +51,10 @@ public class MyApplication extends Application {
     public static final String FeedbackRating = "http://213.186.160.67:8086/MedlabsAppV2/MedlabsApp.svc/FeedbackRating";
     public static final String FeedbackUserInformation = "http://213.186.160.67:8086/MedlabsAppV2/MedlabsApp.svc/FeedbackUserInformation";
     public static final String POINTS = "http://www.medlabsgroup.com/admin/do/getPoints.php";
+
+    public static final String GetAllBranches = "http://213.186.160.67:8086/MedlabsAppV2/MedlabsApp.svc/GetAllBranches";
+
+    public static final String GetInsuranceCompanies = "http://213.186.160.67:8086/MedlabsAppV2/MedlabsApp.svc/GetInsuranceCompanies";
 
 
     public static final String SET_REGISTRATION_STATUS_URL = "http://213.186.160.67:8086/MedlabsAppV2/MedlabsApp.svc/SetRegistrationStatus";
@@ -81,6 +85,8 @@ public class MyApplication extends Application {
     public static SharedPreferences sharedPreferences;
     public static SharedPreferences.Editor editor;
     private static final String IS_LOGIN = "IsLoggedIn";
+    private static final String IS_NOTIFICATION = "IS_NOTIFICATION";
+    private static final String LANGUAGE = "LANGUAGE";
 
 
     private static MyApplication mInstance;
@@ -116,6 +122,25 @@ public class MyApplication extends Application {
 
     public boolean isLoggedIn() {
         return sharedPreferences.getBoolean(IS_LOGIN, false);
+    }
+
+
+    public boolean isNotificationIn() {
+        return sharedPreferences.getBoolean(IS_NOTIFICATION, true);
+    }
+
+    public void setIsNotification(Boolean isNotification) {
+        editor.putBoolean(IS_NOTIFICATION, isNotification);
+        editor.apply();
+    }
+
+    public String GetLanguage() {
+        return sharedPreferences.getString(LANGUAGE, "en");
+    }
+
+    public void setLanguage(String language) {
+        editor.putString(LANGUAGE, language);
+        editor.apply();
     }
 
 

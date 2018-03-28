@@ -41,7 +41,7 @@
                         android:layout_height="match_parent"
                         android:gravity="center|bottom"
                         android:paddingBottom="@dimen/_5sdp"
-                        android:text="Facebook"
+                        android:text="@string/TXT_FB"
                         android:textColor="@android:color/white" />
                 </RelativeLayout>
 
@@ -63,7 +63,7 @@
                         android:layout_height="match_parent"
                         android:gravity="center|bottom"
                         android:paddingBottom="@dimen/_5sdp"
-                        android:text="Twitter"
+                        android:text="@string/TXT_TW"
                         android:textColor="@android:color/white" />
                 </RelativeLayout>
             </LinearLayout>
@@ -92,7 +92,7 @@
                         android:layout_height="match_parent"
                         android:gravity="center|bottom"
                         android:paddingBottom="@dimen/_5sdp"
-                        android:text="Instagram"
+                        android:text="@string/TXT_INS"
                         android:textColor="@android:color/white" />
                 </RelativeLayout>
 
@@ -115,7 +115,7 @@
                         android:layout_height="match_parent"
                         android:gravity="center|bottom"
                         android:paddingBottom="@dimen/_5sdp"
-                        android:text="Linkedin"
+                        android:text="@string/TXT_LIN"
                         android:textColor="@android:color/white" />
                 </RelativeLayout>
             </LinearLayout>
@@ -144,7 +144,7 @@
                         android:layout_height="match_parent"
                         android:gravity="center|bottom"
                         android:paddingBottom="@dimen/_5sdp"
-                        android:text="Youtube"
+                        android:text="@string/TXT_YT"
                         android:textColor="@android:color/white" />
                 </RelativeLayout>
 
@@ -167,7 +167,7 @@
                         android:layout_height="match_parent"
                         android:gravity="center|bottom"
                         android:paddingBottom="@dimen/_5sdp"
-                        android:text="Email"
+                        android:text="@string/Email"
                         android:textColor="@android:color/white" />
                 </RelativeLayout>
             </LinearLayout>
@@ -196,7 +196,7 @@
                         android:layout_height="match_parent"
                         android:gravity="center|bottom"
                         android:paddingBottom="@dimen/_5sdp"
-                        android:text="Call Us"
+                        android:text="@string/Email"
                         android:textColor="@android:color/white" />
                 </RelativeLayout>
 
@@ -220,7 +220,7 @@
                         android:layout_height="match_parent"
                         android:gravity="center|bottom"
                         android:paddingBottom="@dimen/_5sdp"
-                        android:text="About Us"
+                        android:text="@string/en_about_app"
                         android:textColor="@android:color/white" />
                 </RelativeLayout>
             </LinearLayout>

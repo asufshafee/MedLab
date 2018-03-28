@@ -1,13 +1,171 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:layoutDirection="ltr"
+    android:clickable="true"
+    android:orientation="vertical"
+    android:paddingEnd="@dimen/_15sdp"
+    android:paddingStart="@dimen/_15sdp"
     tools:context="com.webmarke8.app.medlab.Fragments.Settings">
 
-    <!-- TODO: Update blank fragment layout -->
+
+    <LinearLayout
+        android:id="@+id/ManageMyHealth"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_7sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:gravity="center|left">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/NotificationName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="@dimen/_7sdp"
+                android:text="Notification"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/_13sdp" />
+
+            <TextView
+                android:id="@+id/ManageName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="@dimen/_7sdp"
+                android:text="@string/turn_notification_on_or_off"
+                android:textSize="@dimen/_8sdp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="end"
+            android:orientation="vertical">
+
+            <Switch xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="wrap_content"
+                android:id="@+id/Notification"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:button="@drawable/custom_notification"
+                android:checked="true"
+                android:thumb="@null" />
+        </LinearLayout>
+    </LinearLayout>
+
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="1dp"
+        android:background="@drawable/input_line" />
 
-</FrameLayout>
+    <LinearLayout
+        android:id="@+id/Language"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_7sdp"
+        android:layout_marginTop="@dimen/_7sdp"
+        android:gravity="center|left">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/LanguageName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="@dimen/_7sdp"
+                android:text="@string/language"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/_13sdp" />
+
+            <TextView
+                android:id="@+id/LanguageNameSelected"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="@dimen/_7sdp"
+                android:text="English(United Kingdom)"
+                android:textSize="@dimen/_8sdp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@drawable/input_line" />
+
+    <LinearLayout
+        android:id="@+id/About"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_7sdp"
+        android:layout_marginTop="@dimen/_7sdp"
+        android:gravity="center|left">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/AboutName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="@dimen/_7sdp"
+                android:text="About Us"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/_13sdp" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@drawable/input_line" />
+
+    <LinearLayout
+        android:id="@+id/Help"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_7sdp"
+        android:layout_marginTop="@dimen/_7sdp"
+        android:gravity="center|left">
+
+        <LinearLayout
+            android:id="@+id/Terms"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/TermsName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="@dimen/_7sdp"
+                android:text="Terms and Conditions"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/_13sdp" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@drawable/input_line" />
+
+
+</LinearLayout>

@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
+    android:orientation="vertical"
     android:paddingEnd="@dimen/_12sdp"
     android:paddingStart="@dimen/_12sdp"
     tools:context="com.webmarke8.app.medlab.Fragments.About_Us">
@@ -19,4 +20,15 @@
             android:src="@drawable/logo_login" />
     </LinearLayout>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:gravity="center|left"
+        android:paddingEnd="@dimen/_10sdp"
+        android:paddingStart="@dimen/_5sdp"
+        android:text="@string/ABOUT_MEDLABS"
+        android:textColor="#979ea4"
+        android:textSize="@dimen/_11sdp"
+        android:textStyle="bold" />
 </LinearLayout>

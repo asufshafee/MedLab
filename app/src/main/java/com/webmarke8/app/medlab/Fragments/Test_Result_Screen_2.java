@@ -13,6 +13,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -29,9 +30,11 @@ import com.android.volley.error.VolleyError;
 import com.android.volley.request.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
+import com.labo.kaji.fragmentanimations.CubeAnimation;
 import com.medialablk.easytoast.EasyToast;
 import com.webmarke8.app.medlab.Activities.MainActivity;
 import com.webmarke8.app.medlab.Adapters.Test_Result_Adapter;
+import com.webmarke8.app.medlab.Adapters.Visited_Result_Adapter;
 import com.webmarke8.app.medlab.Objects.JsonParserLogin;
 import com.webmarke8.app.medlab.Objects.JsonParserVisited;
 import com.webmarke8.app.medlab.Objects.Login_Object;
@@ -61,7 +64,7 @@ public class Test_Result_Screen_2 extends Fragment {
 
 
     RecyclerView recycle;
-    java.util.List<Login_Object.PatientsObject> List;
+    java.util.List<Visited_Object.RespOBJObject> List;
 
     public Test_Result_Screen_2() {
         // Required empty public constructor
@@ -75,15 +78,16 @@ public class Test_Result_Screen_2 extends Fragment {
         View view = inflater.inflate(R.layout.fragment_test__result__screen_2, container, false);
         jsonParserVisited = (JsonParserVisited) getArguments().getSerializable("jsonParserVisited");
         myApplication = (MyApplication) getActivity().getApplicationContext();
-        ((MainActivity) getActivity()).Change_Tittle("Test Results");
+//        ((MainActivity) getActivity()).Change_Tittle("Test Results");
         ((MainActivity) getActivity()).ShowBack_toolbar();
         Progress = AppUtils.LoadingSpinner(getActivity());
+        recycle = (RecyclerView) view.findViewById(R.id.recycle);
         List = new ArrayList<>();
         GetVisited(jsonParserVisited);
         return view;
     }
 
-    private void GetVisited(JsonParserVisited jsonParserVisited) {
+    private void GetVisited(final JsonParserVisited jsonParserVisited) {
 
         Gson gson = new Gson();
 
@@ -98,19 +102,18 @@ public class Test_Result_Screen_2 extends Fragment {
             public void onResponse(String response) {
 
                 Progress.dismiss();
-                if (response.contains("Success")) {
-
-
+                try {
                     Gson gson = new Gson();
                     Visited_Object visited_object = new Visited_Object();
                     visited_object = gson.fromJson(response, Visited_Object.class);
-                    LoadData();
-
-
-
-                } else {
+                    visited_object.setFileNo(jsonParserVisited.getFileName());
+                    List = visited_object.getRespOBJ();
+                    LoadData(visited_object);
+                } catch (Exception Ex) {
                     EasyToast.error(getActivity(), "Something Went Wrong!!");
+
                 }
+
 
             }
         },
@@ -167,12 +170,18 @@ public class Test_Result_Screen_2 extends Fragment {
         RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
         requestQueue.add(stringRequest);
     }
-    public void LoadData() {
+
+    public void LoadData(Visited_Object visited_object) {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
-        Test_Result_Adapter Adapter = new Test_Result_Adapter(List, getActivity());
+        Visited_Result_Adapter Adapter = new Visited_Result_Adapter(List, getActivity(), visited_object);
         recycle.setLayoutManager(linearLayoutManager);
         recycle.setItemAnimator(new DefaultItemAnimator());
         recycle.setAdapter(Adapter);
+    }
+
+    @Override
+    public Animation onCreateAnimation(int transit, boolean enter, int nextAnim) {
+        return CubeAnimation.create(CubeAnimation.RIGHT, enter, 500);
     }
 
 

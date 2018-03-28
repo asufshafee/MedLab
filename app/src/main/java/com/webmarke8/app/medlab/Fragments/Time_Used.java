@@ -28,7 +28,7 @@ public class Time_Used extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_time__used, container, false);
-        ((MainActivity) getActivity()).Change_Tittle("Time Used");
+//        ((MainActivity) getActivity()).Change_Tittle("Time Used");
         ((MainActivity) getActivity()).ShowBack_toolbar();
         ((MainActivity) getActivity()).ShowShare_toolbar();
         return view;

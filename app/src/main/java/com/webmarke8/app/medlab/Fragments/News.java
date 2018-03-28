@@ -10,6 +10,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.webmarke8.app.medlab.Activities.MainActivity;
 import com.webmarke8.app.medlab.Adapters.Locations_Adapter;
@@ -41,8 +43,9 @@ public class News extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_news, container, false);
-        ((MainActivity) getActivity()).Change_Tittle("News");
+//        ((MainActivity) getActivity()).Change_Tittle("News");
         ((MainActivity) getActivity()).ShowBack_toolbar();
+
 
         recycle = (RecyclerView) view.findViewById(R.id.recycle);
         Progress = AppUtils.LoadingSpinner(getActivity());
@@ -59,5 +62,8 @@ public class News extends Fragment {
         recycle.setItemAnimator(new DefaultItemAnimator());
         recycle.setAdapter(Adapter);
     }
+
+
+
 
 }

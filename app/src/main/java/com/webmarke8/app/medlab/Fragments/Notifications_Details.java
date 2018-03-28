@@ -28,7 +28,7 @@ public class Notifications_Details extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_notifications__details, container, false);
-        ((MainActivity) getActivity()).Change_Tittle("Notification");
+//        ((MainActivity) getActivity()).Change_Tittle("Notification");
         ((MainActivity) getActivity()).ShowBack_toolbar();
 
         return view;

@@ -1,14 +1,21 @@
 package com.webmarke8.app.medlab.Adapters;
 
 import android.content.Context;
+import android.media.Image;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
 import com.webmarke8.app.medlab.Objects.Company;
 import com.webmarke8.app.medlab.Objects.News_Object;
 import com.webmarke8.app.medlab.R;
+import com.webmarke8.app.medlab.Session.MyApplication;
+
+import org.w3c.dom.Text;
 
 import java.util.List;
 
@@ -17,12 +24,16 @@ import java.util.List;
  */
 
 public class Companies_Adapter extends RecyclerView.Adapter<Companies_Adapter.MyHolder> {
-    List<Company> MyMessageList;
+    List<Company.InsuranceCompanyObObject> List;
     Context context;
+    MyApplication myApplication;
 
-    public Companies_Adapter(List<Company> list, Context context) {
-        this.MyMessageList = list;
+
+    public Companies_Adapter(List<Company.InsuranceCompanyObObject> list, Context context) {
+        this.List = list;
         this.context = context;
+        myApplication = (MyApplication) context.getApplicationContext();
+
     }
 
     @Override
@@ -37,6 +48,16 @@ public class Companies_Adapter extends RecyclerView.Adapter<Companies_Adapter.My
 
     @Override
     public void onBindViewHolder(Companies_Adapter.MyHolder holder, final int position) {
+
+        if (myApplication.GetLanguage().equals("en")) {
+            holder.Name.setText(List.get(position).getName());
+            holder.Details.setText("Contact Numbers: " + List.get(position).getPhoneNumber());
+        } else {
+            holder.Name.setText(List.get(position).getNameAr());
+            holder.Details.setText(" ارقام التواصل: " + List.get(position).getPhoneNumber());
+        }
+
+        Picasso.with(context).load(List.get(position).getImage()).into(holder.Image);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,9 +80,14 @@ public class Companies_Adapter extends RecyclerView.Adapter<Companies_Adapter.My
 
     class MyHolder extends RecyclerView.ViewHolder {
 
+        TextView Name, Details;
+        ImageView Image;
 
         public MyHolder(View itemView) {
             super(itemView);
+            Name = (TextView) itemView.findViewById(R.id.Name);
+            Details = (TextView) itemView.findViewById(R.id.Detais);
+            Image = (ImageView) itemView.findViewById(R.id.Image);
 
         }
     }

@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 
 import com.webmarke8.app.medlab.Activities.MainActivity;
 import com.webmarke8.app.medlab.R;
+import com.webmarke8.app.medlab.Session.MyApplication;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -19,6 +20,7 @@ public class Code_Verify extends Fragment {
     public Code_Verify() {
         // Required empty public constructor
     }
+    MyApplication myApplication;
 
 
     @Override
@@ -27,6 +29,13 @@ public class Code_Verify extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_code__verify, container, false);
         ((MainActivity) getActivity()).Change_Tittle("MedLabs");
+        myApplication = (MyApplication) getActivity().getApplicationContext();
+        if (myApplication.GetLanguage().equals("en"))
+            ((MainActivity) getActivity()).Change_Tittle("MedLabs");
+        else {
+            ((MainActivity) getActivity()).Change_Tittle("MedLabs");
+
+        }
         return view;
     }
 

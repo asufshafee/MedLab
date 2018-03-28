@@ -50,13 +50,21 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.Notification).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ShowFragment(new Notifications(), "Notifications");
+
+                if (myApplication.GetLanguage().equals("en"))
+                    ShowFragment(new Notifications(), "Notifications");
+                else
+                    ShowFragment(new Notifications(), getResources().getString(R.string.Notification));
             }
         });
         findViewById(R.id.Search).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ShowFragment(new Test_Directory(), "Test Directory");
+
+                if (myApplication.GetLanguage().equals("en"))
+                    ShowFragment(new Test_Directory(), "Test Directory");
+                else
+                    ShowFragment(new Test_Directory(), getResources().getString(R.string.Test_Directory));
 
 
             }
@@ -111,12 +119,34 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void Refresh() {
-        if (HomeSelected) {
-            if (getCurrentFragment() != null && getCurrentFragment().getTag().equals("HOME PAGE")) {
 
-            } else
-                ShowTopFragment(new Home(), "HOME PAGE");
-            Change_Tittle("HOME PAGE");
+        if (HomeSelected) {
+            if (getCurrentFragment() != null) {
+                if (getCurrentFragment() != null && getCurrentFragment().getTag().equals("HOME PAGE") || getCurrentFragment().getTag().equals(getApplicationContext().getString(R.string.HOEM_PAGE))) {
+
+                } else {
+                    if (myApplication.GetLanguage().equals("en")) {
+                        Change_Tittle("HOME PAGE");
+                        ShowTopFragment(new Home(), "HOME PAGE");
+                    } else {
+                        ShowTopFragment(new Home(), getResources().getString(R.string.HOEM_PAGE));
+                        Change_Tittle(getResources().getString(R.string.HOEM_PAGE));
+                    }
+
+
+                }
+            } else {
+                if (myApplication.GetLanguage().equals("en")) {
+                    Change_Tittle("HOME PAGE");
+                    ShowTopFragment(new Home(), "HOME PAGE");
+                } else {
+                    ShowTopFragment(new Home(), getResources().getString(R.string.HOEM_PAGE));
+                    Change_Tittle(getResources().getString(R.string.HOEM_PAGE));
+                }
+
+            }
+
+
             Home.setImageDrawable(getResources().getDrawable(R.drawable.home_icon_selected));
             More.setImageDrawable(getResources().getDrawable(R.drawable.more_icon));
             Location.setImageDrawable(getResources().getDrawable(R.drawable.location_icon));
@@ -126,11 +156,32 @@ public class MainActivity extends AppCompatActivity {
 
 
         if (HeartSelected) {
-            if (getCurrentFragment() != null && getCurrentFragment().getTag().equals("SEHTAK BIL DENIA")) {
+            if (getCurrentFragment() != null) {
+                if (getCurrentFragment() != null && getCurrentFragment().getTag().equals("SEHTAK BIL DENIA") || getCurrentFragment().getTag().equals(getResources().getString(R.string.Sehtak_Bil_Denia))) {
 
-            } else
-                ShowTopFragment(new Sehtak_Bill(), "SEHTAK BIL DENIA");
-            Change_Tittle("SEHTAK BIL DENIA");
+                } else {
+                    if (myApplication.GetLanguage().equals("en")) {
+                        ShowTopFragment(new Sehtak_Bill(), "SEHTAK BIL DENIA");
+                        Change_Tittle("SEHTAK BIL DENIA");
+                    } else {
+                        ShowTopFragment(new Sehtak_Bill(), getResources().getString(R.string.Sehtak_Bil_Denia));
+                        Change_Tittle(getResources().getString(R.string.Sehtak_Bil_Denia));
+                    }
+
+
+                }
+            } else {
+                if (myApplication.GetLanguage().equals("en")) {
+                    ShowTopFragment(new Sehtak_Bill(), "SEHTAK BIL DENIA");
+                    Change_Tittle("SEHTAK BIL DENIA");
+                } else {
+                    ShowTopFragment(new Sehtak_Bill(), getResources().getString(R.string.Sehtak_Bil_Denia));
+                    Change_Tittle(getResources().getString(R.string.Sehtak_Bil_Denia));
+                }
+
+            }
+
+
             Heart.setImageDrawable(getResources().getDrawable(R.drawable.heart_icon_selected));
             More.setImageDrawable(getResources().getDrawable(R.drawable.more_icon));
             Location.setImageDrawable(getResources().getDrawable(R.drawable.location_icon));
@@ -140,16 +191,49 @@ public class MainActivity extends AppCompatActivity {
 
 
         if (ResultSelected) {
-            if (getCurrentFragment() != null && getCurrentFragment().getTag().equals("MedLabs")) {
+            if (getCurrentFragment() != null) {
+                if (getCurrentFragment() != null && getCurrentFragment().getTag().equals("MedLabs") || getCurrentFragment().getTag().equals("Test Results") || getCurrentFragment().getTag().equals(getResources().getString(R.string.Test_Results))) {
+
+                } else {
+
+                    if (!myApplication.isLoggedIn()) {
+                        Change_Tittle("MedLabs");
+                        ShowTopFragment(new Login(), "MedLabs");
+                    } else {
+                        {
+                            if (myApplication.GetLanguage().equals("en")) {
+                                Change_Tittle("Test Results");
+                                ShowTopFragment(new Test_Result_Screen(), "Test Results");
+                            } else {
+                                ShowTopFragment(new Test_Result_Screen(), getResources().getString(R.string.Test_Results));
+                                Change_Tittle(getResources().getString(R.string.Test_Results));
+                            }
+
+
+                        }
+
+                    }
+                }
 
             } else {
                 if (!myApplication.isLoggedIn()) {
                     Change_Tittle("MedLabs");
                     ShowTopFragment(new Login(), "MedLabs");
                 } else {
-                    Change_Tittle("Test Results");
-                    ShowTopFragment(new Test_Result_Screen(), "Test Results");
+                    {
+                        if (myApplication.GetLanguage().equals("en")) {
+                            Change_Tittle("Test Results");
+                            ShowTopFragment(new Test_Result_Screen(), "Test Results");
+                        } else {
+                            ShowTopFragment(new Test_Result_Screen(), getResources().getString(R.string.Test_Results));
+                            Change_Tittle(getResources().getString(R.string.Test_Results));
+                        }
+
+
+                    }
                 }
+
+
             }
 
             Result.setImageDrawable(getResources().getDrawable(R.drawable.result_icon_selected));
@@ -160,10 +244,29 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if (LocationSelected) {
-            if (getCurrentFragment() != null && getCurrentFragment().getTag().equals("Labs Locations")) {
+            if (getCurrentFragment() != null) {
+                if (getCurrentFragment() != null && getCurrentFragment().getTag().equals("Labs Locations") || getCurrentFragment().getTag().equals(getResources().getString(R.string.Labs_Locations))) {
 
-            } else ShowTopFragment(new Labs_locations(), "Labs Locations");
-            Change_Tittle("Labs Locations");
+                } else {
+                    if (myApplication.GetLanguage().equals("en")) {
+                        ShowTopFragment(new Labs_locations(), "Labs Locations");
+                        Change_Tittle("Labs Locations");
+                    } else {
+                        ShowTopFragment(new Labs_locations(), getResources().getString(R.string.Labs_Locations));
+                        Change_Tittle(getResources().getString(R.string.Labs_Locations));
+                    }
+                }
+
+            } else {
+                if (myApplication.GetLanguage().equals("en")) {
+                    ShowTopFragment(new Labs_locations(), "Labs Locations");
+                    Change_Tittle("Labs Locations");
+                } else {
+                    ShowTopFragment(new Labs_locations(), getResources().getString(R.string.Labs_Locations));
+                    Change_Tittle(getResources().getString(R.string.Labs_Locations));
+                }
+            }
+
             Location.setImageDrawable(getResources().getDrawable(R.drawable.location_icon_selected));
             More.setImageDrawable(getResources().getDrawable(R.drawable.more_icon));
             Result.setImageDrawable(getResources().getDrawable(R.drawable.result_icon));
@@ -172,16 +275,36 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if (MoreSelected) {
-            if (getCurrentFragment() != null && getCurrentFragment().getTag().equals("More")) {
+            if (getCurrentFragment() != null) {
+                if (getCurrentFragment() != null && getCurrentFragment().getTag().equals("More") || getCurrentFragment().getTag().equals(getResources().getString(R.string.More))) {
 
-            } else ShowTopFragment(new More(), "More");
-            Change_Tittle("More");
+                } else {
+                    if (myApplication.GetLanguage().equals("en")) {
+                        ShowTopFragment(new More(), "More");
+                        Change_Tittle("More");
+                    } else {
+                        ShowTopFragment(new More(), getResources().getString(R.string.More));
+                        Change_Tittle(getResources().getString(R.string.More));
+                    }
+                }
+            } else {
+                if (myApplication.GetLanguage().equals("en")) {
+                    ShowTopFragment(new More(), "More");
+                    Change_Tittle("More");
+                } else {
+                    ShowTopFragment(new More(), getResources().getString(R.string.More));
+                    Change_Tittle(getResources().getString(R.string.More));
+                }
+            }
+
+
             More.setImageDrawable(getResources().getDrawable(R.drawable.more_icon_selected));
             Location.setImageDrawable(getResources().getDrawable(R.drawable.location_icon));
             Result.setImageDrawable(getResources().getDrawable(R.drawable.result_icon));
             Home.setImageDrawable(getResources().getDrawable(R.drawable.home_icon));
             Heart.setImageDrawable(getResources().getDrawable(R.drawable.heart_iconn));
         }
+
 
     }
 
@@ -242,37 +365,58 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 getSupportFragmentManager().popBackStack();
-                if (getCurrentFragment() != null) {
+                if (myApplication.GetLanguage().equals("en"))
+                {
+                    if (getCurrentFragment() != null) {
 
-                    if (getCurrentFragment().getTag().equals("Lab_Locations_Details")) {
+                        if (getCurrentFragment().getTag().equals("Lab_Locations_Details")) {
 
 
-                        Change_Tittle("Labs Locations");
+                            Change_Tittle("Labs Locations");
 
-                    } else {
+                        } else {
 
-                        Change_Tittle(getCurrentFragment().getTag());
+                            Change_Tittle(getCurrentFragment().getTag());
 
+                        }
+                        String Tittle = getCurrentFragment().getTag();
+                        if (getCurrentFragment().getTag().equals("More") || getCurrentFragment().getTag().equals("Labs Locations") || getCurrentFragment().getTag().equals("MedLabs") || getCurrentFragment().getTag().equals("SEHTAK BIL DENIA") || getCurrentFragment().getTag().equals("HOME PAGE") || getCurrentFragment().getTag().equals("Test Results")) {
+                            HideToolbarWithBack();
+                        }
                     }
-                    String Tittle = getCurrentFragment().getTag();
-                    if (getCurrentFragment().getTag().equals("More") || getCurrentFragment().getTag().equals("Labs Locations") || getCurrentFragment().getTag().equals("MedLabs") || getCurrentFragment().getTag().equals("SEHTAK BIL DENIA") || getCurrentFragment().getTag().equals("HOME PAGE") || getCurrentFragment().getTag().equals("Test Results")) {
-                        HideToolbarWithBack();
+                }else {
+                    if (getCurrentFragment() != null) {
+
+                        if (getCurrentFragment().getTag().equals("Lab_Locations_Details")) {
+
+
+                            Change_Tittle(getString(R.string.Labs_Locations));
+
+                        } else {
+
+                            Change_Tittle(getCurrentFragment().getTag());
+
+                        }
+                        String Tittle = getCurrentFragment().getTag();
+                        if (getCurrentFragment().getTag().equals(getString(R.string.More)) || getCurrentFragment().getTag().equals(getString(R.string.Labs_Locations)) || getCurrentFragment().getTag().equals("MedLabs") || getCurrentFragment().getTag().equals(getString(R.string.Sehtak_Bil_Denia)) || getCurrentFragment().getTag().equals(getString(R.string.HOEM_PAGE)) || getCurrentFragment().getTag().equals(getString(R.string.Test_Results))) {
+                            HideToolbarWithBack();
+                        }
                     }
                 }
+
             }
         });
     }
 
     public void ShowFragment(Fragment fragment, String Tag) {
         getSupportFragmentManager().beginTransaction().add(R.id.container, fragment, Tag).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).addToBackStack("").commit();
+        Change_Tittle(Tag);
     }
 
     @Override
     public void onBackPressed() {
-        if (getCurrentFragment() != null && getCurrentFragment().getTag().equals("Home")) {
-        } else {
-            super.onBackPressed();
-        }
+        if (getSupportFragmentManager().getBackStackEntryCount() > 1)
+            getSupportFragmentManager().popBackStack();
     }
 
     public void ChangeTintColors(ImageView imageView, TextView textView, Fragment fragment, String Tag) {

@@ -12,10 +12,16 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
 import com.webmarke8.app.medlab.Fragments.Lab_Locations_Details;
 import com.webmarke8.app.medlab.Objects.Locations;
 import com.webmarke8.app.medlab.R;
+import com.webmarke8.app.medlab.Session.MyApplication;
+
+import org.w3c.dom.Text;
 
 import java.util.List;
 
@@ -24,12 +30,14 @@ import java.util.List;
  */
 
 public class Locations_Adapter extends RecyclerView.Adapter<Locations_Adapter.MyHolder> {
-    List<Locations> MyMessageList;
+    List<Locations.BranchObObject> List;
     Context context;
+    MyApplication myApplication;
 
-    public Locations_Adapter(List<Locations> list, Context context) {
-        this.MyMessageList = list;
+    public Locations_Adapter(List<Locations.BranchObObject> list, Context context) {
+        this.List = list;
         this.context = context;
+        myApplication = (MyApplication) context.getApplicationContext();
     }
 
     @Override
@@ -45,6 +53,18 @@ public class Locations_Adapter extends RecyclerView.Adapter<Locations_Adapter.My
     @Override
     public void onBindViewHolder(Locations_Adapter.MyHolder holder, final int position) {
 
+
+        if (myApplication.GetLanguage().equals("en")) {
+            holder.Name.setText(List.get(position).getBranch());
+            holder.Address.setText(List.get(position).getAddress());
+        } else {
+
+            holder.Name.setText(List.get(position).getBranchAr());
+            holder.Address.setText(List.get(position).getAddressAr());
+        }
+
+        Picasso.with(context).load(List.get(position).getImage()).into(holder.Image);
+
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -55,6 +75,7 @@ public class Locations_Adapter extends RecyclerView.Adapter<Locations_Adapter.My
                 try {
                     fragment = (Fragment) fragmentClass.newInstance();
                     Bundle bundle = new Bundle();
+                    bundle.putSerializable("Branch", List.get(position));
                     fragment.setArguments(bundle);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -79,9 +100,16 @@ public class Locations_Adapter extends RecyclerView.Adapter<Locations_Adapter.My
 
     class MyHolder extends RecyclerView.ViewHolder {
 
+        TextView Name, Address;
+        ImageView Image;
+
 
         public MyHolder(View itemView) {
             super(itemView);
+            Name = (TextView) itemView.findViewById(R.id.Name);
+            Address = (TextView) itemView.findViewById(R.id.Address);
+            Image = (ImageView) itemView.findViewById(R.id.Image);
+
 
         }
     }

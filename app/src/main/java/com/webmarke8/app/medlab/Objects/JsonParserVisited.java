@@ -24,6 +24,15 @@ public class JsonParserVisited implements Serializable {
     private String WSUsername;
     private DeviceObject device;
     private String userId;
+    String FileName;
+
+    public String getFileName() {
+        return FileName;
+    }
+
+    public void setFileName(String fileName) {
+        FileName = fileName;
+    }
 
     public static JsonParserVisited objectFromData(String str) {
 
