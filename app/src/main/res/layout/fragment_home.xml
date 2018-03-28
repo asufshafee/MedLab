@@ -51,7 +51,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignTop="@+id/Heading"
                     android:gravity="center"
-                    android:text="Eat Nuts:"
+                    android:text="@string/eat_nuts"
                     android:textColor="@android:color/white"
                     android:textSize="@dimen/_17sdp"
                     android:textStyle="bold" />
@@ -63,7 +63,7 @@
                     android:layout_alignParentBottom="true"
                     android:layout_marginBottom="@dimen/_15sdp"
                     android:gravity="center"
-                    android:text="Despite being high  in fat, nuts are incredibly \n nutritious and healthy ... (more)"
+                    android:text="@string/heading_hints"
                     android:textColor="@android:color/white"
                     android:textSize="@dimen/_12sdp" />
             </LinearLayout>

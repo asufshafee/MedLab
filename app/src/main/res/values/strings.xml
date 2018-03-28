@@ -289,5 +289,8 @@
     <string name="water_remeinder">Water Remainder</string>
     <string name="bmi_calculator">BMI Calculator</string>
     <string name="time_used">Time Used</string>
+    <string name="eat_nuts">Eat Nuts:</string>
+    <string name="heading_hints">Despite being high in fat, nuts are incredibly   nutritious and healthy ... (more)</string>
+    <string name="checkups">Checkups</string>
 
 </resources>

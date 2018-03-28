@@ -56,6 +56,10 @@ public class MyApplication extends Application {
 
     public static final String GetInsuranceCompanies = "http://213.186.160.67:8086/MedlabsAppV2/MedlabsApp.svc/GetInsuranceCompanies";
 
+    public static final String GetTips = "http://213.186.160.67:8086/MedlabsAppV2/MedlabsApp.svc/GetTips";
+    public static final String GetAllFeaturedTests = "http://213.186.160.67:8086/MedlabsAppV2/MedlabsApp.svc/GetAllFeaturedTests";
+    public static final String GetAllSahtakBilDenia = " http://213.186.160.67:8086/MedlabsAppV2/MedlabsApp.svc/GetAllSahtakBilDenia";
+
 
     public static final String SET_REGISTRATION_STATUS_URL = "http://213.186.160.67:8086/MedlabsAppV2/MedlabsApp.svc/SetRegistrationStatus";
 

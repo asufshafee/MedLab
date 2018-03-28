@@ -70,7 +70,7 @@ public class Companies_Adapter extends RecyclerView.Adapter<Companies_Adapter.My
 
     @Override
     public int getItemCount() {
-        return 10;
+        return List.size();
     }
 
     @Override

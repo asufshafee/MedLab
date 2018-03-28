@@ -90,7 +90,7 @@ public class Locations_Adapter extends RecyclerView.Adapter<Locations_Adapter.My
 
     @Override
     public int getItemCount() {
-        return 10;
+        return List.size();
     }
 
     @Override

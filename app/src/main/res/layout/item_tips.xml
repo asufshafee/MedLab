@@ -31,6 +31,7 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        android:id="@+id/Name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:paddingStart="@dimen/_5sdp"
@@ -46,6 +47,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/Date"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:paddingEnd="@dimen/_10sdp"

@@ -82,7 +82,8 @@ public class Home extends Fragment {
             public void onClick(View v) {
                 if (myApplication.GetLanguage().equals("en"))
                     ((MainActivity) getActivity()).ShowFragment(new Tips(), "Tips");
-                else ((MainActivity) getActivity()).ShowFragment(new Tips(), getString(R.string.Tips));
+                else
+                    ((MainActivity) getActivity()).ShowFragment(new Tips(), getString(R.string.Tips));
 
             }
         });
