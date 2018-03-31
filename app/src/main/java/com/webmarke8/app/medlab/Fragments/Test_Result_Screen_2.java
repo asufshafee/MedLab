@@ -78,8 +78,12 @@ public class Test_Result_Screen_2 extends Fragment {
         View view = inflater.inflate(R.layout.fragment_test__result__screen_2, container, false);
         jsonParserVisited = (JsonParserVisited) getArguments().getSerializable("jsonParserVisited");
         myApplication = (MyApplication) getActivity().getApplicationContext();
-//        ((MainActivity) getActivity()).Change_Tittle("Test Results");
-        ((MainActivity) getActivity()).ShowBack_toolbar();
+        if (myApplication.GetLanguage().equals("en"))
+            ((MainActivity) getActivity()).Change_Tittle("Test Results");
+        else {
+            ((MainActivity) getActivity()).Change_Tittle(getString(R.string.Test_Results));
+
+        }        ((MainActivity) getActivity()).ShowBack_toolbar();
         Progress = AppUtils.LoadingSpinner(getActivity());
         recycle = (RecyclerView) view.findViewById(R.id.recycle);
         List = new ArrayList<>();
@@ -110,7 +114,10 @@ public class Test_Result_Screen_2 extends Fragment {
                     List = visited_object.getRespOBJ();
                     LoadData(visited_object);
                 } catch (Exception Ex) {
-                    EasyToast.error(getActivity(), "Something Went Wrong!!");
+                    if (myApplication.GetLanguage().equals("en"))
+                        EasyToast.error(getActivity(), "Something Went Wrong!!");
+                    else
+                        EasyToast.error(getActivity(), " هناك خطأ ما");
 
                 }
 
@@ -121,7 +128,10 @@ public class Test_Result_Screen_2 extends Fragment {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Progress.dismiss();
-                        EasyToast.error(getActivity(), "Something Went Wrong!!");
+                        if (myApplication.GetLanguage().equals("en"))
+                            EasyToast.error(getActivity(), "Something Went Wrong!!");
+                        else
+                            EasyToast.error(getActivity(), " هناك خطأ ما");
                         if (error instanceof TimeoutError || error instanceof NoConnectionError) {
                         } else if (error instanceof AuthFailureError) {
                         } else if (error instanceof ServerError) {

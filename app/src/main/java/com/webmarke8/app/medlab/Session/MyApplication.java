@@ -18,30 +18,16 @@ public class MyApplication extends Application {
 
 
     public static final String TAG = "MedLabs";
-    public static final String AR_LANG_CODE = "ar";
     public static final String EN_LANG_CODE = "en";
     public static String APP_LANG_CODE = EN_LANG_CODE;
-    public static String LONGTITUDE = "0.0";
-    public static String LATITUDE = "0.0";
-    public static final String MY_LOCATION = "My Location";
     public static final String APP_VERSION = "1.0";
 
-    public static Context GLOBAL_CONTEXT = null;
 
     public static String RESOLUATION = "";
     public static String USER_ID = "1";
     public static String COUNTERY_ID = "1";
-
-
-    public static String NOTIFICATION_COUNT = "0";
-    public static int LAST_NOTIFICATION_ID_VALUE = 0;
-    public static int COUNT_OF_VISITS_VALUE = 0;
-
-    //http://213.186.160.67:8086/MedlabsApp
-    //http://213.186.160.67:8086/MedlabsApp
-
     public static final String REGISTER_URL = "http://213.186.160.67:8086/MedlabsAppV2/MedlabsApp.svc/RegistrationRequest";
-    public static final String GIFT_VOUCHER_CALL_URL = "http://213.186.160.67:8086/MedlabsAppV2/MedlabsApp.svc/RequestGiftVoucher";
+    public static final String RequestGiftVoucher = " http://213.186.160.67:8086/MedlabsAppV2/MedlabsApp.svc/RequestGiftVoucher";
     public static final String SCHEDULE_HOUSE_CALL_URL = "http://213.186.160.67:8086/MedlabsAppV2/MedlabsApp.svc/ScheduleHouseCallRequest";
     public static final String PUBLIC_NOTIFICATIONS_URL = "http://213.186.160.67:8086/MedlabsAppV2/MedlabsApp.svc/GetNotification";
     public static final String NOTIFICATION_COUNT_URL = "http://213.186.160.67:8086/MedlabsAppV2/MedlabsApp.svc/GetNotificationNumber";
@@ -51,6 +37,7 @@ public class MyApplication extends Application {
     public static final String FeedbackRating = "http://213.186.160.67:8086/MedlabsAppV2/MedlabsApp.svc/FeedbackRating";
     public static final String FeedbackUserInformation = "http://213.186.160.67:8086/MedlabsAppV2/MedlabsApp.svc/FeedbackUserInformation";
     public static final String POINTS = "http://www.medlabsgroup.com/admin/do/getPoints.php";
+    public static final String ScheduleHouseCallRequest = "http://213.186.160.67:8086/MedlabsAppV2/MedlabsApp.svc/ScheduleHouseCallRequest";
 
     public static final String GetAllBranches = "http://213.186.160.67:8086/MedlabsAppV2/MedlabsApp.svc/GetAllBranches";
 
@@ -60,28 +47,10 @@ public class MyApplication extends Application {
     public static final String GetAllFeaturedTests = "http://213.186.160.67:8086/MedlabsAppV2/MedlabsApp.svc/GetAllFeaturedTests";
     public static final String GetAllSahtakBilDenia = " http://213.186.160.67:8086/MedlabsAppV2/MedlabsApp.svc/GetAllSahtakBilDenia";
 
+    public static final String GetNews = "http://213.186.160.67:8086/MedlabsAppV2/MedlabsApp.svc/GetNews";
+    public static final String GetNotificationNumber = "http://213.186.160.67:8086/MedlabsAppV2/MedlabsApp.svc/GetNotificationNumber";
 
-    public static final String SET_REGISTRATION_STATUS_URL = "http://213.186.160.67:8086/MedlabsAppV2/MedlabsApp.svc/SetRegistrationStatus";
-
-    public static final String EN_EMAIL_SUBJECT = "Medlabs Test Result";
-    public static final String EN_EMAIL_BODY = "";
-
-    public static boolean isVibrate = true;
-    public static String isPushEnabled = "true";
-
-
-    public static String SHOW_HELP = "false";
-    public static String SHOW_COUNTRY_DIALOG = "false";
-
-    public static final float SCALE_X = 0.8f;
-    public static final float SCALE_Y = 0.7f;
-
-    public static boolean COMES_AFTER_SPLASH = false;
-
-    public static final String EN_FONT_NAME_BOLD = "helvetica_neueltstd_bd.ttf";
-    public static final String EN_FONT_NAME_PLAIN = "helvetica_neueltstd_lt.ttf";
-    public static final String AR_FONT_NAME_BOLD = "ge_ss_two_bold.ttf";
-    public static final String AR_FONT_NAME_PLAIN = "ge_ss_two_light.ttf";
+    public static final String GetNotification = "http://213.186.160.67:8086/MedlabsAppV2/MedlabsApp.svc/GetNotification";
 
 
     Context mContext;
@@ -91,6 +60,9 @@ public class MyApplication extends Application {
     private static final String IS_LOGIN = "IsLoggedIn";
     private static final String IS_NOTIFICATION = "IS_NOTIFICATION";
     private static final String LANGUAGE = "LANGUAGE";
+
+
+    private static final int GLASS = 0;
 
 
     private static MyApplication mInstance;
@@ -117,9 +89,7 @@ public class MyApplication extends Application {
 
 
     public void logoutUser() {
-        // Clearing all data from Shared Preferences
-//        new EasySave(getApplicationContext()).saveModel("Driver", null);
-        editor.clear();
+        editor.putBoolean(IS_LOGIN, false);
         editor.commit();
 
     }
@@ -168,5 +138,15 @@ public class MyApplication extends Application {
     public Login_Object getLoginSessionLogin() {
         return new EasySave(getApplicationContext()).retrieveModel("Login_Object", Login_Object.class);
     }
+
+    public static int getGLASS() {
+        return sharedPreferences.getInt("Glass", 0);
+    }
+
+    public static void setGLASS(int Glass) {
+        editor.putInt("Glass", Glass);
+        editor.apply();
+    }
+
 
 }

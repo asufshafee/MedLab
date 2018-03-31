@@ -14,22 +14,6 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycle"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-    </android.support.v7.widget.RecyclerView>
-    <TextView
-        android:layout_width="match_parent"
-        android:background="@color/background"
-        android:layout_alignParentBottom="true"
-
-        android:layout_height="@dimen/_100sdp" />
-
-    <include
-        layout="@layout/item_add"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_weight="1"></include>
-
+        android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
 
 </RelativeLayout>

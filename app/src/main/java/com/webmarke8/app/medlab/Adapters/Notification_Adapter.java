@@ -10,12 +10,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.webmarke8.app.medlab.Fragments.Lab_Locations_Details;
 import com.webmarke8.app.medlab.Fragments.Notifications_Details;
 import com.webmarke8.app.medlab.Objects.Company;
 import com.webmarke8.app.medlab.Objects.Notification;
 import com.webmarke8.app.medlab.R;
+import com.webmarke8.app.medlab.Session.MyApplication;
 
 import java.util.List;
 
@@ -24,12 +26,14 @@ import java.util.List;
  */
 
 public class Notification_Adapter extends RecyclerView.Adapter<Notification_Adapter.MyHolder> {
-    List<Notification> MyMessageList;
+    List<Notification.RespOBJObject> List;
     Context context;
+    MyApplication myApplication;
 
-    public Notification_Adapter(List<Notification> list, Context context) {
-        this.MyMessageList = list;
+    public Notification_Adapter(List<Notification.RespOBJObject> list, Context context) {
+        this.List = list;
         this.context = context;
+        myApplication = (MyApplication) context.getApplicationContext();
     }
 
     @Override
@@ -45,6 +49,13 @@ public class Notification_Adapter extends RecyclerView.Adapter<Notification_Adap
     @Override
     public void onBindViewHolder(Notification_Adapter.MyHolder holder, final int position) {
 
+
+        if (myApplication.GetLanguage().equals("en")) {
+        }
+        holder.Name.setText(List.get(position).getText());
+        holder.Date.setText(List.get(position).getDate());
+
+
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -56,12 +67,13 @@ public class Notification_Adapter extends RecyclerView.Adapter<Notification_Adap
                 try {
                     fragment = (Fragment) fragmentClass.newInstance();
                     Bundle bundle = new Bundle();
+                    bundle.putSerializable("data", List.get(position));
                     fragment.setArguments(bundle);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
                 FragmentManager fragmentManager = ((AppCompatActivity) context).getSupportFragmentManager();
-                fragmentManager.beginTransaction().replace(R.id.container, fragment, "Notifications").setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).addToBackStack(null).commit();
+                fragmentManager.beginTransaction().replace(R.id.container, fragment, "Notification").setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).addToBackStack(null).commit();
 
             }
         });
@@ -70,7 +82,7 @@ public class Notification_Adapter extends RecyclerView.Adapter<Notification_Adap
 
     @Override
     public int getItemCount() {
-        return 10;
+        return List.size();
     }
 
     @Override
@@ -80,9 +92,13 @@ public class Notification_Adapter extends RecyclerView.Adapter<Notification_Adap
 
     class MyHolder extends RecyclerView.ViewHolder {
 
+        TextView Date, Name;
 
         public MyHolder(View itemView) {
             super(itemView);
+            Date = (TextView) itemView.findViewById(R.id.Date);
+            Name = (TextView) itemView.findViewById(R.id.Name);
+
 
         }
     }

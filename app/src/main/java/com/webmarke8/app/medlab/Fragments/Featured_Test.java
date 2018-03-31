@@ -129,7 +129,10 @@ public class Featured_Test extends Fragment {
                     recycle.setAdapter(Adapter);
 
                 } else {
-                    EasyToast.error(getActivity(), "Something Went Wrong!!");
+                    if (myApplication.GetLanguage().equals("en"))
+                        EasyToast.error(getActivity(), "Something Went Wrong!!");
+                    else
+                        EasyToast.error(getActivity(), " هناك خطأ ما");
                 }
 
             }
@@ -138,7 +141,10 @@ public class Featured_Test extends Fragment {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Progress.dismiss();
-                        EasyToast.error(getActivity(), "Something Went Wrong!!");
+                        if (myApplication.GetLanguage().equals("en"))
+                            EasyToast.error(getActivity(), "Something Went Wrong!!");
+                        else
+                            EasyToast.error(getActivity(), " هناك خطأ ما");
                         if (error instanceof TimeoutError || error instanceof NoConnectionError) {
                         } else if (error instanceof AuthFailureError) {
                         } else if (error instanceof ServerError) {

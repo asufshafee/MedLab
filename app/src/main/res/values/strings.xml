@@ -292,5 +292,29 @@
     <string name="eat_nuts">Eat Nuts:</string>
     <string name="heading_hints">Despite being high in fat, nuts are incredibly   nutritious and healthy ... (more)</string>
     <string name="checkups">Checkups</string>
+    <string name="call">Call</string>
+    <string name="directions">Directions</string>
+    <string name="verify_your_phone_number_to_make_sure_your_account_remains_safe">Verify Your Phone number to make sure your account remains safe.</string>
+    <string name="the_6_digit_code_is_sent_as_an_sms_to_you_phone_ndid_not_receive_code_try_in_20_sec">The 6 digit code is sent as an SMS to you phone.  Did not Receive? code try in 20 sec.</string>
+    <string name="retry_in_20_sec">Retry in 20 sec</string>
+    <string name="today_you_have_spent">Today you have spent</string>
+    <string name="using_your_mobile">using your mobile.</string>
+    <string name="hours">Hours</string>
+    <string name="age">AGE</string>
+    <string name="year">year</string>
+    <string name="height">HEIGHT</string>
+    <string name="cm">cm</string>
+    <string name="weight">WEIGHT</string>
+    <string name="kg">kg</string>
+    <string name="bmi">BMI</string>
+    <string name="ideal_weight">Ideal Weight</string>
+    <string name="very_serverely_underweight">Very Serverely Underweight</string>
+    <string name="serverely_underweight">Serverely Underweight</string>
+    <string name="underweight">Underweight</string>
+    <string name="normal">Normal</string>
+    <string name="over_weight">Over Weight</string>
+    <string name="obese_class">Obese Class |</string>
+    <string name="obese_class_2">Obese Class ||</string>
+    <string name="bmi_clasification">BMI CLASIFICATION:</string>
 
 </resources>

@@ -46,6 +46,7 @@ public class More extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_more, container, false);
         myApplication = (MyApplication) getActivity().getApplicationContext();
+        ((MainActivity) getActivity()).GetNotifications();
 
 
         ((MainActivity) getActivity()).HideToolbarWithBack();
@@ -87,7 +88,13 @@ public class More extends Fragment {
                 FeaturedTest = false;
                 Help = false;
                 Logout = false;
-                ((MainActivity) getActivity()).ChangeTintColors(ManageIcon, ManageName, new Manage_My_Health(), "Manage My Health");
+                if (myApplication.GetLanguage().equals("en")) {
+                    ((MainActivity) getActivity()).ChangeTintColors(ManageIcon, ManageName, new Manage_My_Health(), "Manage My Health");
+
+                } else {
+                    ((MainActivity) getActivity()).ChangeTintColors(ManageIcon, ManageName, new Manage_My_Health(), getString(R.string.Manage_My_Helth));
+
+                }
                 Refresh();
             }
         });
@@ -102,12 +109,12 @@ public class More extends Fragment {
                 FeaturedTest = false;
                 Help = false;
                 Logout = true;
+                myApplication.logoutUser();
                 EasyToast.success(getActivity(), "Success");
 //                ((MainActivity) getActivity()).ChangeTintColors(ManageIcon, ManageName, new Manage_My_Health(), "Manage My Health");
                 Refresh();
             }
         });
-
 
         view.findViewById(R.id.Settings).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -118,7 +125,13 @@ public class More extends Fragment {
                 FeaturedTest = false;
                 Help = false;
                 Logout = false;
-                ((MainActivity) getActivity()).ChangeTintColors(SettingsIcon, SettingsName, new Settings(), "Settings");
+                if (myApplication.GetLanguage().equals("en")) {
+                    ((MainActivity) getActivity()).ChangeTintColors(SettingsIcon, SettingsName, new Settings(), "Settings");
+
+                } else {
+                    ((MainActivity) getActivity()).ChangeTintColors(SettingsIcon, SettingsName, new Settings(), getString(R.string.Settings));
+
+                }
                 Refresh();
             }
         });
@@ -133,7 +146,15 @@ public class More extends Fragment {
                 FeaturedTest = true;
                 Help = false;
                 Logout = false;
-                ((MainActivity) getActivity()).ChangeTintColors(TestIcon, TestName, new Featured_Test(), "Featured Test");
+
+                if (myApplication.GetLanguage().equals("en")) {
+                    ((MainActivity) getActivity()).ChangeTintColors(TestIcon, TestName, new Featured_Test(), "Featured Test");
+
+                } else {
+                    ((MainActivity) getActivity()).ChangeTintColors(TestIcon, TestName, new Featured_Test(), getString(R.string.Featured_Test));
+
+                }
+
                 Refresh();
             }
         });

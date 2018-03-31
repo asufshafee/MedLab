@@ -4,11 +4,8 @@
     <color name="colorPrimaryDark">#f8f8f6</color>
     <color name="colorAccent">#fefefe</color>
     <color name="red">#c7233b</color>
-
     <color name="background">#e8eaf7</color>
-
     <color name="textColor">#868686</color>
     <color name="time_used_background">#eff0eb</color>
-
 
 </resources>

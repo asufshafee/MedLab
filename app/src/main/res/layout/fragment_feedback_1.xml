@@ -2,21 +2,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_gravity="center"
     android:background="#FFFFFF"
     android:orientation="vertical"
     tools:context="com.webmarke8.app.medlab.Fragments.Feedback_1">
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scrollbars="vertical"
-        tools:ignore="UselessParent">
+        android:layout_height="wrap_content"
+        android:scrollbars="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/_40sdp"
             android:orientation="vertical">
 
             <TextView
@@ -45,7 +43,7 @@
                 android:textStyle="bold" />
 
             <com.willy.ratingbar.ScaleRatingBar xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/simpleRatingBar"
+                android:id="@+id/RatingBar1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -78,6 +76,7 @@
 
             <com.willy.ratingbar.ScaleRatingBar xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:layout_width="match_parent"
+                android:id="@+id/RatingBar2"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 app:srb_clearRatingEnabled="true"
@@ -112,6 +111,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
+                android:id="@+id/RatingBar3"
+
                 app:srb_clearRatingEnabled="true"
                 app:srb_clickable="true"
                 app:srb_drawableEmpty="@drawable/start_uncehcked"
@@ -146,6 +147,8 @@
                 android:gravity="center"
                 app:srb_clearRatingEnabled="true"
                 app:srb_clickable="true"
+                android:id="@+id/RatingBar4"
+
                 app:srb_drawableEmpty="@drawable/start_uncehcked"
                 app:srb_drawableFilled="@drawable/start_checked"
                 app:srb_isIndicator="false"
@@ -178,6 +181,8 @@
                 android:gravity="center"
                 app:srb_clearRatingEnabled="true"
                 app:srb_clickable="true"
+                android:id="@+id/RatingBar5"
+
                 app:srb_drawableEmpty="@drawable/start_uncehcked"
                 app:srb_drawableFilled="@drawable/start_checked"
                 app:srb_isIndicator="false"
@@ -207,6 +212,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
+                android:id="@+id/RatingBar6"
+
                 app:srb_clearRatingEnabled="true"
                 app:srb_clickable="true"
                 app:srb_drawableEmpty="@drawable/start_uncehcked"
@@ -239,6 +246,8 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 app:srb_clearRatingEnabled="true"
+                android:id="@+id/RatingBar7"
+
                 app:srb_clickable="true"
                 app:srb_drawableEmpty="@drawable/start_uncehcked"
                 app:srb_drawableFilled="@drawable/start_checked"
@@ -270,6 +279,8 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 app:srb_clearRatingEnabled="true"
+                android:id="@+id/RatingBar8"
+
                 app:srb_clickable="true"
                 app:srb_drawableEmpty="@drawable/start_uncehcked"
                 app:srb_drawableFilled="@drawable/start_checked"
@@ -307,6 +318,8 @@
                 app:srb_isIndicator="false"
                 app:srb_minimumStars="1"
                 app:srb_numStars="5"
+                android:id="@+id/RatingBar9"
+
                 app:srb_rating="2"
                 app:srb_scrollable="true"
                 app:srb_starHeight="30dp"

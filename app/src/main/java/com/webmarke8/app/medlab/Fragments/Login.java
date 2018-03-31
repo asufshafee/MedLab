@@ -65,6 +65,8 @@ public class Login extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_login, container, false);
 //        ((MainActivity) getActivity()).Change_Tittle("MedLabs");
+        ((MainActivity)getActivity()).GetNotifications();
+
         ((MainActivity) getActivity()).HideToolbarWithBack();
         myApplication = (MyApplication) getActivity().getApplicationContext();
         Progress = AppUtils.LoadingSpinner(getActivity());
@@ -143,7 +145,10 @@ public class Login extends Fragment {
 
 
                 } else {
-                    EasyToast.error(getActivity(), "Something Went Wrong!!");
+                    if (myApplication.GetLanguage().equals("en"))
+                        EasyToast.error(getActivity(), "Something Went Wrong!!");
+                    else
+                        EasyToast.error(getActivity(), " هناك خطأ ما");
                 }
 
             }
@@ -152,7 +157,10 @@ public class Login extends Fragment {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Progress.dismiss();
-                        EasyToast.error(getActivity(), "Something Went Wrong!!");
+                        if (myApplication.GetLanguage().equals("en"))
+                            EasyToast.error(getActivity(), "Something Went Wrong!!");
+                        else
+                            EasyToast.error(getActivity(), " هناك خطأ ما");
                         if (error instanceof TimeoutError || error instanceof NoConnectionError) {
                         } else if (error instanceof AuthFailureError) {
                         } else if (error instanceof ServerError) {

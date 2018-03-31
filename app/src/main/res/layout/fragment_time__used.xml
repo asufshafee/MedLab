@@ -19,7 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Today you have spent  "
+            android:text="@string/today_you_have_spent"
             android:textColor="@color/textColor"
             android:textSize="@dimen/_13sdp" />
 
@@ -28,7 +28,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="7 hours"
+            android:text=" 7 hours "
             android:textColor="@color/red"
             android:textSize="@dimen/_13sdp"
             android:textStyle="bold" />
@@ -39,7 +39,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="using your mobile."
+        android:text="@string/using_your_mobile"
         android:textColor="@color/textColor"
         android:textSize="@dimen/_13sdp" />
 
@@ -62,6 +62,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/Hours"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -74,7 +75,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:gravity="center"
-                android:text="Hours"
+                android:text="@string/hours"
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/_13sdp" />
         </LinearLayout>

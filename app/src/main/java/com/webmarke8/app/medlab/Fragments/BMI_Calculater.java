@@ -4,6 +4,7 @@ package com.webmarke8.app.medlab.Fragments;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +20,8 @@ import com.webmarke8.app.medlab.R;
 import com.webmarke8.app.medlab.Session.MyApplication;
 
 import org.w3c.dom.Text;
+
+import java.text.DecimalFormat;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -42,7 +45,7 @@ public class BMI_Calculater extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_bmi__calculater, container, false);
+        final View view = inflater.inflate(R.layout.fragment_bmi__calculater, container, false);
         myApplication = (MyApplication) getActivity().getApplicationContext();
         if (myApplication.GetLanguage().equals("en"))
             ((MainActivity) getActivity()).Change_Tittle("BMI Calculator");
@@ -70,12 +73,13 @@ public class BMI_Calculater extends Fragment {
             public void onTextChanged(CharSequence s, int start,
                                       int before, int count) {
 
-                if (Weight.getText().toString().equals("")) {
+                if (!Weight.getText().toString().equals("")) {
 
-                    if (!s.equals("")) {
+                    if (!Height.getText().toString().equals("")) {
                         HeightDouble = Double.parseDouble(Height.getText().toString());
-                        HeightDouble = HeightDouble / 100;
-                        double BMIDouble = Double.parseDouble(s.toString()) / (HeightDouble * HeightDouble);
+                        double BMIDouble = ((Double.parseDouble(Weight.getText().toString()) * 703) / (HeightDouble * HeightDouble));
+                        DecimalFormat df = new DecimalFormat("#.##");
+                        BMIDouble = Double.valueOf(df.format(BMIDouble));
                         BMI.setText(String.valueOf(BMIDouble));
                     }
                 }
@@ -92,14 +96,15 @@ public class BMI_Calculater extends Fragment {
 
             public void onTextChanged(CharSequence s, int start,
                                       int before, int count) {
+                if (!Weight.getText().toString().equals("")) {
 
-                if (Height.getText().toString().equals("")) {
-
-                    if (!s.equals("")) {
+                    if (!Height.getText().toString().equals("")) {
                         HeightDouble = Double.parseDouble(Height.getText().toString());
-                        HeightDouble = HeightDouble / 100;
-                        double BMIDouble = Double.parseDouble(s.toString()) / (HeightDouble * HeightDouble);
-                        BMI.setText(String.valueOf(round(BMIDouble, 1)));
+                        double BMIDouble = ((Double.parseDouble(Weight.getText().toString()) * 703) / (HeightDouble * HeightDouble));
+                        DecimalFormat df = new DecimalFormat("#.##");
+                        BMIDouble = Double.valueOf(df.format(BMIDouble));
+                        BMI.setText(String.valueOf(BMIDouble));
+                        IdealWeight.setText(centimeterToFeet(Height.getText().toString()));
                     }
                 }
             }
@@ -133,5 +138,39 @@ public class BMI_Calculater extends Fragment {
     private static double round(double value, int precision) {
         int scale = (int) Math.pow(10, precision);
         return (double) Math.round(value * scale) / scale;
+    }
+
+
+    private static final Double INCH_PER_FEET = 12.0;
+    private static final Double POUND_PER_INCH = 1.41;
+    private static final Double MIN_HEIGHT_FEET = 5.0;
+    private static final Double MIN_WEIGHT_POUND = 56.2;
+
+
+    private static Double idealBodyWeight(int inches) {
+        Double Ideal = MIN_WEIGHT_POUND;
+
+
+        Ideal += inches * POUND_PER_INCH;
+
+        return Ideal;
+    }
+
+    public static String centimeterToFeet(String centemeter) {
+        int feetPart = 0;
+        int inchesPart = 0;
+        if (!TextUtils.isEmpty(centemeter)) {
+            double dCentimeter = Double.valueOf(centemeter);
+            feetPart = (int) Math.floor((dCentimeter / 2.54) / 12);
+            System.out.println((dCentimeter / 2.54) - (feetPart * 12));
+            inchesPart = (int) Math.ceil((dCentimeter / 2.54) - (feetPart * 12));
+        }
+        if (feetPart < 4) {
+
+        } else {
+            return String.valueOf(56.2);
+        }
+        DecimalFormat df = new DecimalFormat("#.##");
+        return String.valueOf(idealBodyWeight(inchesPart));
     }
 }

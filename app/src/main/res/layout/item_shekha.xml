@@ -41,11 +41,11 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/Checkups"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_marginBottom="@dimen/_5sdp"
-                android:gravity="center|left"
                 android:text="@string/checkups"
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/_12sdp" />

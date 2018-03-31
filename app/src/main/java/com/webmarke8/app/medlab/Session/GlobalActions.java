@@ -107,10 +107,10 @@ public class GlobalActions extends Activity {
     }
 
 
-    public void call(String phone, Context ctx) {
+    public static void call(String phone, Context ctx, Activity activity) {
         Intent callIntent = new Intent(Intent.ACTION_CALL);
         callIntent.setData(Uri.parse("tel:" + phone));
-        if (ActivityCompat.checkSelfPermission(GlobalActions.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+        if (ActivityCompat.checkSelfPermission(activity, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions
             // here to request the missing permissions, and then overriding

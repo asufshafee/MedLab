@@ -41,15 +41,14 @@ public class Manage_My_Health extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         final View view = inflater.inflate(R.layout.fragment_manage__my__health, container, false);
-//        ((MainActivity) getActivity()).Change_Tittle("Manage My Health");
 
-
-        myApplication=(MyApplication)getActivity().getApplicationContext();
-        if (myApplication.GetLanguage().equals("ar")) {
-            ((MainActivity) getActivity()).Change_Tittle(getString(R.string.Manage_My_Helth));
+        myApplication = (MyApplication) getActivity().getApplicationContext();
+        if (myApplication.GetLanguage().equals("en")) {
+            ((MainActivity) getActivity()).Change_Tittle("Manage My Health");
 
         } else {
-            ((MainActivity) getActivity()).Change_Tittle("Manage My Health");
+            ((MainActivity) getActivity()).Change_Tittle(getString(R.string.Manage_My_Helth));
+
         }
 
         ((MainActivity) getActivity()).ShowBack_toolbar();
@@ -75,7 +74,7 @@ public class Manage_My_Health extends Fragment {
                 TintWater = true;
                 TintBMI = false;
                 TintTime = false;
-                ((MainActivity) getActivity()).ChangeTintColors(WaterIcon, WaterName, new Water_Remainder(), "Water Remainder");
+                ((MainActivity) getActivity()).ChangeTintColors(WaterIcon, WaterName, new Water_Remainder(), getString(R.string.water_remeinder));
                 Refresh();
             }
         });
@@ -86,7 +85,7 @@ public class Manage_My_Health extends Fragment {
                 TintTime = true;
                 TintWater = false;
                 TintBMI = false;
-                ((MainActivity) getActivity()).ChangeTintColors(TimeIcon, TimeName, new Time_Used(), "Time Used");
+                ((MainActivity) getActivity()).ChangeTintColors(TimeIcon, TimeName, new Time_Used(), getString(R.string.time_used));
                 Refresh();
             }
         });
@@ -97,7 +96,7 @@ public class Manage_My_Health extends Fragment {
                 TintBMI = true;
                 TintWater = false;
                 TintTime = false;
-                ((MainActivity) getActivity()).ChangeTintColors(BMIIcon, BMIName, new BMI_Calculater(), "BMI Calculator");
+                ((MainActivity) getActivity()).ChangeTintColors(BMIIcon, BMIName, new BMI_Calculater(), getString(R.string.BMI_Calculator));
                 Refresh();
             }
         });

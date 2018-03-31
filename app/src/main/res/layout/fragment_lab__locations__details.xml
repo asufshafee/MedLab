@@ -67,9 +67,9 @@
                     android:id="@+id/Name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingStart="@dimen/_5sdp"
                     android:lines="1"
                     android:maxLines="1"
+                    android:paddingStart="@dimen/_5sdp"
                     android:text="Zahran Central laboratory"
                     android:textColor="#b8332e"
                     android:textSize="@dimen/_13sdp"
@@ -143,6 +143,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/Directions"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/_2sdp"
@@ -160,7 +161,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="@dimen/_3sdp"
-                        android:text="Directions"
+                        android:text="@string/directions"
                         android:textSize="@dimen/_8sdp" />
                 </LinearLayout>
             </LinearLayout>
@@ -213,7 +214,8 @@
                             android:layout_height="wrap_content"
                             android:gravity="center|left|top"
                             android:lines="2"
-                            android:maxLines="2"                            android:paddingEnd="@dimen/_10sdp"
+                            android:maxLines="2"
+                            android:paddingEnd="@dimen/_10sdp"
                             android:paddingStart="@dimen/_7sdp"
                             android:paddingTop="@dimen/_2sdp"
                             android:text="087 78234872368"
@@ -225,6 +227,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/Call"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_5sdp"
@@ -242,7 +245,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:padding="@dimen/_3sdp"
-                        android:text="Call"
+                        android:text="@string/call"
                         android:textSize="@dimen/_8sdp" />
                 </LinearLayout>
             </LinearLayout>

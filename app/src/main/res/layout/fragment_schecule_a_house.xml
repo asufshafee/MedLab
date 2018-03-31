@@ -15,8 +15,9 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/_100sdp">
 
             <TextView
                 android:layout_width="match_parent"
@@ -35,8 +36,12 @@
                 android:orientation="vertical">
 
                 <EditText
-                    android:id="@+id/Name"
+                    android:id="@+id/Username"
                     android:layout_width="match_parent"
+                    android:inputType="textPersonName"
+                    android:lines="1"
+                    android:maxLines="1"
+                    android:nextFocusDown="@string/phone_no"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/_3sdp"
                     android:layout_marginStart="@dimen/_6sdp"
@@ -62,6 +67,8 @@
                     android:id="@+id/Phone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:lines="1"
+                    android:maxLines="1"
                     android:layout_marginEnd="@dimen/_3sdp"
                     android:layout_marginStart="@dimen/_6sdp"
                     android:background="@color/colorPrimary"
@@ -86,6 +93,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_10sdp"
                     android:layout_marginRight="@dimen/_10sdp"
                     android:layout_weight="1"
                     android:text="@string/when" />
@@ -104,6 +112,7 @@
                 <RelativeLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_10sdp"
                     android:layout_marginRight="@dimen/_10sdp"
                     android:layout_weight="1"
                     android:background="@drawable/date_background">
@@ -112,9 +121,11 @@
                         android:id="@+id/Date"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginLeft="@dimen/_10sdp"
                         android:layout_centerInParent="true"
+                        android:layout_marginLeft="@dimen/_10sdp"
                         android:padding="@dimen/_10sdp"
+                        android:paddingEnd="@dimen/_15sdp"
+                        android:paddingStart="@dimen/_15sdp"
                         android:text="16th February 2018" />
 
                     <ImageView
@@ -130,16 +141,25 @@
                 <RelativeLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_marginRight="@dimen/_10sdp"
                     android:layout_weight="0.5"
                     android:background="@drawable/date_background">
+
+                    <Spinner
+                        android:id="@+id/TimeSpiner"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_centerInParent="true"
+                        android:background="@null"
+                        android:padding="@dimen/_10sdp"></Spinner>
 
                     <TextView
                         android:id="@+id/Time"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_centerInParent="true"
-                        android:padding="@dimen/_10sdp"
-                        android:text="11:00 am" />
+                        android:padding="@dimen/_10sdp" />
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -215,6 +235,8 @@
 
                 <EditText
                     android:id="@+id/City"
+                    android:lines="1"
+                    android:maxLines="1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/house_call_city"
@@ -230,6 +252,8 @@
 
                 <EditText
                     android:id="@+id/Area"
+                    android:lines="1"
+                    android:maxLines="1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/house_call_area"
@@ -245,6 +269,8 @@
 
                 <EditText
                     android:id="@+id/Street"
+                    android:lines="1"
+                    android:maxLines="1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/house_call_street_name"
@@ -259,6 +285,8 @@
 
                 <EditText
                     android:id="@+id/BuildingNumber"
+                    android:lines="1"
+                    android:maxLines="1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/house_call_building_no"
@@ -274,6 +302,8 @@
 
                 <EditText
                     android:id="@+id/FloorNumber"
+                    android:lines="1"
+                    android:maxLines="1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/house_call_floor_no"

@@ -11,7 +11,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Verify Your Phone number to make sure your account remains safe."
+        android:text="@string/verify_your_phone_number_to_make_sure_your_account_remains_safe"
         android:textColor="@color/textColor"
         android:textSize="@dimen/_12sdp" />
 
@@ -22,7 +22,7 @@
         android:orientation="vertical">
 
         <EditText
-            android:id="@+id/Password"
+            android:id="@+id/Code"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/_3sdp"
@@ -32,7 +32,8 @@
             android:drawablePadding="@dimen/_10sdp"
             android:drawableStart="@drawable/password_icon"
             android:hint="@string/pin_code"
-            android:paddingBottom="@dimen/_3sdp" />
+            android:paddingBottom="@dimen/_3sdp"
+            android:textColor="@color/textColor" />
 
         <ImageView
             android:layout_width="match_parent"
@@ -45,7 +46,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="The 6 digit code is sent as an SMS to you phone. \nDid not Receive? code try in 20 sec."
+        android:text="@string/the_6_digit_code_is_sent_as_an_sms_to_you_phone_ndid_not_receive_code_try_in_20_sec"
         android:textColor="@color/textColor"
         android:textSize="@dimen/_12sdp" />
 
@@ -76,7 +77,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:gravity="center"
-                android:text="Submit"
+                android:text="@string/house_call_submit"
                 android:textColor="@android:color/white" />
         </RelativeLayout>
 
@@ -84,7 +85,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Retry in 20 sec"
+            android:text="@string/retry_in_20_sec"
             android:textColor="@color/textColor"
             android:textSize="@dimen/_13sdp" />
     </LinearLayout>

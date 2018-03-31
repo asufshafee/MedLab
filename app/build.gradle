@@ -46,7 +46,7 @@ dependencies {
 
     // Dialog
     implementation 'com.afollestad.material-dialogs:core:0.9.6.0'
-
+    compile 'com.github.apl-devs:appintro:v4.2.3'
 
     //fragment animation
     compile 'com.labo.kaji:fragmentanimations:0.1.1'

@@ -62,6 +62,7 @@ public class Settings extends Fragment {
         languageName = (TextView) view.findViewById(R.id.LanguageName);
         myApplication = (MyApplication) getActivity().getApplicationContext();
 
+
         TextView LanguageNameSelected = (TextView) view.findViewById(R.id.LanguageNameSelected);
 
         if (myApplication.GetLanguage().equals("ar")) {

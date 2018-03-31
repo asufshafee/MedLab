@@ -84,6 +84,7 @@
                 android:orientation="vertical">
 
                 <EditText
+                    android:id="@+id/Email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/_3sdp"
@@ -91,7 +92,7 @@
                     android:background="@color/colorPrimary"
                     android:drawablePadding="@dimen/_10sdp"
                     android:drawableStart="@drawable/email_icon"
-                    android:hint="@string/password" />
+                    android:hint="@string/Email" />
 
                 <ImageView
                     android:layout_width="match_parent"
@@ -109,6 +110,7 @@
                 android:orientation="vertical">
 
                 <EditText
+                    android:id="@+id/Comment"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginEnd="@dimen/_3sdp"
@@ -143,6 +145,7 @@
             android:textColor="@android:color/white" />
 
         <TextView
+            android:id="@+id/Submit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"

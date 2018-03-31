@@ -15,6 +15,8 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.webmarke8.app.medlab.R;
+import com.webmarke8.app.medlab.Session.GlobalActions;
+import com.webmarke8.app.medlab.Session.MedlabsConstants;
 import com.webmarke8.app.medlab.Session.MyApplication;
 
 import java.util.Locale;
@@ -31,13 +33,11 @@ public class Splash extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
 
 
-
-
         if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED
                 || ActivityCompat.checkSelfPermission(this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED
                 || ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED
                 || ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
-                || ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED ) {
+                || ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions
             // here to request the missing permissions, and then overriding
@@ -47,32 +47,35 @@ public class Splash extends AppCompatActivity {
             // for ActivityCompat#requestPermissions for more details.
             ActivityCompat.requestPermissions((Activity) Splash.this,
                     new String[]{android.Manifest.permission.READ_EXTERNAL_STORAGE
-                            ,android.Manifest.permission.WRITE_EXTERNAL_STORAGE
-                            ,android.Manifest.permission.CALL_PHONE
-                            ,android.Manifest.permission.ACCESS_FINE_LOCATION
-                            ,android.Manifest.permission.ACCESS_COARSE_LOCATION
+                            , android.Manifest.permission.WRITE_EXTERNAL_STORAGE
+                            , android.Manifest.permission.CALL_PHONE
+                            , android.Manifest.permission.ACCESS_FINE_LOCATION
+                            , android.Manifest.permission.ACCESS_COARSE_LOCATION
                     }, 1);
+        } else {
+
+            myApplication = (MyApplication) getApplicationContext();
+            MyApplication.RESOLUATION = getResoluation();
+            MedlabsConstants.RESOLUATION = getResoluation();
+
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Intent intent = new Intent(Splash.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+            }, 2000);
+
+            String languageToLoad = myApplication.GetLanguage();
+            Locale locale = new Locale(languageToLoad);
+            Locale.setDefault(locale);
+            Configuration configuration = new Configuration();
+            configuration.setLocale(locale);
+            getResources().updateConfiguration(configuration, getApplicationContext().getResources().getDisplayMetrics());
+
+
         }
-
-
-        myApplication = (MyApplication) getApplicationContext();
-        myApplication.RESOLUATION = getResoluation();
-
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Intent intent = new Intent(Splash.this, MainActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        }, 2000);
-
-        String languageToLoad = myApplication.GetLanguage();
-        Locale locale = new Locale(languageToLoad);
-        Locale.setDefault(locale);
-        Configuration configuration = new Configuration();
-        configuration.setLocale(locale);
-        getResources().updateConfiguration(configuration, getApplicationContext().getResources().getDisplayMetrics());
 
 
     }
@@ -106,5 +109,31 @@ public class Splash extends AppCompatActivity {
         }
 
         return resoluation;
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+        if (requestCode == 1) {
+            myApplication = (MyApplication) getApplicationContext();
+            myApplication.RESOLUATION = getResoluation();
+
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Intent intent = new Intent(Splash.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+            }, 2000);
+
+            String languageToLoad = myApplication.GetLanguage();
+            Locale locale = new Locale(languageToLoad);
+            Locale.setDefault(locale);
+            Configuration configuration = new Configuration();
+            configuration.setLocale(locale);
+            getResources().updateConfiguration(configuration, getApplicationContext().getResources().getDisplayMetrics());
+
+        }
     }
 }

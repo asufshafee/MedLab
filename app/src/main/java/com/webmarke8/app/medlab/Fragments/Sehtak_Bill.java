@@ -40,6 +40,7 @@ import com.webmarke8.app.medlab.Session.MyApplication;
 import com.webmarke8.app.medlab.Utils.AppUtils;
 
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -64,7 +65,12 @@ public class Sehtak_Bill extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_sehtak__bill, container, false);
-//        ((MainActivity) getActivity()).Change_Tittle("SEHTAK BIL DENIA");
+        myApplication=(MyApplication)getActivity().getApplicationContext();
+        ((MainActivity)getActivity()).GetNotifications();
+
+        if (myApplication.GetLanguage().equals("en"))
+        ((MainActivity) getActivity()).Change_Tittle("SEHTAK BIL DENIA");
+        else ((MainActivity) getActivity()).Change_Tittle(getString(R.string.Sehtak_Bil_Denia));
         ((MainActivity) getActivity()).HideToolbarWithBack();
 
 
@@ -112,7 +118,15 @@ public class Sehtak_Bill extends Fragment {
                     Gson gson = new Gson();
                     Shakha shakha = new Shakha();
                     shakha = gson.fromJson(response, Shakha.class);
-                    List = shakha.getSahtakBilDeniaOb();
+                    Shakha.SahtakBilDeniaObObject sahtakBilDeniaObObject = new Shakha.SahtakBilDeniaObObject();
+                    sahtakBilDeniaObObject.setId("no");
+                    sahtakBilDeniaObObject.setProgramName("GIFT VOUCHER");
+                    sahtakBilDeniaObObject.setProgramNameAr("قسيمة الهدية");
+                    sahtakBilDeniaObObject.setDescription("Sahtak Bil Denia");
+                    sahtakBilDeniaObObject.setDescriptionAr("سهتتك بيل دينيا");
+                    List = new ArrayList<>();
+                    List.add(sahtakBilDeniaObObject);
+                    List.addAll(shakha.getSahtakBilDeniaOb());
 
 
                     Progress.dismiss();
@@ -123,7 +137,10 @@ public class Sehtak_Bill extends Fragment {
                     recycle.setAdapter(Adapter);
 
                 } else {
-                    EasyToast.error(getActivity(), "Something Went Wrong!!");
+                    if (myApplication.GetLanguage().equals("en"))
+                        EasyToast.error(getActivity(), "Something Went Wrong!!");
+                    else
+                        EasyToast.error(getActivity(), " هناك خطأ ما");
                 }
 
             }
@@ -132,7 +149,10 @@ public class Sehtak_Bill extends Fragment {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Progress.dismiss();
-                        EasyToast.error(getActivity(), "Something Went Wrong!!");
+                        if (myApplication.GetLanguage().equals("en"))
+                            EasyToast.error(getActivity(), "Something Went Wrong!!");
+                        else
+                            EasyToast.error(getActivity(), " هناك خطأ ما");
                         if (error instanceof TimeoutError || error instanceof NoConnectionError) {
                         } else if (error instanceof AuthFailureError) {
                         } else if (error instanceof ServerError) {

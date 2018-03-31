@@ -1,11 +1,17 @@
 package com.webmarke8.app.medlab.Fragments;
 
 
+import android.Manifest;
+import android.app.Activity;
 import android.app.Dialog;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Paint;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -38,14 +44,23 @@ import com.github.barteksc.pdfviewer.listener.OnLoadCompleteListener;
 import com.google.gson.Gson;
 import com.labo.kaji.fragmentanimations.CubeAnimation;
 import com.medialablk.easytoast.EasyToast;
+import com.webmarke8.app.medlab.Activities.MainActivity;
 import com.webmarke8.app.medlab.Objects.JsonParserVisited;
 import com.webmarke8.app.medlab.Objects.Visited_Object;
 import com.webmarke8.app.medlab.R;
+import com.webmarke8.app.medlab.Session.MyApplication;
 import com.webmarke8.app.medlab.Utils.AppUtils;
 
 import org.w3c.dom.Text;
 
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -58,6 +73,7 @@ public class Test_Result_Screen_3 extends Fragment {
     PDFView pdfView;
     Dialog Progress;
     TextView FeedBack, Date;
+    MyApplication myApplication;
 
     public Test_Result_Screen_3() {
         // Required empty public constructor
@@ -69,6 +85,15 @@ public class Test_Result_Screen_3 extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_test__result__screen_3, container, false);
+
+        myApplication = (MyApplication) getActivity().getApplicationContext();
+        if (myApplication.GetLanguage().equals("en"))
+            ((MainActivity) getActivity()).Change_Tittle("Test Results");
+        else {
+            ((MainActivity) getActivity()).Change_Tittle(getString(R.string.Test_Results));
+
+        }
+
         pdfView = (PDFView) view.findViewById(R.id.pdfView);
         FeedBack = (TextView) view.findViewById(R.id.FeedBack);
         Date = (TextView) view.findViewById(R.id.Date);
@@ -112,7 +137,21 @@ public class Test_Result_Screen_3 extends Fragment {
             @Override
             public void onResponse(String response) {
 
-                pdfView.fromUri(Uri.parse(response)).onLoad(new OnLoadCompleteListener() {
+                Log.d("PDF", response);
+
+                mURL = response;
+
+                if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED
+                        && ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(getActivity(),
+                            new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                            11);
+                } else {
+                    downloadFile();
+                }
+
+
+                pdfView.fromUri(Uri.parse("http://213.186.160.67:8086/MedlabsApp/PdfFiles/20154030411ASL1585687.pdf")).onLoad(new OnLoadCompleteListener() {
                     @Override
                     public void loadComplete(int nbPages) {
 
@@ -158,9 +197,115 @@ public class Test_Result_Screen_3 extends Fragment {
         RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
         requestQueue.add(stringRequest);
     }
+
     @Override
     public Animation onCreateAnimation(int transit, boolean enter, int nextAnim) {
         return CubeAnimation.create(CubeAnimation.RIGHT, enter, 500);
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case 11:
+                downloadFile();
+                break;
+        }
+    }
+
+    String mURL = "";
+
+    private void downloadFile() {
+
+        File Directory = new File(Environment.getExternalStorageDirectory()
+                .getAbsolutePath() + "/download/");
+        Directory.mkdirs();
+
+        Progress.show();
+        DownloadFileTask task = new DownloadFileTask(
+                getActivity(),
+                mURL,
+                "/download/pdf_file.pdf");
+        task.startTask();
+    }
+
+
+    public class DownloadFileTask {
+        public static final String TAG = "DownloadFileTask";
+
+        private Activity context;
+        private GetTask contentTask;
+        private String url;
+        private String fileName;
+
+        public DownloadFileTask(Activity context, String url, String fileName) {
+            this.context = context;
+            this.url = url;
+            this.fileName = fileName;
+        }
+
+        public void startTask() {
+            doRequest();
+        }
+
+        private void doRequest() {
+            contentTask = new GetTask();
+            contentTask.execute();
+        }
+
+        private class GetTask extends AsyncTask<String, Integer, String> {
+
+            @Override
+            protected String doInBackground(String... arg0) {
+                int count;
+                try {
+                    Log.d(TAG, "url = " + url);
+                    URL _url = new URL(url);
+                    URLConnection conection = _url.openConnection();
+                    conection.connect();
+                    InputStream input = new BufferedInputStream(_url.openStream(),
+                            8192);
+                    OutputStream output = new FileOutputStream(
+                            Environment.getExternalStorageDirectory() + fileName);
+                    byte data[] = new byte[1024];
+                    while ((count = input.read(data)) != -1) {
+                        output.write(data, 0, count);
+                    }
+                    output.flush();
+                    output.close();
+                    input.close();
+                } catch (Exception e) {
+                    Log.e("Error: ", e.getMessage());
+                }
+                return null;
+            }
+
+            protected void onPostExecute(String data) {
+
+                File file = new File(Environment.getExternalStorageDirectory()
+                        .getAbsolutePath()
+                        + "/download/pdf_file.pdf");
+                if (file.exists()) {
+                    pdfView.fromFile(file)
+                            //.pages(0, 2, 1, 3, 3, 3) // all pages are displayed by default
+                            .enableSwipe(true)
+                            .swipeHorizontal(true)
+                            .enableDoubletap(true)
+                            .defaultPage(0)
+                            .enableAnnotationRendering(true)
+                            .password(null)
+                            .scrollHandle(null)
+
+                            .onLoad(new OnLoadCompleteListener() {
+                                @Override
+                                public void loadComplete(int nbPages) {
+                                    Progress.dismiss();
+                                }
+                            })
+                            .load();
+
+                }
+            }
+        }
+    }
 }

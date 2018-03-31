@@ -34,9 +34,7 @@ public class Lab_Locations_Map extends Fragment implements OnMapReadyCallback {
 
 
     GoogleMap googleMap;
-
     Locations locations;
-
     MyApplication myApplication;
 
     public Lab_Locations_Map() {

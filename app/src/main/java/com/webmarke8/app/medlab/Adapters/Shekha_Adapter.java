@@ -1,6 +1,11 @@
 package com.webmarke8.app.medlab.Adapters;
 
 import android.content.Context;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +14,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
+import com.webmarke8.app.medlab.Fragments.Notifications_Details;
+import com.webmarke8.app.medlab.Fragments.Sehtak_Bill_Screen_1;
+import com.webmarke8.app.medlab.Fragments.Sehtak_Gift_Voucher;
 import com.webmarke8.app.medlab.Objects.Featured_Test;
 import com.webmarke8.app.medlab.Objects.Shakha;
 import com.webmarke8.app.medlab.R;
@@ -46,23 +54,76 @@ public class Shekha_Adapter extends RecyclerView.Adapter<Shekha_Adapter.MyHolder
     public void onBindViewHolder(Shekha_Adapter.MyHolder holder, final int position) {
 
 
-        if (myApplication.GetLanguage().equals("en")) {
-            holder.Name.setText(List.get(position).getProgramName());
-        } else {
-            holder.Name.setText(List.get(position).getProgramNameAr());
-        }
-        if (!List.get(position).getImage().equals("")) {
-            Picasso.with(context).load(List.get(position).getImage()).into(holder.imageView);
-
-        }
-
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
+        if (!List.get(position).getId().equals("no")) {
+            if (myApplication.GetLanguage().equals("en")) {
+                holder.Name.setText(List.get(position).getProgramName());
+            } else {
+                holder.Name.setText(List.get(position).getProgramNameAr());
+            }
+            if (!List.get(position).getImage().equals("")) {
+                Picasso.with(context).load(List.get(position).getImage()).into(holder.imageView);
 
             }
-        });
+
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    Fragment fragment = null;
+                    Class fragmentClass = null;
+
+                    fragmentClass = Sehtak_Bill_Screen_1.class;
+                    try {
+                        fragment = (Fragment) fragmentClass.newInstance();
+                        Bundle bundle = new Bundle();
+                        bundle.putSerializable("data", List.get(position));
+                        fragment.setArguments(bundle);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    FragmentManager fragmentManager = ((AppCompatActivity) context).getSupportFragmentManager();
+                    if (myApplication.GetLanguage().equals("en"))
+                        fragmentManager.beginTransaction().replace(R.id.container, fragment, List.get(position).getProgramName()).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).addToBackStack(null).commit();
+                    else
+                        fragmentManager.beginTransaction().replace(R.id.container, fragment, List.get(position).getProgramNameAr()).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).addToBackStack(null).commit();
+
+                }
+            });
+        } else {
+            if (myApplication.GetLanguage().equals("en")) {
+                holder.Checkups.setText(List.get(position).getDescription());
+                holder.Name.setText(List.get(position).getProgramName());
+            } else {
+                holder.Checkups.setText(List.get(position).getDescriptionAr());
+                holder.Name.setText(List.get(position).getProgramNameAr());
+            }
+//            if (!List.get(position).getImage().equals("")) {
+//                Picasso.with(context).load(List.get(position).getImage()).into(holder.imageView);
+//
+//            }
+
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Fragment fragment = null;
+                    Class fragmentClass = null;
+
+                    fragmentClass = Sehtak_Gift_Voucher.class;
+                    try {
+                        fragment = (Fragment) fragmentClass.newInstance();
+                        Bundle bundle = new Bundle();
+                        fragment.setArguments(bundle);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    FragmentManager fragmentManager = ((AppCompatActivity) context).getSupportFragmentManager();
+                    fragmentManager.beginTransaction().replace(R.id.container, fragment, "Sehtak Gift Voucher").setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).addToBackStack(null).commit();
+
+
+                }
+            });
+        }
+
     }
 
     @Override
@@ -77,13 +138,14 @@ public class Shekha_Adapter extends RecyclerView.Adapter<Shekha_Adapter.MyHolder
 
     class MyHolder extends RecyclerView.ViewHolder {
 
-        TextView Name;
+        TextView Name, Checkups;
         ImageView imageView;
 
         public MyHolder(View itemView) {
             super(itemView);
 
             Name = (TextView) itemView.findViewById(R.id.Name);
+            Checkups = (TextView) itemView.findViewById(R.id.Checkups);
             imageView = (ImageView) itemView.findViewById(R.id.Image);
         }
     }

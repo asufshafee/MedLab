@@ -69,9 +69,18 @@ public class Test_Result_Screen extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_test__result__screen, container, false);
         myApplication = (MyApplication) getActivity().getApplicationContext();
-//        ((MainActivity) getActivity()).Change_Tittle("Test Results");
+        ((MainActivity)getActivity()).GetNotifications();
+
+        if (myApplication.GetLanguage().equals("en"))
+            ((MainActivity) getActivity()).Change_Tittle("Test Results");
+        else {
+            ((MainActivity) getActivity()).Change_Tittle(getString(R.string.Test_Results));
+
+        }
         ((MainActivity) getActivity()).HideToolbarWithBack();
         Progress = AppUtils.LoadingSpinner(getActivity());
+        recycle = (RecyclerView) view.findViewById(R.id.recycle);
+
         List = new ArrayList<>();
         if (myApplication.isLoggedIn()) {
 
@@ -84,8 +93,6 @@ public class Test_Result_Screen extends Fragment {
 
         }
 
-
-        recycle = (RecyclerView) view.findViewById(R.id.recycle);
 
         if (getArguments() != null) {
             login_object = (Login_Object) getArguments().getSerializable("login_object");
@@ -131,7 +138,10 @@ public class Test_Result_Screen extends Fragment {
                     LoadData();
 
                 } else {
-                    EasyToast.error(getActivity(), "Something Went Wrong!!");
+                    if (myApplication.GetLanguage().equals("en"))
+                        EasyToast.error(getActivity(), "Something Went Wrong!!");
+                    else
+                        EasyToast.error(getActivity(), " هناك خطأ ما");
                 }
 
             }
@@ -140,7 +150,10 @@ public class Test_Result_Screen extends Fragment {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Progress.dismiss();
-                        EasyToast.error(getActivity(), "Something Went Wrong!!");
+                        if (myApplication.GetLanguage().equals("en"))
+                            EasyToast.error(getActivity(), "Something Went Wrong!!");
+                        else
+                            EasyToast.error(getActivity(), " هناك خطأ ما");
                         if (error instanceof TimeoutError || error instanceof NoConnectionError) {
                         } else if (error instanceof AuthFailureError) {
                         } else if (error instanceof ServerError) {

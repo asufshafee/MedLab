@@ -30,6 +30,7 @@ public class Home extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         myApplication = (MyApplication) getActivity().getApplicationContext();
+        ((MainActivity)getActivity()).GetNotifications();
         if (myApplication.GetLanguage().equals("en"))
             ((MainActivity) getActivity()).Change_Tittle("HOME PAGE");
         else {

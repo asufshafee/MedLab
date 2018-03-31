@@ -5,7 +5,6 @@
     android:layout_height="wrap_content"
     android:paddingBottom="@dimen/_2sdp"
     android:paddingEnd="@dimen/_2sdp"
-    android:layoutDirection="ltr"
     android:paddingStart="@dimen/_2sdp"
     android:paddingTop="@dimen/_2sdp">
 

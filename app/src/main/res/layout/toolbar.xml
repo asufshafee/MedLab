@@ -3,8 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="?attr/actionBarSize"
     android:background="@drawable/header"
-    android:orientation="horizontal"
     android:layoutDirection="ltr"
+    android:orientation="horizontal"
     android:paddingBottom="5dp"
     android:paddingTop="5dp">
 
@@ -18,8 +18,8 @@
             android:layout_height="match_parent"
             android:layout_marginRight="16dp"
             android:gravity="center"
-            android:textColor="#7d7d7d"
             android:text="@string/home_page"
+            android:textColor="#7d7d7d"
             android:textSize="@dimen/_13sdp" />
 
         <LinearLayout
@@ -45,7 +45,8 @@
                     android:layout_alignParentRight="true"
                     android:layout_alignParentTop="true"
                     android:background="@drawable/bandage"
-                    android:padding="5dp" />
+                    android:padding="5dp"
+                    android:visibility="gone" />
 
 
             </RelativeLayout>
