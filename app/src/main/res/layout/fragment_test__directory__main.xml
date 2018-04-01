@@ -9,7 +9,7 @@
     android:paddingLeft="@dimen/_7sdp"
     android:paddingRight="@dimen/_7sdp"
     android:paddingTop="@dimen/_6sdp"
-    tools:context="com.webmarke8.app.medlab.Fragments.Test_Directory_Main">
+    tools:context="com.mcc.medlabs.view.Fragments.Test_Directory_Main">
 
 
     <RelativeLayout

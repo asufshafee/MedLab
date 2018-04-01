@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="#e8eaf7"
     android:orientation="vertical"
-    tools:context="com.webmarke8.app.medlab.Activities.MainActivity">
+    tools:context="com.mcc.medlabs.view.Activities.MainActivity">
 
     <include
         android:id="@+id/toolbar_with_search"

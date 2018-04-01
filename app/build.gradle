@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 26
     defaultConfig {
-        applicationId "com.webmarke8.app.medlab"
+        applicationId "com.mcc.medlabs.view"
         minSdkVersion 18
         targetSdkVersion 26
         versionCode 1
@@ -50,6 +50,8 @@ dependencies {
 
     //fragment animation
     compile 'com.labo.kaji:fragmentanimations:0.1.1'
+//    compile 'com.google.android.gms:play-services-gcm:12.0.0'
+//    compile 'com.google.android.gms:play-services:12.0.0'
 
 
 }

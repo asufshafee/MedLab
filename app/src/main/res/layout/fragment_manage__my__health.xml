@@ -9,7 +9,7 @@
     android:clickable="true"
     android:paddingEnd="@dimen/_15sdp"
     android:paddingStart="@dimen/_15sdp"
-    tools:context="com.webmarke8.app.medlab.Fragments.Manage_My_Health">
+    tools:context="com.mcc.medlabs.view.Fragments.Manage_My_Health">
 
 
     <LinearLayout

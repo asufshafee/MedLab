@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:background="@color/background"
     android:padding="@dimen/_5sdp"
-    tools:context="com.webmarke8.app.medlab.Fragments.Test_Result_Screen_2">
+    tools:context="com.mcc.medlabs.view.Fragments.Test_Result_Screen_2">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycle"

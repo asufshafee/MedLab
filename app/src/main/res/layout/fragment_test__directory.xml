@@ -6,7 +6,7 @@
     android:layoutDirection="ltr"
     android:background="@drawable/test_background"
     android:gravity="bottom"
-    tools:context="com.webmarke8.app.medlab.Fragments.Test_Directory">
+    tools:context="com.mcc.medlabs.view.Fragments.Test_Directory">
 
     <RelativeLayout
         android:id="@+id/StartSearch"

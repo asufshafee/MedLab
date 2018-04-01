@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:paddingEnd="@dimen/_12sdp"
     android:paddingStart="@dimen/_12sdp"
-    tools:context="com.webmarke8.app.medlab.Fragments.Login">
+    tools:context="com.mcc.medlabs.view.Fragments.Login">
 
     <ScrollView
         android:layout_width="match_parent"

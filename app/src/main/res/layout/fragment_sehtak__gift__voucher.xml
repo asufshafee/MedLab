@@ -5,7 +5,7 @@
     android:background="@color/colorPrimary"
     android:paddingEnd="@dimen/_12sdp"
     android:paddingStart="@dimen/_12sdp"
-    tools:context="com.webmarke8.app.medlab.Fragments.Sehtak_Gift_Voucher">
+    tools:context="com.mcc.medlabs.view.Fragments.Sehtak_Gift_Voucher">
 
     <ScrollView
         android:layout_width="match_parent"

@@ -7,7 +7,7 @@
     android:paddingLeft="@dimen/_5sdp"
     android:paddingRight="@dimen/_5sdp"
     android:paddingTop="@dimen/_2sdp"
-    tools:context="com.webmarke8.app.medlab.Fragments.Insurance_Companies">
+    tools:context="com.mcc.medlabs.view.Fragments.Insurance_Companies">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycle"

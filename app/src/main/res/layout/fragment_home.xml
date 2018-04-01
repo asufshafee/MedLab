@@ -10,7 +10,7 @@
     android:paddingLeft="@dimen/_10sdp"
     android:paddingRight="@dimen/_10sdp"
     android:paddingTop="@dimen/_7sdp"
-    tools:context="com.webmarke8.app.medlab.Fragments.Home">
+    tools:context="com.mcc.medlabs.view.Fragments.Home">
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:padding="@dimen/_20sdp"
     android:paddingBottom="@dimen/_25sdp"
-    tools:context="com.webmarke8.app.medlab.Fragments.Water_Remainder">
+    tools:context="com.mcc.medlabs.view.Fragments.Water_Remainder">
 
 
     <LinearLayout

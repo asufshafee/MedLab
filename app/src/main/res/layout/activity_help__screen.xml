@@ -4,6 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.webmarke8.app.medlab.Activities.Help_Screen">
+    tools:context="com.mcc.medlabs.view.Activities.Help_Screen">
 
 </android.support.constraint.ConstraintLayout>

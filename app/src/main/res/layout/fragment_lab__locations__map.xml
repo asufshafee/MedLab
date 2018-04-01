@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layoutDirection="ltr"
     android:layout_height="match_parent"
-    tools:context="com.webmarke8.app.medlab.Fragments.Lab_Locations_Map">
+    tools:context="com.mcc.medlabs.view.Fragments.Lab_Locations_Map">
 
     <fragment xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"

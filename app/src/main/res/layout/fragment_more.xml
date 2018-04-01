@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:paddingEnd="@dimen/_15sdp"
     android:paddingStart="@dimen/_15sdp"
-    tools:context="com.webmarke8.app.medlab.Fragments.More">
+    tools:context="com.mcc.medlabs.view.Fragments.More">
 
 
     <LinearLayout

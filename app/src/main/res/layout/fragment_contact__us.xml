@@ -7,7 +7,7 @@
     android:paddingLeft="@dimen/_5sdp"
     android:paddingRight="@dimen/_5sdp"
     android:paddingTop="@dimen/_5sdp"
-    tools:context="com.webmarke8.app.medlab.Fragments.Contact_Us">
+    tools:context="com.mcc.medlabs.view.Fragments.Contact_Us">
 
     <ScrollView
         android:layout_width="match_parent"

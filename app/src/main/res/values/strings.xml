@@ -316,5 +316,10 @@
     <string name="obese_class">Obese Class |</string>
     <string name="obese_class_2">Obese Class ||</string>
     <string name="bmi_clasification">BMI CLASIFICATION:</string>
+    <string name="conformation">Conformation</string>
+    <string name="are_your_sure_to_submit">Are Your Sure to Submit?</string>
+    <string name="conform">Conform</string>
+    <string name="message_for_no_link">Sorry There is no Link To Share</string>
+    <string name="message_for_server_error">Something Went Wrong!!</string>
 
 </resources>

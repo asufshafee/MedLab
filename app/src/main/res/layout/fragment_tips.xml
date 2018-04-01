@@ -9,7 +9,7 @@
     android:paddingBottom="@dimen/_10sdp"
     android:paddingEnd="@dimen/_12sdp"
     android:paddingStart="@dimen/_12sdp"
-    tools:context="com.webmarke8.app.medlab.Fragments.Tips">
+    tools:context="com.mcc.medlabs.view.Fragments.Tips">
 
 
     <android.support.v7.widget.CardView

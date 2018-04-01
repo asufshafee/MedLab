@@ -5,7 +5,7 @@
     android:background="#FFFFFF"
     android:orientation="vertical"
     android:padding="@dimen/_15sdp"
-    tools:context="com.webmarke8.app.medlab.Fragments.BMI_Calculater">
+    tools:context="com.mcc.medlabs.view.Fragments.BMI_Calculater">
 
 
     <ScrollView
@@ -262,6 +262,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
+                    android:id="@+id/Me1"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/_5sdp"
                     android:layout_marginTop="@dimen/_5sdp">
@@ -297,6 +298,7 @@
                 android:orientation="vertical">
 
                 <LinearLayout
+                    android:id="@+id/Me2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/_5sdp"
@@ -333,6 +335,7 @@
                 android:orientation="vertical">
 
                 <LinearLayout
+                    android:id="@+id/Me3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/_5sdp"
@@ -369,6 +372,7 @@
                 android:orientation="vertical">
 
                 <LinearLayout
+                    android:id="@+id/Me4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/_5sdp"
@@ -405,6 +409,7 @@
                 android:orientation="vertical">
 
                 <LinearLayout
+                    android:id="@+id/Me5"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/_5sdp"
@@ -441,6 +446,7 @@
                 android:orientation="vertical">
 
                 <LinearLayout
+                    android:id="@+id/Me6"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/_5sdp"
@@ -477,6 +483,7 @@
                 android:orientation="vertical">
 
                 <LinearLayout
+                    android:id="@+id/Me7"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/_5sdp"
