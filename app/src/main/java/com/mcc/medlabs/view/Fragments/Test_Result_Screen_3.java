@@ -91,7 +91,7 @@ public class Test_Result_Screen_3 extends Fragment {
         ((MainActivity) getActivity()).ShowShare_toolbar();
 
 
-        ((MainActivity)getActivity()).findViewById(R.id.Share).setOnClickListener(new View.OnClickListener() {
+        ((MainActivity) getActivity()).findViewById(R.id.Share).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (!pdfURL.equals("")) {
@@ -147,26 +147,34 @@ public class Test_Result_Screen_3 extends Fragment {
 
                 Log.d("PDF", response);
 
-                mURL = response;
-                pdfURL=response;
+                try {
+                    mURL = response;
+                    pdfURL = response;
 
-                if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED
-                        && ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-                    ActivityCompat.requestPermissions(getActivity(),
-                            new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                            11);
-                } else {
-                    downloadFile();
+                    if (getActivity() != null) {
+                        if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED
+                                && ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                            ActivityCompat.requestPermissions(getActivity(),
+                                    new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                                    11);
+                        } else {
+                            downloadFile();
+                        }
+
+                    }
+
+
+                    pdfView.fromUri(Uri.parse("http://213.186.160.67:8086/MedlabsApp/PdfFiles/20154030411ASL1585687.pdf")).onLoad(new OnLoadCompleteListener() {
+                        @Override
+                        public void loadComplete(int nbPages) {
+
+                            Progress.dismiss();
+                        }
+                    });
+                } catch (Exception Ex) {
+
                 }
 
-
-                pdfView.fromUri(Uri.parse("http://213.186.160.67:8086/MedlabsApp/PdfFiles/20154030411ASL1585687.pdf")).onLoad(new OnLoadCompleteListener() {
-                    @Override
-                    public void loadComplete(int nbPages) {
-
-                        Progress.dismiss();
-                    }
-                });
 
             }
         },

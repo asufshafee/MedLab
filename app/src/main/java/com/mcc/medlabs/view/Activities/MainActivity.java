@@ -1,7 +1,9 @@
 package com.mcc.medlabs.view.Activities;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Handler;
+import android.os.StrictMode;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -57,15 +59,31 @@ public class MainActivity extends AppCompatActivity {
     MyApplication myApplication;
     ImageView bandage;
     ImageView Share;
-
+    TextView Download;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+        StrictMode.setVmPolicy(builder.build());
+
+        Tittle_Back = (TextView) findViewById(R.id.Tittle_Back);
+
+
         HideToolbarWithBack();
         myApplication = (MyApplication) getApplicationContext();
+
+
+        if (myApplication.isSplashIn()) {
+            Intent intent = new Intent(getApplicationContext(), Help_Screen.class);
+            startActivity(intent);
+            myApplication.setIsSplash(false);
+        }
+
+
         Share = (ImageView) findViewById(R.id.Share);
+        Download = (TextView) findViewById(R.id.Download);
         GetNotifications();
         Home = (ImageView) findViewById(R.id.Home);
         Heart = (ImageView) findViewById(R.id.Heart);
@@ -151,7 +169,10 @@ public class MainActivity extends AppCompatActivity {
 
         if (HomeSelected) {
             if (getCurrentFragment() != null) {
-                if (getCurrentFragment() != null && getCurrentFragment().getTag().equals("HOME PAGE") || getCurrentFragment().getTag().equals(getApplicationContext().getString(R.string.HOEM_PAGE))) {
+                String Tag = getCurrentFragment().getTag();
+                if (getCurrentFragment().getTag().equals("HOME PAGE") || getCurrentFragment().getTag().equals(getApplicationContext().getString(R.string.HOEM_PAGE))) {
+
+                    BackPressButton();
 
                 } else {
                     if (myApplication.GetLanguage().equals("en")) {
@@ -161,7 +182,6 @@ public class MainActivity extends AppCompatActivity {
                         ShowTopFragment(new Home(), getResources().getString(R.string.HOEM_PAGE));
                         Change_Tittle(getResources().getString(R.string.HOEM_PAGE));
                     }
-
 
                 }
             } else {
@@ -187,6 +207,7 @@ public class MainActivity extends AppCompatActivity {
         if (HeartSelected) {
             if (getCurrentFragment() != null) {
                 if (getCurrentFragment() != null && getCurrentFragment().getTag().equals("SEHTAK BIL DENIA") || getCurrentFragment().getTag().equals(getResources().getString(R.string.Sehtak_Bil_Denia))) {
+                    BackPressButton();
 
                 } else {
                     if (myApplication.GetLanguage().equals("en")) {
@@ -222,6 +243,7 @@ public class MainActivity extends AppCompatActivity {
         if (ResultSelected) {
             if (getCurrentFragment() != null) {
                 if (getCurrentFragment() != null && getCurrentFragment().getTag().equals("MedLabs") || getCurrentFragment().getTag().equals("Test Results") || getCurrentFragment().getTag().equals(getResources().getString(R.string.Test_Results))) {
+                    BackPressButton();
 
                 } else {
 
@@ -275,6 +297,7 @@ public class MainActivity extends AppCompatActivity {
         if (LocationSelected) {
             if (getCurrentFragment() != null) {
                 if (getCurrentFragment() != null && getCurrentFragment().getTag().equals("Labs Locations") || getCurrentFragment().getTag().equals(getResources().getString(R.string.Labs_Locations))) {
+                    BackPressButton();
 
                 } else {
                     if (myApplication.GetLanguage().equals("en")) {
@@ -304,8 +327,20 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if (MoreSelected) {
+            int sixe = getSupportFragmentManager().getBackStackEntryCount();
             if (getCurrentFragment() != null) {
                 if (getCurrentFragment() != null && getCurrentFragment().getTag().equals("More") || getCurrentFragment().getTag().equals(getResources().getString(R.string.More))) {
+                    if (getSupportFragmentManager().getBackStackEntryCount() == 3)
+                        if (myApplication.GetLanguage().equals("en")) {
+                            ShowTopFragment(new More(), "More");
+                            Change_Tittle("More");
+                        } else {
+                            ShowTopFragment(new More(), getResources().getString(R.string.More));
+                            Change_Tittle(getResources().getString(R.string.More));
+                        }
+                    if (getSupportFragmentManager().getBackStackEntryCount() == 2)
+                        BackPressButton();
+
 
                 } else {
                     if (myApplication.GetLanguage().equals("en")) {
@@ -338,14 +373,22 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void HideToolbarWithBack() {
-        View view = (View) findViewById(R.id.toolbar_with_back);
-        view.setVisibility(View.INVISIBLE);
+
+
+        if (!Tittle_Back.getText().equals(getString(R.string.Manage_My_Helth))) {
+            View view = (View) findViewById(R.id.toolbar_with_back);
+            view.setVisibility(View.INVISIBLE);
+        }
+
+
     }
+
+    TextView Tittle_Back;
 
     public void Change_Tittle(String Text) {
         TextView Tittle = (TextView) findViewById(R.id.Tittle);
         Tittle.setText(Text);
-        TextView Tittle_Back = (TextView) findViewById(R.id.Tittle_Back);
+        Tittle_Back = (TextView) findViewById(R.id.Tittle_Back);
         Tittle_Back.setText(Text);
 
 
@@ -353,8 +396,15 @@ public class MainActivity extends AppCompatActivity {
 
     public void ShowTopFragment(Fragment fragment, String Tag) {
 
-        getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-        getSupportFragmentManager().beginTransaction().add(R.id.container, fragment, Tag).setTransition(FragmentTransaction.TRANSIT_ENTER_MASK).addToBackStack("").commit();
+        if (false) {
+            getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+            getSupportFragmentManager().beginTransaction().add(R.id.container, fragment, Tag).setTransition(FragmentTransaction.TRANSIT_ENTER_MASK).commit();
+
+        } else {
+            getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+            getSupportFragmentManager().beginTransaction().add(R.id.container, fragment, Tag).setTransition(FragmentTransaction.TRANSIT_ENTER_MASK).addToBackStack("").commit();
+
+        }
     }
 
     private Fragment getCurrentFragment() {
@@ -369,8 +419,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void ShowBack_toolbar() {
 
+
         View view = (View) findViewById(R.id.toolbar_with_back);
         view.setVisibility(View.VISIBLE);
+
+
     }
 
     public void ShowShare_toolbar() {
@@ -384,6 +437,20 @@ public class MainActivity extends AppCompatActivity {
 
         Share.setImageDrawable(getResources().getDrawable(R.drawable.menu_dot));
         Share.setVisibility(View.GONE);
+        HideDownlaod_toolbar();
+
+    }
+
+    public void ShowDownload_toolbar() {
+
+        Download.setVisibility(View.VISIBLE);
+
+    }
+
+    public void HideDownlaod_toolbar() {
+
+//        Download.setImageDrawable(getResources().getDrawable(R.drawable.menu_dot));
+        Download.setVisibility(View.GONE);
 
     }
 
@@ -393,60 +460,70 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.Beck).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (getSupportFragmentManager().getBackStackEntryCount() > 1)
-                    if (!getCurrentFragment().getTag().equals("HOME PAGE") || !getCurrentFragment().getTag().equals(getString(R.string.HOEM_PAGE))) {
-
-                        getSupportFragmentManager().popBackStack();
-                        if (myApplication.GetLanguage().equals("en")) {
-                            if (getCurrentFragment() != null) {
-
-                                if (getCurrentFragment().getTag().equals("Lab_Locations_Details")) {
-
-
-                                    Change_Tittle("Labs Locations");
-
-                                } else {
-
-                                    Change_Tittle(getCurrentFragment().getTag());
-
-                                }
-                                String Tittle = getCurrentFragment().getTag();
-                                if (getCurrentFragment().getTag().equals("More") || getCurrentFragment().getTag().equals("Labs Locations") || getCurrentFragment().getTag().equals("MedLabs") || getCurrentFragment().getTag().equals("SEHTAK BIL DENIA") || getCurrentFragment().getTag().equals("HOME PAGE") || getCurrentFragment().getTag().equals("Test Results")) {
-                                    HideToolbarWithBack();
-                                }
-                            }
-                        } else {
-                            if (getCurrentFragment() != null) {
-
-                                if (getCurrentFragment().getTag().equals("Lab_Locations_Details")) {
-
-
-                                    Change_Tittle(getString(R.string.Labs_Locations));
-
-                                } else {
-
-                                    Change_Tittle(getCurrentFragment().getTag());
-
-                                }
-                                String Tittle = getCurrentFragment().getTag();
-                                if (getCurrentFragment().getTag().equals(getString(R.string.More)) || getCurrentFragment().getTag().equals(getString(R.string.Labs_Locations)) || getCurrentFragment().getTag().equals("MedLabs") || getCurrentFragment().getTag().equals(getString(R.string.Sehtak_Bil_Denia)) || getCurrentFragment().getTag().equals(getString(R.string.HOEM_PAGE)) || getCurrentFragment().getTag().equals(getString(R.string.Test_Results))) {
-                                    HideToolbarWithBack();
-                                }
-                            }
-                        }
-                    }
+                BackPressButton();
             }
         });
     }
 
+    public void BackPressButton() {
+        int Count = getSupportFragmentManager().getBackStackEntryCount();
+        if (getSupportFragmentManager().getBackStackEntryCount() > 1)
+            if (!getCurrentFragment().getTag().equals("HOME PAGE") || !getCurrentFragment().getTag().equals(getString(R.string.HOEM_PAGE))) {
+
+                getSupportFragmentManager().popBackStack();
+                if (myApplication.GetLanguage().equals("en")) {
+                    if (getCurrentFragment() != null) {
+
+                        if (getCurrentFragment().getTag().equals("Lab_Locations_Details")) {
+
+
+                            Change_Tittle("Labs Locations");
+
+                        } else {
+
+                            Change_Tittle(getCurrentFragment().getTag());
+
+                        }
+                        String Tittle = getCurrentFragment().getTag();
+                        if (getCurrentFragment().getTag().equals("More") || getCurrentFragment().getTag().equals("Labs Locations") || getCurrentFragment().getTag().equals("MedLabs") || getCurrentFragment().getTag().equals("SEHTAK BIL DENIA") || getCurrentFragment().getTag().equals("HOME PAGE") || getCurrentFragment().getTag().equals("Test Results")) {
+                            if (getSupportFragmentManager().getBackStackEntryCount() == 2)
+                                HideToolbarWithBack();
+                        }
+                    }
+                } else {
+                    if (getCurrentFragment() != null) {
+
+                        if (getCurrentFragment().getTag().equals("Lab_Locations_Details")) {
+
+
+                            Change_Tittle(getString(R.string.Labs_Locations));
+
+                        } else {
+
+                            Change_Tittle(getCurrentFragment().getTag());
+
+                        }
+                        String Tittle = getCurrentFragment().getTag();
+                        if (getCurrentFragment().getTag().equals(getString(R.string.More)) || getCurrentFragment().getTag().equals(getString(R.string.Labs_Locations)) || getCurrentFragment().getTag().equals("MedLabs") || getCurrentFragment().getTag().equals(getString(R.string.Sehtak_Bil_Denia)) || getCurrentFragment().getTag().equals(getString(R.string.HOEM_PAGE)) || getCurrentFragment().getTag().equals(getString(R.string.Test_Results))) {
+                            if (getSupportFragmentManager().getBackStackEntryCount() == 2)
+                                HideToolbarWithBack();
+                        }
+                    }
+                }
+            }
+    }
+
     public void ShowFragment(Fragment fragment, String Tag) {
-        getSupportFragmentManager().beginTransaction().add(R.id.container, fragment, Tag).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).addToBackStack("").commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.container, fragment, Tag).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).addToBackStack(null).commit();
         Change_Tittle(Tag);
     }
 
     double back_pressed = 0.0;
     private boolean doubleBackToExitPressedOnce = false;
+    private boolean doubleBackToExitPressedOnce1 = false;
 
+    private static final int TIME_INTERVAL = 700; // # milliseconds, desired time passed between two back presses.
+    private long mBackPressed;
 
     @Override
     public void onBackPressed() {
@@ -455,7 +532,8 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void run() {
-                doubleBackToExitPressedOnce = false;
+                doubleBackToExitPressedOnce = true;
+                doubleBackToExitPressedOnce1 = true;
             }
         }, 2000);
         if (getSupportFragmentManager().getBackStackEntryCount() > 1)
@@ -477,7 +555,8 @@ public class MainActivity extends AppCompatActivity {
                         }
                         String Tittle = getCurrentFragment().getTag();
                         if (getCurrentFragment().getTag().equals("More") || getCurrentFragment().getTag().equals("Labs Locations") || getCurrentFragment().getTag().equals("MedLabs") || getCurrentFragment().getTag().equals("SEHTAK BIL DENIA") || getCurrentFragment().getTag().equals("HOME PAGE") || getCurrentFragment().getTag().equals("Test Results")) {
-                            HideToolbarWithBack();
+                            if (getSupportFragmentManager().getBackStackEntryCount() == 2)
+                                HideToolbarWithBack();
                         }
                     }
                 } else {
@@ -495,18 +574,46 @@ public class MainActivity extends AppCompatActivity {
                         }
                         String Tittle = getCurrentFragment().getTag();
                         if (getCurrentFragment().getTag().equals(getString(R.string.More)) || getCurrentFragment().getTag().equals(getString(R.string.Labs_Locations)) || getCurrentFragment().getTag().equals("MedLabs") || getCurrentFragment().getTag().equals(getString(R.string.Sehtak_Bil_Denia)) || getCurrentFragment().getTag().equals(getString(R.string.HOEM_PAGE)) || getCurrentFragment().getTag().equals(getString(R.string.Test_Results))) {
-                            HideToolbarWithBack();
+                            if (getSupportFragmentManager().getBackStackEntryCount() == 2)
+                                HideToolbarWithBack();
                         }
                     }
                 }
             }
 
-        if (doubleBackToExitPressedOnce) {
-            finish();
-        } else {
-            this.doubleBackToExitPressedOnce = true;
-            EasyToast.custom(getApplicationContext(), "Please click BACK again to exit");
-        }
+        if (getSupportFragmentManager().getBackStackEntryCount() == 1)
+            if (doubleBackToExitPressedOnce) {
+//            finish();
+                if (doubleBackToExitPressedOnce1) {
+//                finish();
+                } else {
+                    doubleBackToExitPressedOnce1 = true;
+//                EasyToast.custom(getApplicationContext(),"Press Back again to Exit");
+                }
+            } else {
+
+
+            }
+
+        if (getSupportFragmentManager().getBackStackEntryCount() == 1)
+            if (mBackPressed + TIME_INTERVAL > System.currentTimeMillis()) {
+                if (true)
+                    finish();
+            } else {
+                if (true) {
+                    EasyToast.custom(getApplicationContext(), "Press Back again to Exit");
+                }
+                mBackPressed = System.currentTimeMillis();
+            }
+
+
+//        this.doubleBackToExitPressedOnce = true;
+//        MoreSelected = false;
+//        HomeSelected = true;
+//        HeartSelected = false;
+//        LocationSelected = false;
+//        ResultSelected = false;
+//        Refresh();
 
     }
 

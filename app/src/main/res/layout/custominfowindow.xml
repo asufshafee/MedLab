@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="170dp"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
     <ImageView
@@ -15,8 +15,8 @@
         android:layout_marginTop="@dimen/_2sdp"
         android:gravity="center"
         android:padding="@dimen/_4sdp"
-        android:textSize="@dimen/_13sdp"
         android:paddingBottom="@dimen/_6sdp"
-        android:text="MedLabs Medical Laboratory" />
+        android:text=""
+        android:textSize="@dimen/_13sdp" />
 
 </RelativeLayout>

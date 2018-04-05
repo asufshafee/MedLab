@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import com.mcc.medlabs.view.Activities.MainActivity;
 import com.mcc.medlabs.view.R;
 import com.mcc.medlabs.view.Session.MyApplication;
+import com.mcc.medlabs.view.Utils.AppUtils;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -81,6 +82,7 @@ public class Home extends Fragment {
         view.findViewById(R.id.Tips).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 if (myApplication.GetLanguage().equals("en"))
                     ((MainActivity) getActivity()).ShowFragment(new Tips(), "Tips");
                 else

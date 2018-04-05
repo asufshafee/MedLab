@@ -165,10 +165,12 @@ public class Notifications extends Fragment {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Progress.dismiss();
-                        if (myApplication.GetLanguage().equals("en"))
-                            EasyToast.error(getActivity(), "Something Went Wrong!!");
-                        else
-                            EasyToast.error(getActivity(), " هناك خطأ ما");
+                        if (AppUtils.isNetworkAvailable(getActivity())) {
+                            EasyToast.error(getActivity(), getString(R.string.NO_INTERNET_CONNECTION));
+                        } else {
+                            EasyToast.error(getActivity(), getString(R.string.something_went_wrong));
+                        }
+
                         if (error instanceof TimeoutError || error instanceof NoConnectionError) {
                         } else if (error instanceof AuthFailureError) {
                         } else if (error instanceof ServerError) {

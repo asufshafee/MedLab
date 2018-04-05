@@ -10,24 +10,28 @@ import android.view.WindowManager;
 import com.github.paolorotolo.appintro.AppIntro;
 import com.mcc.medlabs.view.DatabasePart.MedlabsDelegate;
 import com.mcc.medlabs.view.HelpFragments.Help_1;
+import com.mcc.medlabs.view.HelpFragments.Help_2;
+import com.mcc.medlabs.view.HelpFragments.Help_3;
+import com.mcc.medlabs.view.HelpFragments.Help_4;
+import com.mcc.medlabs.view.HelpFragments.Help_5;
+import com.mcc.medlabs.view.HelpFragments.Help_6;
+import com.mcc.medlabs.view.HelpFragments.Help_7;
 
 public class Help_Screen extends AppIntro {
 
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
         super.onCreate(savedInstanceState);
 
 
         addSlide(new Help_1());
-        addSlide(new Help_1());
-        addSlide(new Help_1());
-        addSlide(new Help_1());
-        addSlide(new Help_1());
-        addSlide(new Help_1());
+        addSlide(new Help_2());
+        addSlide(new Help_3());
+        addSlide(new Help_4());
+        addSlide(new Help_5());
+        addSlide(new Help_6());
+        addSlide(new Help_7());
 
         // OPTIONAL METHODS
         // Override bar/separator color.

@@ -2,10 +2,14 @@ package com.mcc.medlabs.view.Activities;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.ActivityManager;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,8 +20,11 @@ import android.view.WindowManager;
 
 import com.mcc.medlabs.view.DatabasePart.MedlabsDelegate;
 import com.mcc.medlabs.view.R;
+import com.mcc.medlabs.view.Services.TimeUsed;
+import com.mcc.medlabs.view.Session.GlobalActions;
 import com.mcc.medlabs.view.Session.MedlabsConstants;
 import com.mcc.medlabs.view.Session.MyApplication;
+import com.mcc.medlabs.view.Session.SharedPrefrenceKeys;
 
 import java.io.IOException;
 import java.util.Locale;
@@ -28,13 +35,40 @@ public class Splash extends AppCompatActivity {
     private MedlabsDelegate delegate;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_splash);
+
+
+        Intent intent = new Intent(getApplicationContext(), TimeUsed.class);
+        if (!isMyServiceRunning(TimeUsed.class))
+            startService(intent);
+
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+
+        String user_id_value = preferences.getString(SharedPrefrenceKeys.USER_ID, "");
+
+        if (user_id_value.equals("")) {
+            MedlabsConstants.USER_ID = "";
+        } else {
+            MedlabsConstants.USER_ID = GlobalActions.getDataToSharedPrefrences(SharedPrefrenceKeys.USER_ID, this);
+        }
+
+        Log.e(MedlabsConstants.TAG, "MedlabsConstants.USER_ID : " + MedlabsConstants.USER_ID);
+        // **************************************************************************************************
+
+        String push_enabled_value = preferences.getString(SharedPrefrenceKeys.PUSH_ENABLED, "");
+        if (push_enabled_value.equals("")) {
+            // MedlabsConstants.isPushEnabled = "false";
+        } else {
+            MedlabsConstants.isPushEnabled = GlobalActions.getDataToSharedPrefrences(SharedPrefrenceKeys.PUSH_ENABLED,
+                    this);
+        }
+
+
         delegate = MedlabsDelegate.getMedLabsDelegateInstance();
 
         try {
@@ -149,4 +183,15 @@ public class Splash extends AppCompatActivity {
 
         }
     }
+
+    private boolean isMyServiceRunning(Class<?> serviceClass) {
+        ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+        for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
+            if (serviceClass.getName().equals(service.service.getClassName())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }

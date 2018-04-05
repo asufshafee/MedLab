@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.mcc.medlabs.view.Fragments.Notifications_Details;
@@ -47,6 +48,9 @@ public class Notification_Adapter extends RecyclerView.Adapter<Notification_Adap
     @Override
     public void onBindViewHolder(Notification_Adapter.MyHolder holder, final int position) {
 
+
+        if (!myApplication.GetLanguage().equals("en"))
+            holder.Arrow.setRotationY(180);
 
         if (myApplication.GetLanguage().equals("en")) {
         }
@@ -91,10 +95,12 @@ public class Notification_Adapter extends RecyclerView.Adapter<Notification_Adap
     class MyHolder extends RecyclerView.ViewHolder {
 
         TextView Date, Name;
+        ImageView Arrow;
 
         public MyHolder(View itemView) {
             super(itemView);
             Date = (TextView) itemView.findViewById(R.id.Date);
+            Arrow=(ImageView)itemView.findViewById(R.id.Arrow);
             Name = (TextView) itemView.findViewById(R.id.Name);
 
 

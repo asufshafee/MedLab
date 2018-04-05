@@ -112,26 +112,32 @@ public class Insurance_Companies extends Fragment {
             public void onResponse(String response) {
 
                 Progress.dismiss();
-                if (response.contains("Success")) {
+                try {
+
+                    if (response.contains("Success")) {
 
 
-                    Gson gson = new Gson();
-                    Company company = new Company();
-                    company = gson.fromJson(response, Company.class);
-                    companyAll = company;
-                    List = company.getInsuranceCompanyOb();
-                    Progress.dismiss();
-                    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
-                    Companies_Adapter Adapter = new Companies_Adapter(List, getActivity());
-                    recycle.setLayoutManager(linearLayoutManager);
-                    recycle.setItemAnimator(new DefaultItemAnimator());
-                    recycle.setAdapter(Adapter);
+                        Gson gson = new Gson();
+                        Company company = new Company();
+                        company = gson.fromJson(response, Company.class);
+                        companyAll = company;
+                        List = company.getInsuranceCompanyOb();
+                        Progress.dismiss();
+                        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
+                        Companies_Adapter Adapter = new Companies_Adapter(List, getActivity());
+                        recycle.setLayoutManager(linearLayoutManager);
+                        recycle.setItemAnimator(new DefaultItemAnimator());
+                        recycle.setAdapter(Adapter);
 
-                } else {
-                    if (myApplication.GetLanguage().equals("en"))
-                        EasyToast.error(getActivity(), "Something Went Wrong!!");
-                    else
-                        EasyToast.error(getActivity(), " هناك خطأ ما");
+                    } else {
+                        if (myApplication.GetLanguage().equals("en"))
+                            EasyToast.error(getActivity(), "Something Went Wrong!!");
+                        else
+                            EasyToast.error(getActivity(), " هناك خطأ ما");
+                    }
+
+                } catch (Exception Ex) {
+
                 }
 
             }
@@ -140,10 +146,12 @@ public class Insurance_Companies extends Fragment {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Progress.dismiss();
-                        if (myApplication.GetLanguage().equals("en"))
-                            EasyToast.error(getActivity(), "Something Went Wrong!!");
-                        else
-                            EasyToast.error(getActivity(), " هناك خطأ ما");
+                        if (AppUtils.isNetworkAvailable(getActivity())) {
+                            EasyToast.error(getActivity(), getString(R.string.NO_INTERNET_CONNECTION));
+                        } else {
+                            EasyToast.error(getActivity(), getString(R.string.something_went_wrong));
+                        }
+
                         if (error instanceof TimeoutError || error instanceof NoConnectionError) {
                         } else if (error instanceof AuthFailureError) {
                         } else if (error instanceof ServerError) {

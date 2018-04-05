@@ -106,39 +106,46 @@ public class Sehtak_Bill extends Fragment {
 
             @Override
             public void onResponse(String response) {
-
                 Progress.dismiss();
-                if (response.contains("Success")) {
+                try
+                {
+                    if (response.contains("Success")) {
 
 
-                    Gson gson = new Gson();
-                    Shakha shakha = new Shakha();
-                    shakha = gson.fromJson(response, Shakha.class);
-                    Shakha.SahtakBilDeniaObObject sahtakBilDeniaObObject = new Shakha.SahtakBilDeniaObObject();
-                    sahtakBilDeniaObObject.setId("no");
-                    sahtakBilDeniaObObject.setProgramName("GIFT VOUCHER");
-                    sahtakBilDeniaObObject.setProgramNameAr("قسيمة الهدية");
-                    sahtakBilDeniaObObject.setDescription("Sahtak Bil Denia");
-                    sahtakBilDeniaObObject.setDescriptionAr("سهتتك بيل دينيا");
-                    List = new ArrayList<>();
-                    List.addAll(shakha.getSahtakBilDeniaOb());
-                    List.add(sahtakBilDeniaObObject);
+                        Gson gson = new Gson();
+                        Shakha shakha = new Shakha();
+                        shakha = gson.fromJson(response, Shakha.class);
+                        Shakha.SahtakBilDeniaObObject sahtakBilDeniaObObject = new Shakha.SahtakBilDeniaObObject();
+                        sahtakBilDeniaObObject.setId("no");
+                        sahtakBilDeniaObObject.setProgramName("GIFT VOUCHER");
+                        sahtakBilDeniaObObject.setProgramNameAr("قسيمة الهدية");
+                        sahtakBilDeniaObObject.setDescription("Sahtak Bil Denia");
+                        sahtakBilDeniaObObject.setDescriptionAr("سهتتك بيل دينيا");
+                        List = new ArrayList<>();
+                        List.addAll(shakha.getSahtakBilDeniaOb());
+                        List.add(sahtakBilDeniaObObject);
 
 
 
-                    Progress.dismiss();
-                    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
-                    Shekha_Adapter Adapter = new Shekha_Adapter(List, getActivity());
-                    recycle.setLayoutManager(linearLayoutManager);
-                    recycle.setItemAnimator(new DefaultItemAnimator());
-                    recycle.setAdapter(Adapter);
+                        Progress.dismiss();
+                        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
+                        Shekha_Adapter Adapter = new Shekha_Adapter(List, getActivity());
+                        recycle.setLayoutManager(linearLayoutManager);
+                        recycle.setItemAnimator(new DefaultItemAnimator());
+                        recycle.setAdapter(Adapter);
 
-                } else {
-                    if (myApplication.GetLanguage().equals("en"))
-                        EasyToast.error(getActivity(), "Something Went Wrong!!");
-                    else
-                        EasyToast.error(getActivity(), " هناك خطأ ما");
+                    } else {
+                        if (myApplication.GetLanguage().equals("en"))
+                            EasyToast.error(getActivity(), "Something Went Wrong!!");
+                        else
+                            EasyToast.error(getActivity(), " هناك خطأ ما");
+                    }
+
+                }catch (Exception a)
+                {
+
                 }
+
 
             }
         },
@@ -146,10 +153,12 @@ public class Sehtak_Bill extends Fragment {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Progress.dismiss();
-                        if (myApplication.GetLanguage().equals("en"))
-                            EasyToast.error(getActivity(), "Something Went Wrong!!");
-                        else
-                            EasyToast.error(getActivity(), " هناك خطأ ما");
+                        if (AppUtils.isNetworkAvailable(getActivity())) {
+                            EasyToast.error(getActivity(), getString(R.string.NO_INTERNET_CONNECTION));
+                        } else {
+                            EasyToast.error(getActivity(), getString(R.string.something_went_wrong));
+                        }
+
                         if (error instanceof TimeoutError || error instanceof NoConnectionError) {
                         } else if (error instanceof AuthFailureError) {
                         } else if (error instanceof ServerError) {

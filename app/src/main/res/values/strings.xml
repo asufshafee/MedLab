@@ -321,5 +321,19 @@
     <string name="conform">Conform</string>
     <string name="message_for_no_link">Sorry There is no Link To Share</string>
     <string name="message_for_server_error">Something Went Wrong!!</string>
+    <string name="you_are_not_login">You are not logged in</string>
+    <string name="success">Success</string>
+    <string name="no_linl">No Link to Download</string>
+    <string name="downlaod">Downlaod</string>
+    <string name="something_went_wrong">Something Went Wrong!!</string>
+    <string name="no_pdf_found">No PDF application found</string>
+    <string name="hours_time">hours</string>
+    <string name="yesterday">Yesterday,</string>
+    <string name="login">Login</string>
+    <string name="download_pdf">Download</string>
+    <string name="terms_and_conditions">Terms and Conditions</string>
+    <string name="about_us">About Us</string>
+    <string name="english_united_kingdom">English(United Kingdom)</string>
+    <string name="notification">Notification</string>
 
 </resources>

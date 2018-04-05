@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.mcc.medlabs.view.Fragments.Test_Result_Screen_2;
@@ -49,6 +50,8 @@ public class Test_Result_Adapter extends RecyclerView.Adapter<Test_Result_Adapte
     public void onBindViewHolder(Test_Result_Adapter.MyHolder holder, final int position) {
 
 
+        if (!myApplication.GetLanguage().equals("en"))
+            holder.Arrow.setRotationY(180);
         holder.FileName.setText(List.get(position).getFileNo());
         holder.Name.setText(List.get(position).getP_Name());
 
@@ -100,11 +103,12 @@ public class Test_Result_Adapter extends RecyclerView.Adapter<Test_Result_Adapte
     class MyHolder extends RecyclerView.ViewHolder {
 
         TextView Name, FileName;
-
+        ImageView Arrow;
         public MyHolder(View itemView) {
             super(itemView);
             Name = (TextView) itemView.findViewById(R.id.Name);
             FileName = (TextView) itemView.findViewById(R.id.FileName);
+            Arrow=(ImageView)itemView.findViewById(R.id.Arrow);
 
 
         }

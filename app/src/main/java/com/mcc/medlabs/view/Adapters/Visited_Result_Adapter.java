@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.mcc.medlabs.view.Fragments.Test_Result_Screen_3;
@@ -54,6 +55,8 @@ public class Visited_Result_Adapter extends RecyclerView.Adapter<Visited_Result_
         holder.Date.setText(List.get(position).getVisitDate());
         holder.Status.setText(List.get(position).getStatus());
 
+        if (!myApplication.GetLanguage().equals("en"))
+            holder.Arrow.setRotationY(180);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -96,9 +99,12 @@ public class Visited_Result_Adapter extends RecyclerView.Adapter<Visited_Result_
     class MyHolder extends RecyclerView.ViewHolder {
 
         TextView Status, Date;
+        ImageView Arrow;
 
         public MyHolder(View itemView) {
             super(itemView);
+
+            Arrow = (ImageView) itemView.findViewById(R.id.Arrow);
             Status = (TextView) itemView.findViewById(R.id.Status);
             Date = (TextView) itemView.findViewById(R.id.Date);
 

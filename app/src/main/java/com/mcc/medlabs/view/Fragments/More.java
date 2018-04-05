@@ -114,14 +114,19 @@ public class More extends Fragment {
                 Help = false;
                 Logout = true;
                 myApplication.logoutUser();
-                ChangeTint(LogoutIcon,LogoutName);
+                ChangeTint(LogoutIcon, LogoutName);
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         // do stuff
                         RemoveTint(LogoutIcon, LogoutName);
-                        EasyToast.success(getActivity(), "Success");
+                        if (myApplication.isLoggedIn())
+                            EasyToast.success(getActivity(), getString(R.string.success));
+                        else {
+                            EasyToast.success(getActivity(), getString(R.string.you_are_not_login));
+
+                        }
                         Refresh();
 
                     }
@@ -199,7 +204,7 @@ public class More extends Fragment {
                 FeaturedTest = false;
                 Help = true;
                 Logout = false;
-                ChangeTint(HelpIcon,HelpName);
+                ChangeTint(HelpIcon, HelpName);
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -227,12 +232,23 @@ public class More extends Fragment {
     }
 
     public void RemoveTint(ImageView imageView, TextView textView) {
-        imageView.setColorFilter(getResources().getColor(R.color.textColor), android.graphics.PorterDuff.Mode.MULTIPLY);
-        textView.setTextColor(getActivity().getResources().getColor(R.color.textColor));
+        try {
+            imageView.setColorFilter(getActivity().getResources().getColor(R.color.textColor), android.graphics.PorterDuff.Mode.MULTIPLY);
+            textView.setTextColor(getActivity().getResources().getColor(R.color.textColor));
+        } catch (Exception Ex) {
+
+        }
+
     }
+
     public void ChangeTint(ImageView imageView, TextView textView) {
-        imageView.setColorFilter(getResources().getColor(R.color.red), android.graphics.PorterDuff.Mode.MULTIPLY);
-        textView.setTextColor(getActivity().getResources().getColor(R.color.red));
+        try {
+            imageView.setColorFilter(getActivity().getResources().getColor(R.color.red), android.graphics.PorterDuff.Mode.MULTIPLY);
+            textView.setTextColor(getActivity().getResources().getColor(R.color.red));
+        } catch (Exception Ex) {
+
+        }
+
     }
 
     public void Refresh() {

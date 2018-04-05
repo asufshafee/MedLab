@@ -137,26 +137,33 @@ public class Feedback_2 extends Fragment {
                 @Override
                 public void onResponse(String response) {
 
-                    Progress.dismiss();
-                    if (myApplication.GetLanguage().equals("en")) {
-                        EasyToast.success(getActivity(), "Thanks for you Feedback");
+                    try {
+                        Progress.dismiss();
+                        if (myApplication.GetLanguage().equals("en")) {
+                            EasyToast.success(getActivity(), "Thanks for you Feedback");
 
-                    } else {
-                        EasyToast.success(getActivity(), "شكرا لك ردود الفعل");
+                        } else {
+                            EasyToast.success(getActivity(), "شكرا لك ردود الفعل");
+
+                        }
+                        ((MainActivity) getActivity()).getSupportFragmentManager().popBackStack();
+                        ((MainActivity) getActivity()).getSupportFragmentManager().popBackStack();
+
+                    } catch (Exception Ex) {
 
                     }
-                    ((MainActivity) getActivity()).getSupportFragmentManager().popBackStack();
-                    ((MainActivity) getActivity()).getSupportFragmentManager().popBackStack();
                 }
             },
                     new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError error) {
                             Progress.dismiss();
-                            if (myApplication.GetLanguage().equals("en"))
-                                EasyToast.error(getActivity(), "Something Went Wrong!!");
-                            else
-                                EasyToast.error(getActivity(), " هناك خطأ ما");
+                            if (AppUtils.isNetworkAvailable(getActivity())) {
+                                EasyToast.error(getActivity(), getString(R.string.NO_INTERNET_CONNECTION));
+                            } else {
+                                EasyToast.error(getActivity(), getString(R.string.something_went_wrong));
+                            }
+
                             if (error instanceof TimeoutError || error instanceof NoConnectionError) {
                             } else if (error instanceof AuthFailureError) {
                             } else if (error instanceof ServerError) {

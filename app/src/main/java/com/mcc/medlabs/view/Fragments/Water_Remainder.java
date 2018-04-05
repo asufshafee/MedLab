@@ -14,6 +14,11 @@ import com.mcc.medlabs.view.Activities.MainActivity;
 import com.mcc.medlabs.view.R;
 import com.mcc.medlabs.view.Session.MyApplication;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -34,6 +39,12 @@ public class Water_Remainder extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_water__remainder, container, false);
+        view.findViewById(R.id.Click).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
         myApplication = (MyApplication) getActivity().getApplicationContext();
         if (myApplication.GetLanguage().equals("en"))
             ((MainActivity) getActivity()).Change_Tittle("Water Remainder");
@@ -46,17 +57,41 @@ public class Water_Remainder extends Fragment {
         ((MainActivity) getActivity()).ShowBack_toolbar();
         Glass = MyApplication.getGLASS();
 
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        String date = df.format(Calendar.getInstance().getTime());
+        if (myApplication.getGLASSDate().equals("")) {
+            Glass = 0;
+            myApplication.setGLASSDate(date);
+        } else {
 
+            if (myApplication.getGLASSDate().equals(date)) {
+                Glass = myApplication.getGLASS();
+            } else {
+                Glass = 0;
+                myApplication.setGLASSDate(date);
+            }
+        }
         Text = (TextView) view.findViewById(R.id.Text);
         TextHeading = (TextView) view.findViewById(R.id.TextHeading);
 
-        if (myApplication.GetLanguage().equals("en")) {
-            TextHeading.setText("You are doing great, " + String.valueOf(Glass) + " more \n cup to reach daily \n intake water");
-            Text.setText(String.valueOf(Glass) + " of 8 glasses");
-        } else {
-            TextHeading.setText("انت تبلي بلاء رائعا،" + String.valueOf(Glass) + " أكثر من \n كوب للوصول إلى اليومية \n كمية الماء");
+        if (Glass == 0) {
+            if (myApplication.GetLanguage().equals("en")) {
+                TextHeading.setText(String.valueOf(8 - Glass) + " more \n cup to reach daily \n intake water");
+                Text.setText(String.valueOf(Glass) + " of 8 glasses");
+            } else {
+                TextHeading.setText(String.valueOf(8 - Glass) + " أكثر من \n كوب للوصول إلى اليومية \n كمية الماء");
 
-            Text.setText(String.valueOf(Glass) + " من 8 أكواب");
+                Text.setText(String.valueOf(Glass) + " من 8 أكواب");
+            }
+        } else {
+            if (myApplication.GetLanguage().equals("en")) {
+                TextHeading.setText("You are doing great, " + String.valueOf(8 - Glass) + " more \n cup to reach daily \n intake water");
+                Text.setText(String.valueOf(Glass) + " of 8 glasses");
+            } else {
+                TextHeading.setText("انت تبلي بلاء رائعا،" + String.valueOf(8 - Glass) + " أكثر من \n كوب للوصول إلى اليومية \n كمية الماء");
+
+                Text.setText(String.valueOf(Glass) + " من 8 أكواب");
+            }
         }
 
 
@@ -67,13 +102,25 @@ public class Water_Remainder extends Fragment {
                     Glass--;
                     MyApplication.setGLASS(Glass);
                 }
-                if (myApplication.GetLanguage().equals("en")) {
-                    TextHeading.setText("You are doing great, " + String.valueOf(Glass) + " more \n cup to reach daily \n intake water");
-                    Text.setText(String.valueOf(Glass) + " of 8 glasses");
-                } else {
-                    TextHeading.setText("انت تبلي بلاء رائعا،" + String.valueOf(Glass) + " أكثر من \n كوب للوصول إلى اليومية \n كمية الماء");
 
-                    Text.setText(String.valueOf(Glass) + " من 8 أكواب");
+                if (Glass == 0) {
+                    if (myApplication.GetLanguage().equals("en")) {
+                        TextHeading.setText(String.valueOf(8 - Glass) + " more \n cup to reach daily \n intake water");
+                        Text.setText(String.valueOf(Glass) + " of 8 glasses");
+                    } else {
+                        TextHeading.setText(String.valueOf(8 - Glass) + " أكثر من \n كوب للوصول إلى اليومية \n كمية الماء");
+
+                        Text.setText(String.valueOf(Glass) + " من 8 أكواب");
+                    }
+                } else {
+                    if (myApplication.GetLanguage().equals("en")) {
+                        TextHeading.setText("You are doing great, " + String.valueOf(8 - Glass) + " more \n cup to reach daily \n intake water");
+                        Text.setText(String.valueOf(Glass) + " of 8 glasses");
+                    } else {
+                        TextHeading.setText("انت تبلي بلاء رائعا،" + String.valueOf(8 - Glass) + " أكثر من \n كوب للوصول إلى اليومية \n كمية الماء");
+
+                        Text.setText(String.valueOf(Glass) + " من 8 أكواب");
+                    }
                 }
 
             }
@@ -86,13 +133,25 @@ public class Water_Remainder extends Fragment {
                     MyApplication.setGLASS(Glass);
 
                 }
-                if (myApplication.GetLanguage().equals("en")) {
-                    TextHeading.setText("You are doing great, " + String.valueOf(Glass) + " more \n cup to reach daily \n intake water");
-                    Text.setText(String.valueOf(Glass) + " of 8 glasses");
-                } else {
-                    TextHeading.setText("انت تبلي بلاء رائعا،" + String.valueOf(Glass) + " أكثر من \n كوب للوصول إلى اليومية \n كمية الماء");
 
-                    Text.setText(String.valueOf(Glass) + " من 8 أكواب");
+                if (Glass == 0) {
+                    if (myApplication.GetLanguage().equals("en")) {
+                        TextHeading.setText(String.valueOf(8 - Glass) + " more \n cup to reach daily \n intake water");
+                        Text.setText(String.valueOf(Glass) + " of 8 glasses");
+                    } else {
+                        TextHeading.setText(String.valueOf(8 - Glass) + " أكثر من \n كوب للوصول إلى اليومية \n كمية الماء");
+
+                        Text.setText(String.valueOf(Glass) + " من 8 أكواب");
+                    }
+                } else {
+                    if (myApplication.GetLanguage().equals("en")) {
+                        TextHeading.setText("You are doing great, " + String.valueOf(8 - Glass) + " more \n cup to reach daily \n intake water");
+                        Text.setText(String.valueOf(Glass) + " of 8 glasses");
+                    } else {
+                        TextHeading.setText("انت تبلي بلاء رائعا،" + String.valueOf(8 - Glass) + " أكثر من \n كوب للوصول إلى اليومية \n كمية الماء");
+
+                        Text.setText(String.valueOf(Glass) + " من 8 أكواب");
+                    }
                 }
 
             }
@@ -108,14 +167,15 @@ public class Water_Remainder extends Fragment {
 
     @Override
     public void onDestroy() {
-        ((MainActivity) getActivity()).HideShare_toolbar();
-        if (myApplication.GetLanguage().equals("en"))
-            ((MainActivity) getActivity()).Change_Tittle("Manage My Health");
-        else {
-            ((MainActivity) getActivity()).Change_Tittle(getString(R.string.Manage_My_Helth));
+//        ((MainActivity) getActivity()).HideShare_toolbar();
+        int sixe=((MainActivity) getActivity()).getSupportFragmentManager().getBackStackEntryCount();
+        if (((MainActivity) getActivity()).getSupportFragmentManager().getBackStackEntryCount() != 1)
+            if (myApplication.GetLanguage().equals("en"))
+                ((MainActivity) getActivity()).Change_Tittle("Manage My Health");
+            else {
+                ((MainActivity) getActivity()).Change_Tittle(getString(R.string.Manage_My_Helth));
 
-        }
-        ((MainActivity) getActivity()).ShowBack_toolbar();
+            }
         super.onDestroy();
     }
 

@@ -203,7 +203,7 @@
                         android:layout_height="match_parent"
                         android:gravity="center|bottom"
                         android:paddingBottom="@dimen/_5sdp"
-                        android:text="@string/Email"
+                        android:text="@string/call"
                         android:textColor="@android:color/white" />
                 </RelativeLayout>
 

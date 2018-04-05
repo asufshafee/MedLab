@@ -70,7 +70,7 @@ public class Labs_locations extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_labs_locations, container, false);
         myApplication = (MyApplication) getActivity().getApplicationContext();
-        ((MainActivity)getActivity()).GetNotifications();
+        ((MainActivity) getActivity()).GetNotifications();
 
         gpsTracker = new GPSTracker(getActivity());
         if (myApplication.GetLanguage().equals("en"))
@@ -143,27 +143,32 @@ public class Labs_locations extends Fragment {
             public void onResponse(String response) {
 
                 Progress.dismiss();
-                if (response.contains("Success")) {
+                try {
+                    if (response.contains("Success")) {
 
 
-                    Gson gson = new Gson();
-                    Locations locations = new Locations();
-                    locations = gson.fromJson(response, Locations.class);
-                    locationAll = locations;
-                    List = locations.getBranchOb();
-                    Progress.dismiss();
-                    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
-                    Locations_Adapter Adapter = new Locations_Adapter(List, getActivity());
-                    recycle.setLayoutManager(linearLayoutManager);
-                    recycle.setItemAnimator(new DefaultItemAnimator());
-                    recycle.setAdapter(Adapter);
+                        Gson gson = new Gson();
+                        Locations locations = new Locations();
+                        locations = gson.fromJson(response, Locations.class);
+                        locationAll = locations;
+                        List = locations.getBranchOb();
+                        Progress.dismiss();
+                        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
+                        Locations_Adapter Adapter = new Locations_Adapter(List, getActivity());
+                        recycle.setLayoutManager(linearLayoutManager);
+                        recycle.setItemAnimator(new DefaultItemAnimator());
+                        recycle.setAdapter(Adapter);
 
 
-                } else {
-                    if (myApplication.GetLanguage().equals("en"))
-                        EasyToast.error(getActivity(), "Something Went Wrong!!");
-                    else
-                        EasyToast.error(getActivity(), " هناك خطأ ما");
+                    } else {
+                        if (myApplication.GetLanguage().equals("en"))
+                            EasyToast.error(getActivity(), "Something Went Wrong!!");
+                        else
+                            EasyToast.error(getActivity(), " هناك خطأ ما");
+                    }
+
+                } catch (Exception a) {
+
                 }
 
             }
@@ -172,10 +177,12 @@ public class Labs_locations extends Fragment {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Progress.dismiss();
-                        if (myApplication.GetLanguage().equals("en"))
-                            EasyToast.error(getActivity(), "Something Went Wrong!!");
-                        else
-                            EasyToast.error(getActivity(), " هناك خطأ ما");
+                        if (AppUtils.isNetworkAvailable(getActivity())) {
+                            EasyToast.error(getActivity(), getString(R.string.NO_INTERNET_CONNECTION));
+                        } else {
+                            EasyToast.error(getActivity(), getString(R.string.something_went_wrong));
+                        }
+
                         if (error instanceof TimeoutError || error instanceof NoConnectionError) {
                         } else if (error instanceof AuthFailureError) {
                         } else if (error instanceof ServerError) {

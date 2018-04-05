@@ -4,9 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
-    android:orientation="vertical"
-    android:layoutDirection="ltr"
     android:clickable="true"
+    android:orientation="vertical"
     android:paddingEnd="@dimen/_15sdp"
     android:paddingStart="@dimen/_15sdp"
     tools:context="com.mcc.medlabs.view.Fragments.Manage_My_Health">
@@ -17,23 +16,23 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/_7sdp"
-        android:layout_marginTop="@dimen/_10sdp"
-        android:gravity="center|left">
+        android:layout_marginTop="@dimen/_10sdp">
 
         <ImageView
             android:id="@+id/WaterIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:tint="@color/textColor"
-            android:src="@drawable/water_icon" />
+            android:src="@drawable/water_icon"
+            android:tint="@color/textColor" />
 
         <TextView
             android:id="@+id/WaterName"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/textColor"
+            android:layout_height="match_parent"
+            android:gravity="center"
             android:paddingStart="@dimen/_7sdp"
-            android:text="@string/water_remeinder" />
+            android:text="@string/water_remeinder"
+            android:textColor="@color/textColor" />
     </LinearLayout>
 
     <TextView
@@ -46,23 +45,23 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/_7sdp"
-        android:layout_marginTop="@dimen/_7sdp"
-        android:gravity="center|left">
+        android:layout_marginTop="@dimen/_7sdp">
 
         <ImageView
             android:id="@+id/BMIIcon"
             android:layout_width="wrap_content"
-            android:tint="@color/textColor"
-            android:layout_height="wrap_content"
-            android:src="@drawable/bmi_icon" />
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:src="@drawable/bmi_icon"
+            android:tint="@color/textColor" />
 
         <TextView
             android:id="@+id/BmiName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/textColor"
             android:paddingStart="@dimen/_7sdp"
-            android:text="@string/bmi_calculator" />
+            android:text="@string/bmi_calculator"
+            android:textColor="@color/textColor" />
     </LinearLayout>
 
     <TextView
@@ -76,22 +75,22 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/_7sdp"
         android:layout_marginTop="@dimen/_7sdp"
-        android:gravity="center|left">
+       >
 
         <ImageView
             android:id="@+id/TimeIcon"
-            android:tint="@color/textColor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/time_used" />
+            android:src="@drawable/time_used"
+            android:tint="@color/textColor" />
 
         <TextView
             android:id="@+id/TimeName"
             android:layout_width="wrap_content"
-            android:textColor="@color/textColor"
-            android:layout_height="wrap_content"
-            android:paddingStart="@dimen/_7sdp"
-            android:text="@string/time_used" />
+            android:layout_height="match_parent"
+            android:gravity="center"            android:paddingStart="@dimen/_7sdp"
+            android:text="@string/time_used"
+            android:textColor="@color/textColor" />
     </LinearLayout>
 
     <TextView

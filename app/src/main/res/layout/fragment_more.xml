@@ -3,7 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
-    android:layoutDirection="ltr"
     android:orientation="vertical"
     android:paddingEnd="@dimen/_15sdp"
     android:paddingStart="@dimen/_15sdp"
@@ -15,8 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/_7sdp"
-        android:layout_marginTop="@dimen/_10sdp"
-        android:gravity="center|left">
+        android:layout_marginTop="@dimen/_10sdp">
 
         <ImageView
             android:id="@+id/ManageIcon"
@@ -28,7 +26,8 @@
         <TextView
             android:id="@+id/ManageName"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
             android:paddingStart="@dimen/_7sdp"
             android:text="Manage My Health"
             android:textColor="@color/textColor" />
@@ -44,8 +43,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/_7sdp"
-        android:layout_marginTop="@dimen/_7sdp"
-        android:gravity="center|left">
+        android:layout_marginTop="@dimen/_7sdp">
 
         <ImageView
             android:id="@+id/SettingsIcon"
@@ -57,7 +55,8 @@
         <TextView
             android:id="@+id/SettingsName"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
             android:paddingStart="@dimen/_7sdp"
             android:text="Settings"
             android:textColor="@color/textColor" />
@@ -73,8 +72,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/_7sdp"
-        android:layout_marginTop="@dimen/_7sdp"
-        android:gravity="center|left">
+        android:layout_marginTop="@dimen/_7sdp">
 
         <ImageView
             android:id="@+id/TestIcon"
@@ -85,7 +83,8 @@
         <TextView
             android:id="@+id/TestName"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
             android:paddingStart="@dimen/_7sdp"
             android:text="Featured Test" />
     </LinearLayout>
@@ -100,8 +99,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/_7sdp"
-        android:layout_marginTop="@dimen/_7sdp"
-        android:gravity="center|left">
+        android:layout_marginTop="@dimen/_7sdp">
 
         <ImageView
             android:id="@+id/HelpIcon"
@@ -113,7 +111,8 @@
         <TextView
             android:id="@+id/HelpName"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
             android:paddingStart="@dimen/_7sdp"
             android:text="help"
             android:textColor="@color/textColor" />
@@ -129,8 +128,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/_7sdp"
-        android:layout_marginTop="@dimen/_7sdp"
-        android:gravity="center|left">
+        android:layout_marginTop="@dimen/_7sdp">
 
         <ImageView
             android:id="@+id/LogouIcon"
@@ -142,7 +140,8 @@
         <TextView
             android:id="@+id/LogoutName"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
             android:paddingStart="@dimen/_7sdp"
             android:text="Logout"
             android:textColor="@color/textColor" />

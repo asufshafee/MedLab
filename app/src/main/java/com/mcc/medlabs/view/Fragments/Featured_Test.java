@@ -108,29 +108,34 @@ public class Featured_Test extends Fragment {
             @Override
             public void onResponse(String response) {
 
-                Progress.dismiss();
-                if (response.contains("Success")) {
-
-
-                    Gson gson = new Gson();
-                    com.mcc.medlabs.view.Objects.Featured_Test featured_test = new com.mcc.medlabs.view.Objects.Featured_Test();
-                    featured_test = gson.fromJson(response, com.mcc.medlabs.view.Objects.Featured_Test.class);
-                    List = featured_test.getSahtakBilDeniaOb();
-
-
+                try {
                     Progress.dismiss();
-                    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
-                    Featered_Test_Adapter Adapter = new Featered_Test_Adapter(List, getActivity());
-                    recycle.setLayoutManager(linearLayoutManager);
-                    recycle.setItemAnimator(new DefaultItemAnimator());
-                    recycle.setAdapter(Adapter);
+                    if (response.contains("Success")) {
 
-                } else {
-                    if (myApplication.GetLanguage().equals("en"))
-                        EasyToast.error(getActivity(), "Something Went Wrong!!");
-                    else
-                        EasyToast.error(getActivity(), " هناك خطأ ما");
+
+                        Gson gson = new Gson();
+                        com.mcc.medlabs.view.Objects.Featured_Test featured_test = new com.mcc.medlabs.view.Objects.Featured_Test();
+                        featured_test = gson.fromJson(response, com.mcc.medlabs.view.Objects.Featured_Test.class);
+                        List = featured_test.getSahtakBilDeniaOb();
+
+
+                        Progress.dismiss();
+                        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
+                        Featered_Test_Adapter Adapter = new Featered_Test_Adapter(List, getActivity());
+                        recycle.setLayoutManager(linearLayoutManager);
+                        recycle.setItemAnimator(new DefaultItemAnimator());
+                        recycle.setAdapter(Adapter);
+
+                    } else {
+                        if (myApplication.GetLanguage().equals("en"))
+                            EasyToast.error(getActivity(), "Something Went Wrong!!");
+                        else
+                            EasyToast.error(getActivity(), " هناك خطأ ما");
+                    }
+                } catch (Exception Ex) {
+
                 }
+
 
             }
         },
@@ -138,10 +143,12 @@ public class Featured_Test extends Fragment {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Progress.dismiss();
-                        if (myApplication.GetLanguage().equals("en"))
-                            EasyToast.error(getActivity(), "Something Went Wrong!!");
-                        else
-                            EasyToast.error(getActivity(), " هناك خطأ ما");
+                        if (AppUtils.isNetworkAvailable(getActivity())) {
+                            EasyToast.error(getActivity(), getString(R.string.NO_INTERNET_CONNECTION));
+                        } else {
+                            EasyToast.error(getActivity(), getString(R.string.something_went_wrong));
+                        }
+
                         if (error instanceof TimeoutError || error instanceof NoConnectionError) {
                         } else if (error instanceof AuthFailureError) {
                         } else if (error instanceof ServerError) {
@@ -195,5 +202,6 @@ public class Featured_Test extends Fragment {
     public Animation onCreateAnimation(int transit, boolean enter, int nextAnim) {
         return CubeAnimation.create(CubeAnimation.RIGHT, enter, 500);
     }
+
 
 }

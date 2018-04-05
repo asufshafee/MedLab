@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
+    android:id="@+id/Click"
     android:orientation="vertical"
     android:padding="@dimen/_20sdp"
     android:paddingBottom="@dimen/_25sdp"

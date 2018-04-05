@@ -28,8 +28,8 @@
             android:gravity="center">
 
             <RelativeLayout
-                android:layout_width="45dp"
                 android:id="@+id/Beck"
+                android:layout_width="45dp"
                 android:layout_height="45dp"
                 android:gravity="center">
 
@@ -58,10 +58,18 @@
 
                 <ImageView
                     android:id="@+id/Share"
-                    android:visibility="gone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/menu_dot" />
+                    android:src="@drawable/menu_dot"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/Download"
+                    android:visibility="gone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="45dp"
+                    android:gravity="center"
+                    android:text="@string/download_pdf" />
             </LinearLayout>
         </LinearLayout>
 

@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.labo.kaji.fragmentanimations.CubeAnimation;
 import com.mcc.medlabs.view.Activities.MainActivity;
+import com.mcc.medlabs.view.Objects.DecimalUtils;
 import com.mcc.medlabs.view.R;
 import com.mcc.medlabs.view.Session.MyApplication;
 
@@ -64,6 +65,8 @@ public class BMI_Calculater extends Fragment {
             ((MainActivity) getActivity()).Change_Tittle(getString(R.string.BMI_Calculator));
 
         }
+        ((MainActivity) getActivity()).ShowBack_toolbar();
+
 
         Height = (EditText) view.findViewById(R.id.Height);
         Age = (EditText) view.findViewById(R.id.Age);
@@ -178,11 +181,11 @@ public class BMI_Calculater extends Fragment {
         double heightInMeters = (((feetPart * 12) + inchesPart) * .0254);
         double bmi = (Double.parseDouble(Weight.getText().toString()) / Math.pow(heightInMeters, 2.0));
         DecimalFormat df = new DecimalFormat("#.##");
-        bmi = Double.valueOf(df.format(bmi));
+        bmi = DecimalUtils.round(bmi, 1);
         BMI.setText(String.valueOf(bmi));
 
         if (inchesPart > 5)
-            IdealWeight.setText(String.valueOf(idealBodyWeight(inchesPart)) + " kg");
+            IdealWeight.setText(String.valueOf(DecimalUtils.round(idealBodyWeight(inchesPart), 1)) + " kg");
         else IdealWeight.setText("56.2 kg");
 
 
@@ -206,7 +209,7 @@ public class BMI_Calculater extends Fragment {
             Me5.startAnimation(startAnimation);
         } else if (bmi >= 30 && bmi < 35) {
             Me6.startAnimation(startAnimation);
-        }else if (bmi >= 35 && bmi < 40) {
+        } else if (bmi >= 35 && bmi < 40) {
             Me7.startAnimation(startAnimation);
         }
 
@@ -217,4 +220,18 @@ public class BMI_Calculater extends Fragment {
 
 
     }
+
+    @Override
+    public void onDestroy() {
+        ((MainActivity) getActivity()).HideShare_toolbar();
+        if (((MainActivity) getActivity()).getSupportFragmentManager().getBackStackEntryCount() != 1)
+            if (myApplication.GetLanguage().equals("en"))
+                ((MainActivity) getActivity()).Change_Tittle("Manage My Health");
+            else {
+                ((MainActivity) getActivity()).Change_Tittle(getString(R.string.Manage_My_Helth));
+
+            }
+        super.onDestroy();
+    }
+
 }

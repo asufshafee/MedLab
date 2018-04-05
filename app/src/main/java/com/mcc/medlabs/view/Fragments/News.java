@@ -112,49 +112,43 @@ public class News extends Fragment {
             public void onResponse(String response) {
 
                 Progress.dismiss();
-                if (response.contains("Success")) {
+                try {
+                    if (response.contains("Success")) {
 
-                    List = new ArrayList<>();
+                        List = new ArrayList<>();
 
-                    Gson gson = new Gson();
-                    News_Object news_object = new News_Object();
-                    news_object = gson.fromJson(response, News_Object.class);
-                    int count = 0;
-                    int added = 0;
-                    for (News_Object.NewsObObject newsObObject : news_object.getNewsOb()) {
-                        count++;
-                        if (count == 9) {
-                            News_Object.NewsObObject newsObObject1 = new News_Object.NewsObObject();
+                        Gson gson = new Gson();
+                        News_Object news_object = new News_Object();
+                        news_object = gson.fromJson(response, News_Object.class);
+                        int count = 0;
+                        int added = 0;
+                        for (News_Object.NewsObObject newsObObject : news_object.getNewsOb()) {
+                            count++;
+                            if (count == 9) {
+                                News_Object.NewsObObject newsObObject1 = new News_Object.NewsObObject();
 //                            List.add(newsObObject1);
-                            count = 0;
-                            added++;
+                                count = 0;
+                                added++;
+                            }
+                            List.add(newsObObject);
                         }
-                        List.add(newsObObject);
+
+
+                        Progress.dismiss();
+                        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
+                        News_Adapter Adapter = new News_Adapter(List, getActivity());
+                        recycle.setLayoutManager(linearLayoutManager);
+                        recycle.setItemAnimator(new DefaultItemAnimator());
+                        recycle.setAdapter(Adapter);
+
+                    } else {
+                        if (myApplication.GetLanguage().equals("en"))
+                            EasyToast.error(getActivity(), "Something Went Wrong!!");
+                        else
+                            EasyToast.error(getActivity(), " هناك خطأ ما");
                     }
+                } catch (Exception ex) {
 
-//                    Shakha.SahtakBilDeniaObObject sahtakBilDeniaObObject = new Shakha.SahtakBilDeniaObObject();
-//                    sahtakBilDeniaObObject.setId("no");
-//                    sahtakBilDeniaObObject.setProgramName("GIFT VOUCHER");
-//                    sahtakBilDeniaObObject.setProgramNameAr("قسيمة الهدية");
-//                    sahtakBilDeniaObObject.setDescription("Sahtak Bil Denia");
-//                    sahtakBilDeniaObObject.setDescriptionAr("سهتتك بيل دينيا");
-//                    List = new ArrayList<>();
-//                    List.add(sahtakBilDeniaObObject);
-//                    List.addAll(shakha.getSahtakBilDeniaOb());
-
-
-                    Progress.dismiss();
-                    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
-                    News_Adapter Adapter = new News_Adapter(List, getActivity());
-                    recycle.setLayoutManager(linearLayoutManager);
-                    recycle.setItemAnimator(new DefaultItemAnimator());
-                    recycle.setAdapter(Adapter);
-
-                } else {
-                    if (myApplication.GetLanguage().equals("en"))
-                        EasyToast.error(getActivity(), "Something Went Wrong!!");
-                    else
-                        EasyToast.error(getActivity(), " هناك خطأ ما");
                 }
 
             }
@@ -163,10 +157,12 @@ public class News extends Fragment {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Progress.dismiss();
-                        if (myApplication.GetLanguage().equals("en"))
-                            EasyToast.error(getActivity(), "Something Went Wrong!!");
-                        else
-                            EasyToast.error(getActivity(), " هناك خطأ ما");
+                        if (AppUtils.isNetworkAvailable(getActivity())) {
+                            EasyToast.error(getActivity(), getString(R.string.NO_INTERNET_CONNECTION));
+                        } else {
+                            EasyToast.error(getActivity(), getString(R.string.something_went_wrong));
+                        }
+
                         if (error instanceof TimeoutError || error instanceof NoConnectionError) {
                         } else if (error instanceof AuthFailureError) {
                         } else if (error instanceof ServerError) {

@@ -42,19 +42,32 @@
                 android:paddingLeft="@dimen/_10sdp"
                 android:paddingRight="@dimen/_10sdp">
 
-                <TextView
-                    android:id="@+id/Name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignTop="@+id/Heading"
-                    android:text=""
-                    android:textColor="@android:color/white"
-                    android:textSize="@dimen/_14sdp"
-                    android:textStyle="bold" />
 
             </LinearLayout>
         </RelativeLayout>
     </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/Name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/Heading"
+        android:text=""
+        android:textColor="@color/red"
+        android:textSize="@dimen/_14sdp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/Date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingEnd="@dimen/_10sdp"
+        android:paddingStart="@dimen/_5sdp"
+        android:text="20 August at 20:57"
+        android:textColor="#858585"
+        android:textSize="@dimen/_9sdp"
+        android:textStyle="bold" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -64,7 +77,7 @@
         <TextView
             android:id="@+id/Details"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent" />
 
     </ScrollView>
 

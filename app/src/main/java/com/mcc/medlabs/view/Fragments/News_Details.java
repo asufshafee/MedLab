@@ -27,7 +27,7 @@ public class News_Details extends Fragment {
     News_Object.NewsObObject sahtakBilDeniaObObject;
 
     ImageView Image;
-    TextView Name, Details;
+    TextView Name, Details, Date;
 
     MyApplication myApplication;
 
@@ -46,6 +46,7 @@ public class News_Details extends Fragment {
 
         Image = (ImageView) view.findViewById(R.id.Image);
         Name = (TextView) view.findViewById(R.id.Name);
+        Date = (TextView) view.findViewById(R.id.Date);
         sahtakBilDeniaObObject = (News_Object.NewsObObject) getArguments().getSerializable("data");
 
 
@@ -58,10 +59,12 @@ public class News_Details extends Fragment {
         if (myApplication.GetLanguage().equals("en")) {
             Name.setText(sahtakBilDeniaObObject.getName());
             Details.setText(sahtakBilDeniaObObject.getDescription());
+            Date.setText(sahtakBilDeniaObObject.getDate());
 
         } else {
             Name.setText(sahtakBilDeniaObObject.getName());
             Details.setText(sahtakBilDeniaObObject.getDescriptionAr());
+            Date.setText(sahtakBilDeniaObObject.getDate());
         }
 
 

@@ -88,6 +88,7 @@ public class Shekha_Adapter extends RecyclerView.Adapter<Shekha_Adapter.MyHolder
                 }
             });
         } else {
+            holder.imageView.setImageDrawable(context.getResources().getDrawable(R.drawable.gitf_voucher));
             if (myApplication.GetLanguage().equals("en")) {
                 holder.Checkups.setText(List.get(position).getDescription());
                 holder.Name.setText(List.get(position).getProgramName());

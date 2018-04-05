@@ -59,7 +59,7 @@
                         android:id="@+id/Age"
                         android:lines="1"
                         android:maxLines="1"
-                        android:inputType="number"
+                        android:inputType="numberDecimal"
                         android:layout_width="match_parent"
                         android:textColor="@color/red"
                         android:textSize="@dimen/_23sdp"
@@ -109,7 +109,7 @@
 
                     <EditText
                         android:id="@+id/Height"
-                        android:inputType="number"
+                        android:inputType="numberDecimal"
                         android:lines="1"
                         android:maxLines="1"
                         android:layout_width="match_parent"
@@ -161,7 +161,7 @@
 
                     <EditText
                         android:id="@+id/Weight"
-                        android:inputType="number"
+                        android:inputType="numberDecimal"
                         android:lines="1"
                         android:maxLines="1"
                         android:layout_width="match_parent"

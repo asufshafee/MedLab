@@ -74,7 +74,7 @@ public class Manage_My_Health extends Fragment {
                     @Override
                     public void run() {
                         // do stuff
-                        RemoveTint(WaterIcon,WaterName);
+                        RemoveTint(WaterIcon, WaterName);
 
                     }
                 }, 1000);
@@ -94,7 +94,7 @@ public class Manage_My_Health extends Fragment {
                     @Override
                     public void run() {
                         // do stuff
-                        RemoveTint(TimeIcon,TimeName);
+                        RemoveTint(TimeIcon, TimeName);
 
                     }
                 }, 1000);
@@ -113,7 +113,7 @@ public class Manage_My_Health extends Fragment {
                     @Override
                     public void run() {
                         // do stuff
-                        RemoveTint(BMIIcon,BMIName);
+                        RemoveTint(BMIIcon, BMIName);
 
                     }
                 }, 1000);

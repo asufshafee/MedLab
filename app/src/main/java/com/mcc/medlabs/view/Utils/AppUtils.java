@@ -41,6 +41,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.mcc.medlabs.view.Activities.Help_Screen;
 import com.wang.avi.AVLoadingIndicatorView;
 import com.mcc.medlabs.view.Activities.MainActivity;
 import com.mcc.medlabs.view.R;
@@ -622,7 +623,7 @@ public class AppUtils {
         //set
 
         builder.setContentIntent(pendIntent);
-        builder.setSmallIcon(R.drawable.ic_launcher_background);
+        builder.setSmallIcon(R.mipmap.ic_launcher);
         builder.setContentText(Message);
         builder.setContentTitle("GenCart");
         builder.setAutoCancel(true);
@@ -633,4 +634,9 @@ public class AppUtils {
 
     }
 
+    public static boolean isNetworkAvailable(Context context) {
+        final ConnectivityManager connectivityManager = ((ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE));
+        Boolean Check = connectivityManager.getActiveNetworkInfo() != null && connectivityManager.getActiveNetworkInfo().isConnected();
+        return !Check;
+    }
 }

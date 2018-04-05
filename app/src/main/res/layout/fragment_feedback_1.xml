@@ -1,4 +1,5 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -14,8 +15,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="@dimen/_40sdp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/_40sdp">
 
             <TextView
                 android:layout_width="match_parent"
@@ -42,24 +43,22 @@
                 android:textSize="@dimen/_11sdp"
                 android:textStyle="bold" />
 
-            <com.willy.ratingbar.ScaleRatingBar xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/RatingBar1"
+            <com.hedgehog.ratingbar.RatingBar
+                android:id="@+id/ratingbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
                 android:gravity="center"
-                app:srb_clearRatingEnabled="true"
-                app:srb_clickable="true"
-                app:srb_drawableEmpty="@drawable/start_uncehcked"
-                app:srb_drawableFilled="@drawable/start_checked"
-                app:srb_isIndicator="false"
-                app:srb_minimumStars="1"
-                app:srb_numStars="5"
-                app:srb_rating="2"
-                app:srb_scrollable="true"
-                app:srb_starHeight="30dp"
-                app:srb_starPadding="10dp"
-                app:srb_starWidth="30dp"
-                app:srb_stepSize="1"></com.willy.ratingbar.ScaleRatingBar>
+                app:clickable="true"
+                app:halfstart="false"
+                app:starCount="5"
+                app:starEmpty="@drawable/start_uncehcked"
+                app:starFill="@drawable/start_checked"
+                app:starHalf="@drawable/start_checked"
+                app:starImageHeight="40dp"
+                app:starImagePadding="10dp"
+                app:starImageWidth="40dp" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -74,25 +73,22 @@
                 android:textSize="@dimen/_11sdp"
                 android:textStyle="bold" />
 
-            <com.willy.ratingbar.ScaleRatingBar xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:layout_width="match_parent"
+            <com.hedgehog.ratingbar.RatingBar xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/RatingBar2"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
                 android:gravity="center"
-                app:srb_clearRatingEnabled="true"
-                app:srb_clickable="true"
-                app:srb_drawableEmpty="@drawable/start_uncehcked"
-                app:srb_drawableFilled="@drawable/start_checked"
-                app:srb_isIndicator="false"
-                app:srb_minimumStars="1"
-                app:srb_numStars="5"
-                app:srb_rating="2"
-                app:srb_scrollable="true"
-                app:srb_starHeight="30dp"
-                app:srb_starPadding="10dp"
-                app:srb_starWidth="30dp"
-                app:srb_stepSize="1"></com.willy.ratingbar.ScaleRatingBar>
-
+                app:clickable="true"
+                app:halfstart="false"
+                app:starCount="5"
+                app:starEmpty="@drawable/start_uncehcked"
+                app:starFill="@drawable/start_checked"
+                app:starHalf="@drawable/start_checked"
+                app:starImageHeight="40dp"
+                app:starImagePadding="10dp"
+                app:starImageWidth="40dp" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -107,26 +103,22 @@
                 android:textSize="@dimen/_11sdp"
                 android:textStyle="bold" />
 
-            <com.willy.ratingbar.ScaleRatingBar xmlns:app="http://schemas.android.com/apk/res-auto"
+            <com.hedgehog.ratingbar.RatingBar xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/RatingBar3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
                 android:gravity="center"
-                android:id="@+id/RatingBar3"
-
-                app:srb_clearRatingEnabled="true"
-                app:srb_clickable="true"
-                app:srb_drawableEmpty="@drawable/start_uncehcked"
-                app:srb_drawableFilled="@drawable/start_checked"
-                app:srb_isIndicator="false"
-                app:srb_minimumStars="1"
-                app:srb_numStars="5"
-                app:srb_rating="2"
-                app:srb_scrollable="true"
-                app:srb_starHeight="30dp"
-                app:srb_starPadding="10dp"
-                app:srb_starWidth="30dp"
-                app:srb_stepSize="1"></com.willy.ratingbar.ScaleRatingBar>
-
+                app:clickable="true"
+                app:halfstart="false"
+                app:starCount="5"
+                app:starEmpty="@drawable/start_uncehcked"
+                app:starFill="@drawable/start_checked"
+                app:starHalf="@drawable/start_checked"
+                app:starImageHeight="40dp"
+                app:starImagePadding="10dp"
+                app:starImageWidth="40dp" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -141,26 +133,22 @@
                 android:textSize="@dimen/_11sdp"
                 android:textStyle="bold" />
 
-            <com.willy.ratingbar.ScaleRatingBar xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                app:srb_clearRatingEnabled="true"
-                app:srb_clickable="true"
+            <com.hedgehog.ratingbar.RatingBar xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/RatingBar4"
-
-                app:srb_drawableEmpty="@drawable/start_uncehcked"
-                app:srb_drawableFilled="@drawable/start_checked"
-                app:srb_isIndicator="false"
-                app:srb_minimumStars="1"
-                app:srb_numStars="5"
-                app:srb_rating="2"
-                app:srb_scrollable="true"
-                app:srb_starHeight="30dp"
-                app:srb_starPadding="10dp"
-                app:srb_starWidth="30dp"
-                app:srb_stepSize="1"></com.willy.ratingbar.ScaleRatingBar>
-
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:gravity="center"
+                app:clickable="true"
+                app:halfstart="false"
+                app:starCount="5"
+                app:starEmpty="@drawable/start_uncehcked"
+                app:starFill="@drawable/start_checked"
+                app:starHalf="@drawable/start_checked"
+                app:starImageHeight="40dp"
+                app:starImagePadding="10dp"
+                app:starImageWidth="40dp" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -175,25 +163,22 @@
                 android:textSize="@dimen/_11sdp"
                 android:textStyle="bold" />
 
-            <com.willy.ratingbar.ScaleRatingBar xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                app:srb_clearRatingEnabled="true"
-                app:srb_clickable="true"
+            <com.hedgehog.ratingbar.RatingBar xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/RatingBar5"
-
-                app:srb_drawableEmpty="@drawable/start_uncehcked"
-                app:srb_drawableFilled="@drawable/start_checked"
-                app:srb_isIndicator="false"
-                app:srb_minimumStars="1"
-                app:srb_numStars="5"
-                app:srb_rating="2"
-                app:srb_scrollable="true"
-                app:srb_starHeight="30dp"
-                app:srb_starPadding="10dp"
-                app:srb_starWidth="30dp"
-                app:srb_stepSize="1"></com.willy.ratingbar.ScaleRatingBar>
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:gravity="center"
+                app:clickable="true"
+                app:halfstart="false"
+                app:starCount="5"
+                app:starEmpty="@drawable/start_uncehcked"
+                app:starFill="@drawable/start_checked"
+                app:starHalf="@drawable/start_checked"
+                app:starImageHeight="40dp"
+                app:starImagePadding="10dp"
+                app:starImageWidth="40dp" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -208,25 +193,22 @@
                 android:textSize="@dimen/_11sdp"
                 android:textStyle="bold" />
 
-            <com.willy.ratingbar.ScaleRatingBar xmlns:app="http://schemas.android.com/apk/res-auto"
+            <com.hedgehog.ratingbar.RatingBar xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/RatingBar6"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
                 android:gravity="center"
-                android:id="@+id/RatingBar6"
-
-                app:srb_clearRatingEnabled="true"
-                app:srb_clickable="true"
-                app:srb_drawableEmpty="@drawable/start_uncehcked"
-                app:srb_drawableFilled="@drawable/start_checked"
-                app:srb_isIndicator="false"
-                app:srb_minimumStars="1"
-                app:srb_numStars="5"
-                app:srb_rating="2"
-                app:srb_scrollable="true"
-                app:srb_starHeight="30dp"
-                app:srb_starPadding="10dp"
-                app:srb_starWidth="30dp"
-                app:srb_stepSize="1"></com.willy.ratingbar.ScaleRatingBar>
+                app:clickable="true"
+                app:halfstart="false"
+                app:starCount="5"
+                app:starEmpty="@drawable/start_uncehcked"
+                app:starFill="@drawable/start_checked"
+                app:starHalf="@drawable/start_checked"
+                app:starImageHeight="40dp"
+                app:starImagePadding="10dp"
+                app:starImageWidth="40dp" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -241,25 +223,22 @@
                 android:textSize="@dimen/_11sdp"
                 android:textStyle="bold" />
 
-            <com.willy.ratingbar.ScaleRatingBar xmlns:app="http://schemas.android.com/apk/res-auto"
+            <com.hedgehog.ratingbar.RatingBar xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/RatingBar7"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
                 android:gravity="center"
-                app:srb_clearRatingEnabled="true"
-                android:id="@+id/RatingBar7"
-
-                app:srb_clickable="true"
-                app:srb_drawableEmpty="@drawable/start_uncehcked"
-                app:srb_drawableFilled="@drawable/start_checked"
-                app:srb_isIndicator="false"
-                app:srb_minimumStars="1"
-                app:srb_numStars="5"
-                app:srb_rating="2"
-                app:srb_scrollable="true"
-                app:srb_starHeight="30dp"
-                app:srb_starPadding="10dp"
-                app:srb_starWidth="30dp"
-                app:srb_stepSize="1"></com.willy.ratingbar.ScaleRatingBar>
+                app:clickable="true"
+                app:halfstart="false"
+                app:starCount="5"
+                app:starEmpty="@drawable/start_uncehcked"
+                app:starFill="@drawable/start_checked"
+                app:starHalf="@drawable/start_checked"
+                app:starImageHeight="40dp"
+                app:starImagePadding="10dp"
+                app:starImageWidth="40dp" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -274,25 +253,22 @@
                 android:textSize="@dimen/_11sdp"
                 android:textStyle="bold" />
 
-            <com.willy.ratingbar.ScaleRatingBar xmlns:app="http://schemas.android.com/apk/res-auto"
+            <com.hedgehog.ratingbar.RatingBar xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/RatingBar8"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
                 android:gravity="center"
-                app:srb_clearRatingEnabled="true"
-                android:id="@+id/RatingBar8"
-
-                app:srb_clickable="true"
-                app:srb_drawableEmpty="@drawable/start_uncehcked"
-                app:srb_drawableFilled="@drawable/start_checked"
-                app:srb_isIndicator="false"
-                app:srb_minimumStars="1"
-                app:srb_numStars="5"
-                app:srb_rating="2"
-                app:srb_scrollable="true"
-                app:srb_starHeight="30dp"
-                app:srb_starPadding="10dp"
-                app:srb_starWidth="30dp"
-                app:srb_stepSize="1"></com.willy.ratingbar.ScaleRatingBar>
+                app:clickable="true"
+                app:halfstart="false"
+                app:starCount="5"
+                app:starEmpty="@drawable/start_uncehcked"
+                app:starFill="@drawable/start_checked"
+                app:starHalf="@drawable/start_checked"
+                app:starImageHeight="40dp"
+                app:starImagePadding="10dp"
+                app:starImageWidth="40dp" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -307,25 +283,22 @@
                 android:textSize="@dimen/_11sdp"
                 android:textStyle="bold" />
 
-            <com.willy.ratingbar.ScaleRatingBar xmlns:app="http://schemas.android.com/apk/res-auto"
+            <com.hedgehog.ratingbar.RatingBar xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/RatingBar9"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
                 android:gravity="center"
-                app:srb_clearRatingEnabled="true"
-                app:srb_clickable="true"
-                app:srb_drawableEmpty="@drawable/start_uncehcked"
-                app:srb_drawableFilled="@drawable/start_checked"
-                app:srb_isIndicator="false"
-                app:srb_minimumStars="1"
-                app:srb_numStars="5"
-                android:id="@+id/RatingBar9"
-
-                app:srb_rating="2"
-                app:srb_scrollable="true"
-                app:srb_starHeight="30dp"
-                app:srb_starPadding="10dp"
-                app:srb_starWidth="30dp"
-                app:srb_stepSize="1"></com.willy.ratingbar.ScaleRatingBar>
+                app:clickable="true"
+                app:halfstart="false"
+                app:starCount="5"
+                app:starEmpty="@drawable/start_uncehcked"
+                app:starFill="@drawable/start_checked"
+                app:starHalf="@drawable/start_checked"
+                app:starImageHeight="40dp"
+                app:starImagePadding="10dp"
+                app:starImageWidth="40dp" />
 
             <RelativeLayout
                 android:id="@+id/Next"

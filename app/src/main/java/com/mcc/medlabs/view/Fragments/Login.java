@@ -63,22 +63,43 @@ public class Login extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_login, container, false);
 //        ((MainActivity) getActivity()).Change_Tittle("MedLabs");
-        ((MainActivity)getActivity()).GetNotifications();
-
-        ((MainActivity) getActivity()).HideToolbarWithBack();
         myApplication = (MyApplication) getActivity().getApplicationContext();
-        Progress = AppUtils.LoadingSpinner(getActivity());
-        Remember = (CheckBox) view.findViewById(R.id.Remember);
 
-        Username = (EditText) view.findViewById(R.id.Username);
-        Password = (EditText) view.findViewById(R.id.Password);
+        if (myApplication.isLoggedIn()) {
+            Fragment fragment = null;
+            Class fragmentClass = null;
 
-        view.findViewById(R.id.Login).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Login();
+            fragmentClass = Test_Result_Screen.class;
+            try {
+                fragment = (Fragment) fragmentClass.newInstance();
+
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-        });
+            FragmentManager fragmentManager = ((AppCompatActivity) getActivity()).getSupportFragmentManager();
+            fragmentManager.beginTransaction().replace(R.id.container, fragment, "Test Results").setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).addToBackStack(null).commit();
+
+        } else {
+            ((MainActivity) getActivity()).GetNotifications();
+
+            ((MainActivity) getActivity()).HideToolbarWithBack();
+
+
+            Progress = AppUtils.LoadingSpinner(getActivity());
+            Remember = (CheckBox) view.findViewById(R.id.Remember);
+
+            Username = (EditText) view.findViewById(R.id.Username);
+            Password = (EditText) view.findViewById(R.id.Password);
+
+            view.findViewById(R.id.Login).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Login();
+                }
+            });
+
+        }
+
 
         return view;
     }
@@ -113,41 +134,46 @@ public class Login extends Fragment {
             @Override
             public void onResponse(String response) {
 
-                Progress.dismiss();
-                if (response.contains("Success")) {
+                try {
+                    Progress.dismiss();
+                    if (response.contains("Success")) {
 
 
-                    Gson gson = new Gson();
-                    Login_Object login_object = new Login_Object();
-                    login_object = gson.fromJson(response, Login_Object.class);
-                    if (Remember.isChecked()) {
-                        myApplication.setIslogged(login_object,jsonParserLogin);
-                    }else {
-                        myApplication.setSaveToken(login_object);
+                        Gson gson = new Gson();
+                        Login_Object login_object = new Login_Object();
+                        login_object = gson.fromJson(response, Login_Object.class);
+                        if (Remember.isChecked()) {
+                            myApplication.setIslogged(login_object, jsonParserLogin);
+                        } else {
+                            myApplication.setSaveToken(login_object);
+                        }
+
+                        Fragment fragment = null;
+                        Class fragmentClass = null;
+
+                        fragmentClass = Test_Result_Screen.class;
+                        try {
+                            fragment = (Fragment) fragmentClass.newInstance();
+                            Bundle bundle = new Bundle();
+                            bundle.putSerializable("login_object", login_object);
+                            fragment.setArguments(bundle);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                        FragmentManager fragmentManager = ((AppCompatActivity) getActivity()).getSupportFragmentManager();
+                        fragmentManager.beginTransaction().replace(R.id.container, fragment, "Test Results").setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).addToBackStack(null).commit();
+
+
+                    } else {
+                        if (myApplication.GetLanguage().equals("en"))
+                            EasyToast.error(getActivity(), "Something Went Wrong!!");
+                        else
+                            EasyToast.error(getActivity(), " هناك خطأ ما");
                     }
+                } catch (Exception Ex) {
 
-                    Fragment fragment = null;
-                    Class fragmentClass = null;
-
-                    fragmentClass = Test_Result_Screen.class;
-                    try {
-                        fragment = (Fragment) fragmentClass.newInstance();
-                        Bundle bundle = new Bundle();
-                        bundle.putSerializable("login_object",login_object);
-                        fragment.setArguments(bundle);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                    FragmentManager fragmentManager = ((AppCompatActivity) getActivity()).getSupportFragmentManager();
-                    fragmentManager.beginTransaction().replace(R.id.container, fragment, "Test Results").setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).addToBackStack(null).commit();
-
-
-                } else {
-                    if (myApplication.GetLanguage().equals("en"))
-                        EasyToast.error(getActivity(), "Something Went Wrong!!");
-                    else
-                        EasyToast.error(getActivity(), " هناك خطأ ما");
                 }
+
 
             }
         },
@@ -155,10 +181,12 @@ public class Login extends Fragment {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Progress.dismiss();
-                        if (myApplication.GetLanguage().equals("en"))
-                            EasyToast.error(getActivity(), "Something Went Wrong!!");
-                        else
-                            EasyToast.error(getActivity(), " هناك خطأ ما");
+                        if (AppUtils.isNetworkAvailable(getActivity())) {
+                            EasyToast.error(getActivity(), getString(R.string.NO_INTERNET_CONNECTION));
+                        } else {
+                            EasyToast.error(getActivity(), getString(R.string.something_went_wrong));
+                        }
+
                         if (error instanceof TimeoutError || error instanceof NoConnectionError) {
                         } else if (error instanceof AuthFailureError) {
                         } else if (error instanceof ServerError) {

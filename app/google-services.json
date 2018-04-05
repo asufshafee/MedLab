@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "66050022276",
+    "firebase_url": "https://medlabs-469be.firebaseio.com",
+    "project_id": "medlabs-469be",
+    "storage_bucket": "medlabs-469be.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:66050022276:android:afe3ea4d403f326b",
+        "android_client_info": {
+          "package_name": "com.mcc.medlabs.view"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "66050022276-imvo095kl46hqqemr83kp0kjtiqbh1v9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBi9rf476uwgMK3Su0KadYg48tT3PbZXZQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

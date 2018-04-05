@@ -100,7 +100,7 @@ public class Contact_Us extends Fragment {
                     return;
                 }
                 Intent callIntent = new Intent(Intent.ACTION_CALL);
-                callIntent.setData(Uri.parse("tel:" + "0000000"));
+                callIntent.setData(Uri.parse("tel:" + "+96264631525"));
                 startActivity(callIntent);
             }
         });
@@ -187,15 +187,27 @@ public class Contact_Us extends Fragment {
 
     public static void getOpenInstagramIntent(Context context) {
 
-        Intent intent = null;
+
         try {
-            intent = context.getPackageManager().getLaunchIntentForPackage("com.instagram.android");
-            intent.setComponent(new ComponentName("com.instagram.android", "com.instagram.android.activity.UrlHandlerActivity"));
-            intent.setData(Uri.parse("http://instagram.com/_u/medlabs/"));
-        } catch (Exception e) {
-            intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://instagram.com/medlabs/"));
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setData(Uri.parse("http://instagram.com/_u/" + "medlabs"));
+            intent.setPackage("com.instagram.android");
+            context.startActivity(intent);
+        } catch (android.content.ActivityNotFoundException anfe) {
+            context.startActivity(new Intent(Intent.ACTION_VIEW,
+                    Uri.parse("https://www.instagram.com/" + "medlabs/")));
         }
-        context.startActivity(intent);
+
+
+//        Intent intent = null;
+//        try {
+//            intent = context.getPackageManager().getLaunchIntentForPackage("com.instagram.android");
+//            intent.setComponent(new ComponentName("com.instagram.android", "com.instagram.android.activity.UrlHandlerActivity"));
+//            intent.setData(Uri.parse("http://instagram.com/_u/medlabs/"));
+//        } catch (Exception e) {
+//            intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://instagram.com/medlabs/"));
+//        }
+//        context.startActivity(intent);
     }
 
     public static void getOpenLinkedInIntent(Context context) {

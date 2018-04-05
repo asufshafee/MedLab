@@ -65,7 +65,7 @@ public class Test_Result_Screen extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_test__result__screen, container, false);
         myApplication = (MyApplication) getActivity().getApplicationContext();
-        ((MainActivity)getActivity()).GetNotifications();
+        ((MainActivity) getActivity()).GetNotifications();
 
         if (myApplication.GetLanguage().equals("en"))
             ((MainActivity) getActivity()).Change_Tittle("Test Results");
@@ -101,11 +101,17 @@ public class Test_Result_Screen extends Fragment {
     }
 
     public void LoadData() {
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
-        Test_Result_Adapter Adapter = new Test_Result_Adapter(List, getActivity());
-        recycle.setLayoutManager(linearLayoutManager);
-        recycle.setItemAnimator(new DefaultItemAnimator());
-        recycle.setAdapter(Adapter);
+        try {
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
+            Test_Result_Adapter Adapter = new Test_Result_Adapter(List, getActivity());
+            recycle.setLayoutManager(linearLayoutManager);
+            recycle.setItemAnimator(new DefaultItemAnimator());
+            recycle.setAdapter(Adapter);
+
+        } catch (Exception Ex) {
+
+        }
+
     }
 
 
@@ -146,10 +152,12 @@ public class Test_Result_Screen extends Fragment {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Progress.dismiss();
-                        if (myApplication.GetLanguage().equals("en"))
-                            EasyToast.error(getActivity(), "Something Went Wrong!!");
-                        else
-                            EasyToast.error(getActivity(), " هناك خطأ ما");
+                        if (AppUtils.isNetworkAvailable(getActivity())) {
+                            EasyToast.error(getActivity(), getString(R.string.NO_INTERNET_CONNECTION));
+                        } else {
+                            EasyToast.error(getActivity(), getString(R.string.something_went_wrong));
+                        }
+
                         if (error instanceof TimeoutError || error instanceof NoConnectionError) {
                         } else if (error instanceof AuthFailureError) {
                         } else if (error instanceof ServerError) {

@@ -22,6 +22,8 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 import com.labo.kaji.fragmentanimations.CubeAnimation;
+import com.mcc.medlabs.view.Session.GlobalActions;
+import com.mcc.medlabs.view.Session.SharedPrefrenceKeys;
 import com.medialablk.easytoast.EasyToast;
 import com.mcc.medlabs.view.Activities.MainActivity;
 import com.mcc.medlabs.view.Activities.Splash;
@@ -84,12 +86,16 @@ public class Settings extends Fragment {
                     public void run() {
                         // do stuff
                         myApplication.setIsNotification(isChecked);
+                        if (isChecked)
+                            GlobalActions.saveDataToSharedPrefrences(SharedPrefrenceKeys.PUSH_ENABLED, "true", getActivity());
+                        else
+                            GlobalActions.saveDataToSharedPrefrences(SharedPrefrenceKeys.PUSH_ENABLED, "false", getActivity());
+
                         EasyToast.success(getActivity(), "Success");
                         NotificationName.setTextColor(getActivity().getResources().getColor(R.color.textColor));
 
                     }
                 }, 1000);
-
 
 
             }
