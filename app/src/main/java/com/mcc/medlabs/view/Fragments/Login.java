@@ -143,8 +143,11 @@ public class Login extends Fragment {
                         Login_Object login_object = new Login_Object();
                         login_object = gson.fromJson(response, Login_Object.class);
                         if (Remember.isChecked()) {
+                            GlobalActions.saveDataToSharedPrefrences(SharedPrefrenceKeys.PUSH_ENABLED, "true", getActivity());
                             myApplication.setIslogged(login_object, jsonParserLogin);
                         } else {
+                            GlobalActions.saveDataToSharedPrefrences(SharedPrefrenceKeys.PUSH_ENABLED, "false", getActivity());
+
                             myApplication.setSaveToken(login_object);
                         }
 

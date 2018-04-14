@@ -70,8 +70,9 @@ public class Time_Used extends Fragment {
         HoursText = (TextView) view.findViewById(R.id.Hours);
         TimeHeading = (TextView) view.findViewById(R.id.TextHeading);
         Yesterday = (TextView) view.findViewById(R.id.YesterDay);
-        String Hours = getDurationString(Integer.parseInt(String.valueOf(MyApplication.getSECONDS())));
-        long YersterDay = TimeUnit.SECONDS.toHours(MyApplication.getYesterdaytime());
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("MedLabsTimeUsed", MODE_MULTI_PROCESS);
+        String Hours = getDurationString(Integer.parseInt(String.valueOf(sharedPreferences.getLong("Secondsfortimeused", 0))));
+        String YersterDay = getDurationString(Integer.parseInt(String.valueOf(MyApplication.getYesterdaytime())));
         TimeHeading.setText(" " + String.valueOf(Hours) + " " + getString(R.string.hours_time));
         Yesterday.setText(getString(R.string.yesterday) + " " + String.valueOf(String.valueOf(YersterDay)) + " " + getString(R.string.hours_time));
         HoursText.setText(String.valueOf(String.valueOf(Hours)));
@@ -141,8 +142,6 @@ public class Time_Used extends Fragment {
                 public void run() {
 
                     SharedPreferences sharedPreferences = getActivity().getSharedPreferences("MedLabsTimeUsed", MODE_MULTI_PROCESS);
-
-
                     String Hours = getDurationString(Integer.parseInt(String.valueOf(sharedPreferences.getLong("Secondsfortimeused", 0))));
                     String YersterDay = getDurationString(Integer.parseInt(String.valueOf(MyApplication.getYesterdaytime())));
                     TimeHeading.setText(" " + String.valueOf(Hours) + " " + getString(R.string.hours_time));
@@ -152,7 +151,6 @@ public class Time_Used extends Fragment {
             });
         }
     }
-
     @Override
     public void onDestroyView() {
         mTimer.cancel();    //For Cancel Timer

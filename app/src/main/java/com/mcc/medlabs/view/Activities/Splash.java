@@ -17,6 +17,7 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 import com.mcc.medlabs.view.DatabasePart.MedlabsDelegate;
 import com.mcc.medlabs.view.R;
@@ -33,6 +34,7 @@ public class Splash extends AppCompatActivity {
 
     MyApplication myApplication;
     private MedlabsDelegate delegate;
+    Boolean Check = false;
 
 
     @Override
@@ -108,12 +110,32 @@ public class Splash extends AppCompatActivity {
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    Intent intent = new Intent(Splash.this, MainActivity.class);
-                    startActivity(intent);
-                    finish();
+                    if (getIntent().getExtras() != null) {
+                        for (String key : getIntent().getExtras().keySet()) {
+                            String value = getIntent().getExtras().getString(key);
+                            if (value != null
+                                    && value.contains("medlabs")) {
+                                Check = true;
+                            }
+                        }
+                        if (Check) {
+                            Intent intent = new Intent(Splash.this, MainActivity.class);
+                            startActivity(intent);
+                            finish();
+                        } else {
+                            Intent intent = new Intent(Splash.this, MainActivity.class);
+                            intent.putExtra("Notification", "no");
+                            startActivity(intent);
+                            finish();
+                        }
+                    } else {
+                        Intent intent = new Intent(Splash.this, MainActivity.class);
+                        intent.putExtra("Notification", "no");
+                        startActivity(intent);
+                        finish();
+                    }
                 }
             }, 2000);
-
             String languageToLoad = myApplication.GetLanguage();
             Locale locale = new Locale(languageToLoad);
             Locale.setDefault(locale);
@@ -168,9 +190,29 @@ public class Splash extends AppCompatActivity {
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    Intent intent = new Intent(Splash.this, MainActivity.class);
-                    startActivity(intent);
-                    finish();
+                    if (getIntent().getExtras() != null) {
+                        for (String key : getIntent().getExtras().keySet()) {
+                            String value = getIntent().getExtras().getString(key);
+                            if (value.contains("medlabs")) {
+                                Check = true;
+                            }
+                        }
+                        if (Check) {
+                            Intent intent = new Intent(Splash.this, MainActivity.class);
+                            startActivity(intent);
+                            finish();
+                        } else {
+                            Intent intent = new Intent(Splash.this, MainActivity.class);
+                            intent.putExtra("Notification", "no");
+                            startActivity(intent);
+                            finish();
+                        }
+                    } else {
+                        Intent intent = new Intent(Splash.this, MainActivity.class);
+                        intent.putExtra("Notification", "no");
+                        startActivity(intent);
+                        finish();
+                    }
                 }
             }, 2000);
 

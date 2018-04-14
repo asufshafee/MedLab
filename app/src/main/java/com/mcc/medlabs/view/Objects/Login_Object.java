@@ -90,7 +90,7 @@ public class Login_Object implements Serializable {
         this.Patients = Patients;
     }
 
-    public static class PatientsObject {
+    public static class PatientsObject implements Serializable {
         /**
          * FileNo : 20154030411;1845909
          * P_Name : ايات تيسير محمود الجابري

@@ -11,6 +11,7 @@
     <RelativeLayout
         android:id="@+id/StartSearch"
         android:layout_width="match_parent"
+        android:layout_marginBottom="@dimen/_10sdp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/_40sdp"
         android:layout_marginStart="@dimen/_40sdp"

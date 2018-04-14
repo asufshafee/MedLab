@@ -13,7 +13,10 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
@@ -21,6 +24,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -58,6 +62,7 @@ import com.mcc.medlabs.view.Utils.AppUtils;
 import com.mcc.medlabs.view.Utils.GPSTracker;
 import com.medialablk.easytoast.EasyToast;
 
+import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
@@ -75,6 +80,8 @@ public class Lab_Locations_Map extends Fragment implements OnMapReadyCallback, G
     GPSTracker gpsTracker;
     private HashMap<Marker, Integer> mHashMapLabs = new HashMap<Marker, Integer>();
     private HashMap<Marker, String> mHashMapStore = new HashMap<Marker, String>();
+    private HashMap<Marker, Locations_on_Map.BranchObObject> markerLabs = new HashMap<Marker, Locations_on_Map.BranchObObject>();
+
     Dialog Progress;
 
     public Lab_Locations_Map() {
@@ -155,7 +162,6 @@ public class Lab_Locations_Map extends Fragment implements OnMapReadyCallback, G
             public boolean onMarkerClick(Marker marker) {
                 String medicalCentersObject = (String) marker.getTag();
                 if (medicalCentersObject != null && medicalCentersObject.equals("medical")) {
-                    OpenDirections(marker);
                     marker.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.medical_pin));
 
                 } else {
@@ -164,6 +170,47 @@ public class Lab_Locations_Map extends Fragment implements OnMapReadyCallback, G
 
                 lastClicked = marker;
                 return false;
+            }
+        });
+
+
+        googleMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+            @Override
+            public void onInfoWindowClick(Marker marker) {
+
+                String medicalCentersObject = (String) marker.getTag();
+                if (medicalCentersObject != null && medicalCentersObject.equals("medical")) {
+                    OpenDirections(marker);
+                    marker.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.medical_pin));
+
+                } else {
+                    try {
+                        Locations_on_Map.BranchObObject place = markerLabs.get(marker);
+
+
+                        Fragment fragment = null;
+                        Class fragmentClass = null;
+
+                        fragmentClass = Lab_Locations_Details.class;
+                        try {
+                            fragment = (Fragment) fragmentClass.newInstance();
+                            Bundle bundle = new Bundle();
+                            bundle.putSerializable("Branch", place);
+                            fragment.setArguments(bundle);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                        FragmentManager fragmentManager = ((AppCompatActivity) getActivity()).getSupportFragmentManager();
+                        fragmentManager.beginTransaction().replace(R.id.container, fragment, "Lab_Locations_Details").setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).addToBackStack(null).commit();
+
+
+                    } catch (Exception Ex) {
+
+                    }
+
+                }
+
+
             }
         });
 
@@ -366,6 +413,7 @@ public class Lab_Locations_Map extends Fragment implements OnMapReadyCallback, G
 
     public void AddMarker() {
 
+
         for (Locations_on_Map.MedicalCentersObject branchObObject : LocationsALL.getMedicalCenters()) {
             Marker marker = googleMap.addMarker(new MarkerOptions()
                     .icon(BitmapDescriptorFactory.fromResource(R.drawable.medical_pin))
@@ -376,17 +424,32 @@ public class Lab_Locations_Map extends Fragment implements OnMapReadyCallback, G
             else marker.setTitle(branchObObject.getBranchAr());
             marker.setTag("medical");
             mHashMapStore.put(marker, marker.getId());
+
         }
 
 
         for (Locations_on_Map.BranchObObject branchObObject : LocationsALL.getBranchOb()) {
 
-            Marker marker = googleMap.addMarker(new MarkerOptions()
-                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.lab_pin))
-                    .position(new LatLng(Double.parseDouble(branchObObject.getLatitude()), Double.parseDouble(branchObObject.getLongitude()))));
-            if (myApplication.GetLanguage().equals("en"))
-                marker.setTitle(branchObObject.getBranch());
-            else marker.setTitle(branchObObject.getBranchAr());
+            Boolean Check = true;
+            for (Locations_on_Map.MedicalCentersObject branchObObjectTst : LocationsALL.getMedicalCenters()) {
+
+                if (branchObObjectTst.getLatitude().equals(branchObObject.getLatitude())) {
+                    if (branchObObjectTst.getLongitude().equals(branchObObject.getLongitude()))
+                        Check = false;
+                }
+            }
+
+            if (Check) {
+                Marker marker1 = googleMap.addMarker(new MarkerOptions()
+                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.lab_pin))
+                        .position(new LatLng(Double.parseDouble(branchObObject.getLatitude()), Double.parseDouble(branchObObject.getLongitude()))));
+                if (myApplication.GetLanguage().equals("en"))
+                    marker1.setTitle(branchObObject.getBranch());
+                else marker1.setTitle(branchObObject.getBranchAr());
+                markerLabs.put(marker1, branchObObject);
+            }
+
+
         }
 
     }

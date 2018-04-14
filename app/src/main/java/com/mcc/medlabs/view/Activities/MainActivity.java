@@ -118,6 +118,16 @@ public class MainActivity extends AppCompatActivity {
         });
         Back();
         Refresh();
+
+
+        if (getIntent().getStringExtra("Notification") != null && getIntent().getStringExtra("Notification").equals("no")) {
+
+        } else {
+            if (myApplication.GetLanguage().equals("en"))
+                ShowFragment(new Notifications(), "Notifications");
+            else
+                ShowFragment(new Notifications(), getResources().getString(R.string.Notification));
+        }
     }
 
     public void More(View view) {

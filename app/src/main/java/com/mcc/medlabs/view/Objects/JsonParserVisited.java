@@ -79,7 +79,7 @@ public class JsonParserVisited implements Serializable {
         this.userId = userId;
     }
 
-    public static class DeviceObject {
+    public static class DeviceObject implements Serializable {
         /**
          * Platform : String content
          * Resolution : String content

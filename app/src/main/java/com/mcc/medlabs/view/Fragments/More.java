@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.mcc.medlabs.view.Session.GlobalActions;
+import com.mcc.medlabs.view.Session.SharedPrefrenceKeys;
 import com.medialablk.easytoast.EasyToast;
 import com.mcc.medlabs.view.Activities.Help_Screen;
 import com.mcc.medlabs.view.Activities.MainActivity;
@@ -99,7 +101,7 @@ public class More extends Fragment {
                         // do stuff
                         RemoveTint(ManageIcon, ManageName);
                     }
-                }, 1000);
+                }, 100);
             }
         });
 
@@ -121,16 +123,21 @@ public class More extends Fragment {
                     public void run() {
                         // do stuff
                         RemoveTint(LogoutIcon, LogoutName);
-                        if (myApplication.isLoggedIn())
+
+                        if (GlobalActions.getDataToSharedPrefrences(SharedPrefrenceKeys.PUSH_ENABLED, getActivity()).equals("true")) {
                             EasyToast.success(getActivity(), getString(R.string.success));
-                        else {
-                            EasyToast.success(getActivity(), getString(R.string.you_are_not_login));
+                            GlobalActions.saveDataToSharedPrefrences(SharedPrefrenceKeys.PUSH_ENABLED, "false", getActivity());
+
+                        } else {
+                            EasyToast.error(getActivity(), getString(R.string.you_are_not_login));
+                            GlobalActions.saveDataToSharedPrefrences(SharedPrefrenceKeys.PUSH_ENABLED, "false", getActivity());
 
                         }
+
                         Refresh();
 
                     }
-                }, 1000);
+                }, 100);
             }
         });
 
@@ -158,7 +165,7 @@ public class More extends Fragment {
                         // do stuff
                         RemoveTint(SettingsIcon, SettingsName);
                     }
-                }, 1000);
+                }, 100);
 
             }
         });
@@ -190,7 +197,7 @@ public class More extends Fragment {
                         // do stuff
                         RemoveTint(TestIcon, TestName);
                     }
-                }, 1000);
+                }, 100);
             }
         });
 

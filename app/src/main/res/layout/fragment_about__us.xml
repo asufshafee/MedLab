@@ -8,27 +8,50 @@
     android:paddingStart="@dimen/_12sdp"
     tools:context="com.mcc.medlabs.view.Fragments.About_Us">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_30sdp"
-        android:gravity="center">
+        android:layout_height="match_parent"
+        android:scrollbars="vertical">
 
-        <ImageView
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:src="@drawable/logo_login" />
-    </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_15sdp"
-        android:gravity=""
-        android:paddingEnd="@dimen/_10sdp"
-        android:paddingStart="@dimen/_5sdp"
-        android:text="@string/ABOUT_MEDLABS"
-        android:textColor="#979ea4"
-        android:textSize="@dimen/_11sdp"
-        android:textStyle="bold" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_30sdp"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:src="@drawable/logo_login" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:gravity=""
+                android:paddingEnd="@dimen/_10sdp"
+                android:paddingStart="@dimen/_5sdp"
+                android:text="@string/ABOUT_MEDLABS"
+                android:textColor="#979ea4"
+                android:textSize="@dimen/_11sdp"
+                android:textStyle="bold" />
+
+
+            <ImageView
+                android:id="@+id/accreditations"
+                android:layout_width="wrap_content"
+                android:layout_height="70dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:background="@drawable/accreditations_for_website" />
+
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

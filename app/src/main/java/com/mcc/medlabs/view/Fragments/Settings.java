@@ -12,6 +12,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SwitchCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,9 +43,9 @@ public class Settings extends Fragment {
         // Required empty public constructor
     }
 
-    Switch Notification;
+    SwitchCompat Notification;
     MyApplication myApplication;
-    TextView NotificationName, AboutName, TermsName, languageName;
+    TextView NotificationName, AboutName, TermsName, languageName, DeveloperName;
 
 
     @Override
@@ -56,6 +57,7 @@ public class Settings extends Fragment {
         AboutName = (TextView) view.findViewById(R.id.AboutName);
         TermsName = (TextView) view.findViewById(R.id.TermsName);
         languageName = (TextView) view.findViewById(R.id.LanguageName);
+        DeveloperName = (TextView) view.findViewById(R.id.DeveloperName);
         myApplication = (MyApplication) getActivity().getApplicationContext();
 
 
@@ -73,7 +75,7 @@ public class Settings extends Fragment {
         }
         ((MainActivity) getActivity()).ShowBack_toolbar();
 
-        Notification = (Switch) view.findViewById(R.id.Notification);
+        Notification = (SwitchCompat) view.findViewById(R.id.Notification);
 
         Notification.setChecked(myApplication.isNotificationIn());
         Notification.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -134,6 +136,38 @@ public class Settings extends Fragment {
                 Class fragmentClass = null;
 
                 fragmentClass = About_Us.class;
+                try {
+                    fragment = (Fragment) fragmentClass.newInstance();
+                    Bundle bundle = new Bundle();
+                    fragment.setArguments(bundle);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                FragmentManager fragmentManager = ((AppCompatActivity) getActivity()).getSupportFragmentManager();
+                fragmentManager.beginTransaction().replace(R.id.container, fragment, "About Us").setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).addToBackStack(null).commit();
+
+
+            }
+        });
+
+        view.findViewById(R.id.Developer).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                DeveloperName.setTextColor(getActivity().getResources().getColor(R.color.red));
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        // do stuff
+                        DeveloperName.setTextColor(getActivity().getResources().getColor(R.color.textColor));
+
+                    }
+                }, 1000);
+                Fragment fragment = null;
+                Class fragmentClass = null;
+
+                fragmentClass = About_Developers.class;
                 try {
                     fragment = (Fragment) fragmentClass.newInstance();
                     Bundle bundle = new Bundle();

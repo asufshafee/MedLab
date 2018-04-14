@@ -70,7 +70,6 @@
                     android:lines="1"
                     android:maxLines="1"
                     android:paddingStart="@dimen/_5sdp"
-                    android:text="Zahran Central laboratory"
                     android:textColor="#b8332e"
                     android:textSize="@dimen/_13sdp"
                     android:textStyle="bold" />
@@ -134,7 +133,6 @@
                             android:maxLines="2"
                             android:paddingEnd="@dimen/_10sdp"
                             android:paddingStart="@dimen/_7sdp"
-                            android:text="3rd Circle, lbn khaldoun Street, Beside Al Khalidi Hospital, Building No. 35"
                             android:textColor="#979ea4"
                             android:textSize="@dimen/_9sdp"
                             android:textStyle="bold" />
@@ -218,7 +216,6 @@
                             android:paddingEnd="@dimen/_10sdp"
                             android:paddingStart="@dimen/_7sdp"
                             android:paddingTop="@dimen/_2sdp"
-                            android:text="087 78234872368"
                             android:textColor="#979ea4"
                             android:textSize="@dimen/_9sdp"
                             android:textStyle="bold" />

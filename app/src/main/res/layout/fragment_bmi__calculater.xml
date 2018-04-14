@@ -11,7 +11,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scrollbarThumbVertical="@null"
+        android:scrollbarSize="0dp"
         android:scrollbars="vertical">
 
         <LinearLayout

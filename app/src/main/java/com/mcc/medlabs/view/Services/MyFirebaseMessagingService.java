@@ -46,7 +46,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         Log.e(MedlabsConstants.TAG, "is push Enabled :" + GlobalActions.getDataToSharedPrefrences(SharedPrefrenceKeys.PUSH_ENABLED, getApplicationContext()));
 
         GlobalActions.getDataToSharedPrefrences(SharedPrefrenceKeys.PUSH_ENABLED, getApplicationContext());
-
+        MedlabsConstants.NOTIFICATION_COUNT = String.valueOf(1);
         if (GlobalActions.getDataToSharedPrefrences(SharedPrefrenceKeys.PUSH_ENABLED, getApplicationContext()).equals("true")) {
             Log.i(TAG, "Received message");
             String type = remoteMessage.getMessageType();
@@ -128,8 +128,8 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         NotificationCompat.Builder notificationBuilder =
                 new NotificationCompat.Builder(this, channelId)
-                        .setSmallIcon(R.mipmap.ic_launcher)
-                        .setContentTitle("GenCart")
+                        .setSmallIcon(R.drawable.ic_launcher)
+                        .setContentTitle("Medlabs")
                         .setContentText(messageBody)
                         .setAutoCancel(true)
                         .setSound(defaultSoundUri)
@@ -148,6 +148,4 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
         notificationManager.notify(0 /* ID of notification */, notificationBuilder.build());
     }
-
-
 }

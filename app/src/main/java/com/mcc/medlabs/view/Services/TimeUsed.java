@@ -54,7 +54,13 @@ public class TimeUsed extends Service {
             } else if (intent.getAction().equals(Intent.ACTION_SCREEN_OFF)) {
                 Log.i("[BroadcastReceiver]", "Screen OFF");
 
-                Calculate();
+                try {
+                    Calculate();
+
+                } catch (Exception Ex) {
+
+                }
+
 
             }
 
@@ -69,21 +75,32 @@ public class TimeUsed extends Service {
             long totalTime = Oftime - Ontime;
             long seconds = TimeUnit.MILLISECONDS.toSeconds(totalTime);
 
+            //to mentain difference
+            seconds++;
+            seconds++;
+            seconds++;
 
             DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
             String date = df.format(Calendar.getInstance().getTime());
+            Log.i("[BroadcastReceiver]", date);
+            Log.i("[BroadcastReceiver]", MyApplication.getGLASSDate());
+
             if (MyApplication.getGLASSDate().equals("")) {
 //                    Glass = 0;
                 MyApplication.setGLASSDate(date);
-                MyApplication.setyesterdaytime(seconds);
+                MyApplication.setyesterdaytime((long) 0);
             } else {
 
-                if (MyApplication.getGLASSDate().equals(date)) {
+                if (MyApplication.getGLASSDate().trim().contains(date.trim())) {
                     MyApplication.setSECONDS(seconds);
+                    Log.i("[BroadcastReceiver]", "SAME DATE");
                 } else {
-                    MyApplication.setSECONDS(0);
+
                     MyApplication.setyesterdaytime(seconds);
+                    MyApplication.setSECONDS(0);
                     MyApplication.setGLASSDate(date);
+                    Log.i("[BroadcastReceiver]", "Change");
+
                 }
             }
             Log.i("[BroadcastReceiver]", "Screen OFF" + String.valueOf(seconds));
@@ -101,14 +118,15 @@ public class TimeUsed extends Service {
             if (MyApplication.getGLASSDate().equals("")) {
 //                    Glass = 0;
                 MyApplication.setGLASSDate(date);
-                MyApplication.setyesterdaytime(seconds);
+                MyApplication.setyesterdaytime((long) 0);
             } else {
 
                 if (MyApplication.getGLASSDate().equals(date)) {
                     MyApplication.setSECONDS(seconds);
                 } else {
-                    MyApplication.setSECONDS(0);
+
                     MyApplication.setyesterdaytime(seconds);
+                    MyApplication.setSECONDS(0);
                     MyApplication.setGLASSDate(date);
                 }
             }
@@ -123,12 +141,7 @@ public class TimeUsed extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        try {
-            if (intent != null) {
-                //......
-            }
-        } catch (Throwable e) {
-        }
+
         return START_STICKY;
     }
 
@@ -156,7 +169,7 @@ public class TimeUsed extends Service {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        myService = new Intent(getApplicationContext(), TimeUsed.class);
+        myService = new Intent(TimeUsed.this, TimeUsed.class);
         mTimer.scheduleAtFixedRate(new TimeDisplay(), 1000, notify);   //Schedule task
 
     }
@@ -165,7 +178,7 @@ public class TimeUsed extends Service {
     public void onDestroy() {
         super.onDestroy();
         mTimer.cancel();    //For Cancel Timer
-        startService(new Intent(getApplicationContext(), TimeUsed.class));
+        startService(new Intent(TimeUsed.this, TimeUsed.class));
 
     }
 
@@ -180,7 +193,12 @@ public class TimeUsed extends Service {
                 @Override
                 public void run() {
 
-                    Calculate();
+                    try {
+                        Calculate();
+
+                    } catch (Exception Ex) {
+
+                    }
 
                     Log.i("[BroadcastReceiver]", "Screen OFF" + getDurationString(Integer.parseInt(String.valueOf(MyApplication.getSECONDS()))));
                 }

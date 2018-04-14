@@ -172,20 +172,29 @@ public class MyApplication extends Application {
     }
 
     public static void setSECONDS(long Seconds) {
-        long total = getSECONDS() + Seconds;
-        editorMedLabsTimeUsed.putLong("Secondsfortimeused", total);
-        editorMedLabsTimeUsed.apply();
-        editorMedLabsTimeUsed.commit();
+        if (Seconds == 0) {
+            editorMedLabsTimeUsed.putLong("Secondsfortimeused", Seconds);
+            editorMedLabsTimeUsed.apply();
+            editorMedLabsTimeUsed.commit();
+        } else {
+            long total = getSECONDS() + Seconds;
+            editorMedLabsTimeUsed.putLong("Secondsfortimeused", total);
+            editorMedLabsTimeUsed.apply();
+            editorMedLabsTimeUsed.commit();
+        }
+
     }
 
 
     public static long getYesterdaytime() {
-        return sharedPreferences.getLong("Yesterdaytime", 0);
+        return sharedPreferencesMedLabsTimeUsed.getLong("Yesterdaytime", 0);
+
     }
 
     public static void setyesterdaytime(Long Seconds) {
-        editor.putLong("Yesterdaytime", Seconds);
-        editor.apply();
+        editorMedLabsTimeUsed.putLong("Yesterdaytime", getSECONDS());
+        editorMedLabsTimeUsed.apply();
+        editorMedLabsTimeUsed.commit();
     }
 
     public static String getGLASSDate() {
