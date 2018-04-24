@@ -19,17 +19,16 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.widget.CompoundButton;
 import android.widget.RadioButton;
-import android.widget.Switch;
 import android.widget.TextView;
 
 import com.labo.kaji.fragmentanimations.CubeAnimation;
-import com.mcc.medlabs.view.Session.GlobalActions;
-import com.mcc.medlabs.view.Session.SharedPrefrenceKeys;
-import com.medialablk.easytoast.EasyToast;
 import com.mcc.medlabs.view.Activities.MainActivity;
 import com.mcc.medlabs.view.Activities.Splash;
 import com.mcc.medlabs.view.R;
+import com.mcc.medlabs.view.Session.GlobalActions;
 import com.mcc.medlabs.view.Session.MyApplication;
+import com.mcc.medlabs.view.Session.SharedPrefrenceKeys;
+import com.medialablk.easytoast.EasyToast;
 
 import java.util.Locale;
 
@@ -115,6 +114,21 @@ public class Settings extends Fragment {
 
                     }
                 }, 1000);
+
+                Fragment fragment = null;
+                Class fragmentClass = null;
+
+                fragmentClass = Terms_and_Conditions.class;
+                try {
+                    fragment = (Fragment) fragmentClass.newInstance();
+                    Bundle bundle = new Bundle();
+                    fragment.setArguments(bundle);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                FragmentManager fragmentManager = ((AppCompatActivity) getActivity()).getSupportFragmentManager();
+                fragmentManager.beginTransaction().replace(R.id.container, fragment, getString(R.string.terms_and_conditions)).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).addToBackStack(null).commit();
+
 
             }
         });

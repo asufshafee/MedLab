@@ -47,6 +47,7 @@
                 android:paddingRight="@dimen/_10sdp">
 
                 <TextView
+                    android:id="@+id/TipName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignTop="@+id/Heading"
@@ -57,12 +58,14 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/Heading"
+                    android:id="@+id/TipDetails"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:layout_marginBottom="@dimen/_15sdp"
                     android:gravity="center"
+                    android:lines="2"
+                    android:maxLines="2"
                     android:text="@string/heading_hints"
                     android:textColor="@android:color/white"
                     android:textSize="@dimen/_12sdp" />

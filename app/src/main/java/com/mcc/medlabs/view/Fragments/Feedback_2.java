@@ -143,7 +143,7 @@ public class Feedback_2 extends Fragment {
                             EasyToast.success(getActivity(), "Thanks for you Feedback");
 
                         } else {
-                            EasyToast.success(getActivity(), "شكرا لك ردود الفعل");
+                            EasyToast.success(getActivity(), "شكرا للتقييم");
 
                         }
                         ((MainActivity) getActivity()).getSupportFragmentManager().popBackStack();
@@ -157,13 +157,17 @@ public class Feedback_2 extends Fragment {
                     new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError error) {
-                            Progress.dismiss();
-                            if (AppUtils.isNetworkAvailable(getActivity())) {
-                                EasyToast.error(getActivity(), getString(R.string.NO_INTERNET_CONNECTION));
-                            } else {
-                                EasyToast.error(getActivity(), getString(R.string.something_went_wrong));
-                            }
+                            try {
+                                Progress.dismiss();
+                                if (AppUtils.isNetworkAvailable(getActivity())) {
+                                    EasyToast.error(getActivity(), getString(R.string.NO_INTERNET_CONNECTION));
+                                } else {
+                                    EasyToast.error(getActivity(), getString(R.string.something_went_wrong));
+                                }
 
+                            } catch (Exception Ex) {
+
+                            }
                             if (error instanceof TimeoutError || error instanceof NoConnectionError) {
                             } else if (error instanceof AuthFailureError) {
                             } else if (error instanceof ServerError) {

@@ -1,20 +1,38 @@
 package com.mcc.medlabs.view.Fragments;
 
 
+import android.app.AppOpsManager;
+import android.app.Dialog;
+import android.content.Context;
+import android.content.Intent;
+import android.content.res.Configuration;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.provider.*;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.labo.kaji.fragmentanimations.CubeAnimation;
 import com.mcc.medlabs.view.Activities.MainActivity;
+import com.mcc.medlabs.view.Activities.Splash;
+import com.mcc.medlabs.view.Objects.DataManager;
 import com.mcc.medlabs.view.R;
 import com.mcc.medlabs.view.Session.MyApplication;
+import com.medialablk.easytoast.EasyToast;
+
+import java.util.Locale;
+
+import static com.mcc.medlabs.view.Fragments.AppHelper.initAppHelper;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -87,19 +105,21 @@ public class Manage_My_Health extends Fragment {
             @Override
             public void onClick(View v) {
 
-                TintTime = true;
-                TintWater = false;
-                TintBMI = false;
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        // do stuff
-                        RemoveTint(TimeIcon, TimeName);
+                if (!MyApplication.isTimeUsedPermission()) {
 
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        fillStats();
+                    } else {
+                        EasyToast.info(getActivity(), "Device Not Supported");
                     }
-                }, 1000);
-                ((MainActivity) getActivity()).ChangeTintColors(TimeIcon, TimeName, new Time_Used(), getString(R.string.time_used));
+
+                } else {
+
+                    TimeUsageDialog();
+
+                }
                 Refresh();
+
             }
         });
         view.findViewById(R.id.BMI).setOnClickListener(new View.OnClickListener() {
@@ -157,4 +177,95 @@ public class Manage_My_Health extends Fragment {
         imageView.setColorFilter(getResources().getColor(R.color.textColor), android.graphics.PorterDuff.Mode.MULTIPLY);
         textView.setTextColor(getActivity().getResources().getColor(R.color.textColor));
     }
+
+
+    public void TimeUsageDialog() {
+        final Dialog dialog = new Dialog(getActivity());
+        // inflate the layout
+        dialog.setContentView(R.layout.dialog_box_permission);
+        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogTheme;
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+
+        dialog.findViewById(R.id.Allow).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    fillStats();
+                } else {
+                    EasyToast.info(getActivity(), "Device Not Supported");
+                }
+
+                dialog.dismiss();
+
+            }
+        });
+        dialog.findViewById(R.id.Deny).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
+    }
+
+    private void fillStats() {
+        if (hasPermission()) {
+            initAppHelper(getActivity());
+            process();
+        } else {
+            requestPermission();
+
+        }
+    }
+
+    private void process() {
+        if (DataManager.getInstance().hasPermission(getActivity())) {
+
+            TintTime = true;
+            TintWater = false;
+            TintBMI = false;
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    // do stuff
+                    RemoveTint(TimeIcon, TimeName);
+
+                }
+            }, 500);
+            ((MainActivity) getActivity()).ChangeTintColors(TimeIcon, TimeName, new Time_Used(), getString(R.string.time_used));
+
+        }
+    }
+
+    private void requestPermission() {
+        Intent intent = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+            intent = new Intent(android.provider.Settings.ACTION_USAGE_ACCESS_SETTINGS);
+        }
+        startActivityForResult(intent, MY_PERMISSIONS_REQUEST_PACKAGE_USAGE_STATS);
+    }
+
+    private static final int MY_PERMISSIONS_REQUEST_PACKAGE_USAGE_STATS = 100;
+
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode) {
+            case MY_PERMISSIONS_REQUEST_PACKAGE_USAGE_STATS:
+                fillStats();
+                break;
+        }
+    }
+
+
+    private boolean hasPermission() {
+        AppOpsManager appOps = (AppOpsManager)
+                getActivity().getSystemService(Context.APP_OPS_SERVICE);
+        int mode = appOps.checkOpNoThrow(AppOpsManager.OPSTR_GET_USAGE_STATS,
+                android.os.Process.myUid(), getActivity().getPackageName());
+        return mode == AppOpsManager.MODE_ALLOWED;
+    }
+
 }

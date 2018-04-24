@@ -8,8 +8,10 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
+import android.os.Build;
 import android.os.Handler;
 import android.preference.PreferenceManager;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -21,6 +23,7 @@ import android.widget.Toast;
 
 import com.mcc.medlabs.view.DatabasePart.MedlabsDelegate;
 import com.mcc.medlabs.view.R;
+import com.mcc.medlabs.view.Services.Constants;
 import com.mcc.medlabs.view.Services.TimeUsed;
 import com.mcc.medlabs.view.Session.GlobalActions;
 import com.mcc.medlabs.view.Session.MedlabsConstants;
@@ -30,13 +33,17 @@ import com.mcc.medlabs.view.Session.SharedPrefrenceKeys;
 import java.io.IOException;
 import java.util.Locale;
 
+
 public class Splash extends AppCompatActivity {
 
     MyApplication myApplication;
     private MedlabsDelegate delegate;
     Boolean Check = false;
+    private android.text.format.Time mTime;
 
+    SharedPreferences pref;
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,11 +51,7 @@ public class Splash extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_splash);
 
-
-        Intent intent = new Intent(getApplicationContext(), TimeUsed.class);
-        if (!isMyServiceRunning(TimeUsed.class))
-            startService(intent);
-
+        pref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         String user_id_value = preferences.getString(SharedPrefrenceKeys.USER_ID, "");
@@ -100,12 +103,28 @@ public class Splash extends AppCompatActivity {
                             , android.Manifest.permission.CALL_PHONE
                             , android.Manifest.permission.ACCESS_FINE_LOCATION
                             , android.Manifest.permission.ACCESS_COARSE_LOCATION
+                            , android.Manifest.permission.PACKAGE_USAGE_STATS
+
                     }, 1);
         } else {
 
             myApplication = (MyApplication) getApplicationContext();
             MyApplication.RESOLUATION = getResoluation();
             MedlabsConstants.RESOLUATION = getResoluation();
+
+
+            Intent intent = new Intent(getApplicationContext(), TimeUsed.class);
+            if (!isMyServiceRunning(TimeUsed.class)) {
+                mTime = new android.text.format.Time(android.text.format.Time.getCurrentTimezone());
+                mTime.setToNow();
+                int numUnlock = pref.getInt(Constants.PREF_NUM_UNLOCK, 0);
+                pref.edit()
+                        .putInt(Constants.PREF_NUM_UNLOCK, ++numUnlock)
+                        .putLong(Constants.PREF_LAST_UNLOCK_TIME_MS, mTime.toMillis(false))
+                        .commit();
+//                startService(intent);
+
+            }
 
             new Handler().postDelayed(new Runnable() {
                 @Override
@@ -186,6 +205,19 @@ public class Splash extends AppCompatActivity {
         if (requestCode == 1) {
             myApplication = (MyApplication) getApplicationContext();
             myApplication.RESOLUATION = getResoluation();
+
+            Intent intent = new Intent(getApplicationContext(), TimeUsed.class);
+            if (!isMyServiceRunning(TimeUsed.class)) {
+                mTime = new android.text.format.Time(android.text.format.Time.getCurrentTimezone());
+                mTime.setToNow();
+                int numUnlock = pref.getInt(Constants.PREF_NUM_UNLOCK, 0);
+                pref.edit()
+                        .putInt(Constants.PREF_NUM_UNLOCK, ++numUnlock)
+                        .putLong(Constants.PREF_LAST_UNLOCK_TIME_MS, mTime.toMillis(false))
+                        .commit();
+//                startService(intent);
+
+            }
 
             new Handler().postDelayed(new Runnable() {
                 @Override

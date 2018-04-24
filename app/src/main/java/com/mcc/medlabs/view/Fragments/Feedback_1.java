@@ -13,8 +13,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
-import android.widget.RatingBar;
-import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -31,11 +29,11 @@ import com.android.volley.error.VolleyError;
 import com.android.volley.request.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.labo.kaji.fragmentanimations.CubeAnimation;
-import com.medialablk.easytoast.EasyToast;
 import com.mcc.medlabs.view.Activities.MainActivity;
 import com.mcc.medlabs.view.R;
 import com.mcc.medlabs.view.Session.MyApplication;
 import com.mcc.medlabs.view.Utils.AppUtils;
+import com.medialablk.easytoast.EasyToast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -305,13 +303,17 @@ public class Feedback_1 extends Fragment {
                     new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError error) {
-                            Progress.dismiss();
-                            if (AppUtils.isNetworkAvailable(getActivity())) {
-                                EasyToast.error(getActivity(), getString(R.string.NO_INTERNET_CONNECTION));
-                            } else {
-                                EasyToast.error(getActivity(), getString(R.string.something_went_wrong));
-                            }
+                            try {
+                                Progress.dismiss();
+                                if (AppUtils.isNetworkAvailable(getActivity())) {
+                                    EasyToast.error(getActivity(), getString(R.string.NO_INTERNET_CONNECTION));
+                                } else {
+                                    EasyToast.error(getActivity(), getString(R.string.something_went_wrong));
+                                }
 
+                            } catch (Exception Ex) {
+
+                            }
                             if (error instanceof TimeoutError || error instanceof NoConnectionError) {
                             } else if (error instanceof AuthFailureError) {
                             } else if (error instanceof ServerError) {

@@ -6,11 +6,11 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.mcc.medlabs.view.Activities.MainActivity;
 import com.mcc.medlabs.view.R;
 import com.mcc.medlabs.view.Session.MyApplication;
-import com.mcc.medlabs.view.Utils.AppUtils;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,6 +23,7 @@ public class Home extends Fragment {
     }
 
     MyApplication myApplication;
+    public static TextView Name, Details;
 
 
     @Override
@@ -31,7 +32,16 @@ public class Home extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         myApplication = (MyApplication) getActivity().getApplicationContext();
-        ((MainActivity)getActivity()).GetNotifications();
+
+        Name = view.findViewById(R.id.TipName);
+        Details = view.findViewById(R.id.TipDetails);
+        if (!MainActivity.TipName.equals("")) {
+            Name.setText(MainActivity.TipName);
+            Details.setText(MainActivity.TipDetails);
+
+        }
+
+        ((MainActivity) getActivity()).GetNotifications();
         if (myApplication.GetLanguage().equals("en"))
             ((MainActivity) getActivity()).Change_Tittle("HOME PAGE");
         else {

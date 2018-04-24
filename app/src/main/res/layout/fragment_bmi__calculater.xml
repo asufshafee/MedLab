@@ -65,6 +65,8 @@
                         android:textSize="@dimen/_23sdp"
                         android:layout_height="wrap_content"
                         android:background="@color/colorPrimary"
+                        android:maxLength="3"
+                        android:text=""
                         android:gravity="center" />
 
                     <ImageView
@@ -117,6 +119,7 @@
                         android:textSize="@dimen/_23sdp"
                         android:layout_height="wrap_content"
                         android:background="@color/colorPrimary"
+                        android:maxLength="3"
                         android:gravity="center" />
 
                     <ImageView
@@ -168,6 +171,7 @@
                         android:textColor="@color/red"
                         android:textSize="@dimen/_23sdp"                        android:layout_height="wrap_content"
                         android:background="@color/colorPrimary"
+                        android:maxLength="3"
                         android:gravity="center" />
 
                     <ImageView

@@ -157,20 +157,25 @@ public class Notifications extends Fragment {
                 recycle.setLayoutManager(linearLayoutManager);
                 recycle.setItemAnimator(new DefaultItemAnimator());
                 recycle.setAdapter(Adapter);
-
+                GlobalActions.saveDataToSharedPrefrences(SharedPrefrenceKeys.LAST_NOTIFICATION_ID, List.get(0).getNid(), getActivity());
+                ((MainActivity) getActivity()).GetNotifications();
 
             }
         },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Progress.dismiss();
-                        if (AppUtils.isNetworkAvailable(getActivity())) {
-                            EasyToast.error(getActivity(), getString(R.string.NO_INTERNET_CONNECTION));
-                        } else {
-                            EasyToast.error(getActivity(), getString(R.string.something_went_wrong));
-                        }
+                        try {
+                            Progress.dismiss();
+                            if (AppUtils.isNetworkAvailable(getActivity())) {
+                                EasyToast.error(getActivity(), getString(R.string.NO_INTERNET_CONNECTION));
+                            } else {
+                                EasyToast.error(getActivity(), getString(R.string.something_went_wrong));
+                            }
 
+                        } catch (Exception Ex) {
+
+                        }
                         if (error instanceof TimeoutError || error instanceof NoConnectionError) {
                         } else if (error instanceof AuthFailureError) {
                         } else if (error instanceof ServerError) {

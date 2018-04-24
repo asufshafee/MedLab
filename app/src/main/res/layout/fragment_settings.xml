@@ -149,7 +149,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingStart="@dimen/_7sdp"
-                android:text="About Developers"
+                android:text="@string/about_developers"
                 android:textColor="@color/textColor"
                 android:textSize="@dimen/_13sdp" />
 

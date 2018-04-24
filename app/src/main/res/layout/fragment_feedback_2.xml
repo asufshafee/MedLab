@@ -150,7 +150,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:gravity="center"
-            android:text="Submit"
+            android:text="@string/house_call_submit"
             android:textColor="@android:color/white" />
     </RelativeLayout>
 </RelativeLayout>

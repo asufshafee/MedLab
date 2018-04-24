@@ -1,5 +1,8 @@
 package com.mcc.medlabs.view.Activities;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Handler;
@@ -10,6 +13,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -30,6 +35,7 @@ import com.android.volley.error.VolleyError;
 import com.android.volley.request.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
+import com.mcc.medlabs.view.Adapters.Tips_Adapter;
 import com.mcc.medlabs.view.Fragments.Home;
 import com.mcc.medlabs.view.Fragments.Labs_locations;
 import com.mcc.medlabs.view.Fragments.Login;
@@ -38,18 +44,28 @@ import com.mcc.medlabs.view.Fragments.Notifications;
 import com.mcc.medlabs.view.Fragments.Sehtak_Bill;
 import com.mcc.medlabs.view.Fragments.Test_Directory;
 import com.mcc.medlabs.view.Fragments.Test_Result_Screen;
+import com.mcc.medlabs.view.Fragments.Time_Used;
+import com.mcc.medlabs.view.Fragments.Water_Remainder;
+import com.mcc.medlabs.view.Objects.JsonParserLocation;
 import com.mcc.medlabs.view.Objects.SmsNotifications;
+import com.mcc.medlabs.view.Objects.Tips_Object;
 import com.mcc.medlabs.view.R;
+import com.mcc.medlabs.view.Services.AlarmReceiver;
 import com.mcc.medlabs.view.Session.GlobalActions;
 import com.mcc.medlabs.view.Session.MedlabsConstants;
 import com.mcc.medlabs.view.Session.MyApplication;
 import com.mcc.medlabs.view.Session.SharedPrefrenceKeys;
+import com.mcc.medlabs.view.Utils.AppUtils;
 import com.medialablk.easytoast.EasyToast;
 
 import java.io.UnsupportedEncodingException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -60,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
     ImageView bandage;
     ImageView Share;
     TextView Download;
+    Home HomeFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,8 +85,14 @@ public class MainActivity extends AppCompatActivity {
         StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
         StrictMode.setVmPolicy(builder.build());
 
-        Tittle_Back = (TextView) findViewById(R.id.Tittle_Back);
+        GetTips();
 
+        NotificationWater();
+        TimeUsedNotification();
+        HomeFragment = new Home();
+
+
+        Tittle_Back = (TextView) findViewById(R.id.Tittle_Back);
 
         HideToolbarWithBack();
         myApplication = (MyApplication) getApplicationContext();
@@ -119,15 +142,34 @@ public class MainActivity extends AppCompatActivity {
         Back();
         Refresh();
 
-
-        if (getIntent().getStringExtra("Notification") != null && getIntent().getStringExtra("Notification").equals("no")) {
-
-        } else {
+        if (getIntent().getStringExtra("Water") != null && getIntent().getStringExtra("Water").equals("Water")) {
             if (myApplication.GetLanguage().equals("en"))
-                ShowFragment(new Notifications(), "Notifications");
+                ShowFragment(new Water_Remainder(), "Water Remainder");
             else
-                ShowFragment(new Notifications(), getResources().getString(R.string.Notification));
+                ShowFragment(new Water_Remainder(), getResources().getString(R.string.water_remeinder));
+        } else if (getIntent().getStringExtra("Time") != null && getIntent().getStringExtra("Time").equals("Time")) {
+            if (myApplication.GetLanguage().equals("en"))
+                ShowFragment(new Time_Used(), "Time Used");
+            else
+                ShowFragment(new Time_Used(), getResources().getString(R.string.time_used));
+        } else {
+
+            if (getIntent().getStringExtra("Notification") != null && getIntent().getStringExtra("Notification").equals("no")) {
+
+            } else {
+                if (myApplication.GetLanguage().equals("en"))
+                    ShowFragment(new Notifications(), "Notifications");
+                else
+                    ShowFragment(new Notifications(), getResources().getString(R.string.Notification));
+            }
+
         }
+
+
+    }
+
+    public static long toMilliSeconds() {
+        return (long) (1 * 24 * 60 * 60 * 1000);
     }
 
     public void More(View view) {
@@ -187,9 +229,9 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     if (myApplication.GetLanguage().equals("en")) {
                         Change_Tittle("HOME PAGE");
-                        ShowTopFragment(new Home(), "HOME PAGE");
+                        ShowTopFragment(HomeFragment, "HOME PAGE");
                     } else {
-                        ShowTopFragment(new Home(), getResources().getString(R.string.HOEM_PAGE));
+                        ShowTopFragment(HomeFragment, getResources().getString(R.string.HOEM_PAGE));
                         Change_Tittle(getResources().getString(R.string.HOEM_PAGE));
                     }
 
@@ -197,9 +239,9 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 if (myApplication.GetLanguage().equals("en")) {
                     Change_Tittle("HOME PAGE");
-                    ShowTopFragment(new Home(), "HOME PAGE");
+                    ShowTopFragment(HomeFragment, "HOME PAGE");
                 } else {
-                    ShowTopFragment(new Home(), getResources().getString(R.string.HOEM_PAGE));
+                    ShowTopFragment(HomeFragment, getResources().getString(R.string.HOEM_PAGE));
                     Change_Tittle(getResources().getString(R.string.HOEM_PAGE));
                 }
 
@@ -567,6 +609,7 @@ public class MainActivity extends AppCompatActivity {
                         if (getCurrentFragment().getTag().equals("More") || getCurrentFragment().getTag().equals("Labs Locations") || getCurrentFragment().getTag().equals("MedLabs") || getCurrentFragment().getTag().equals("SEHTAK BIL DENIA") || getCurrentFragment().getTag().equals("HOME PAGE") || getCurrentFragment().getTag().equals("Test Results")) {
                             if (getSupportFragmentManager().getBackStackEntryCount() == 2)
                                 HideToolbarWithBack();
+                            GetNotifications();
                         }
                     }
                 } else {
@@ -757,4 +800,164 @@ public class MainActivity extends AppCompatActivity {
         requestQueue.add(stringRequest);
     }
 
+    private void TimeUsedNotification() {
+        Calendar cal = Calendar.getInstance();
+//        cal.add(Calendar.DATE, 1);        // add 5 minutes to the calendar object
+        cal.add(Calendar.MILLISECOND, 60000);
+        Intent intentNOtificaation = new Intent(getApplicationContext(), AlarmReceiver.class);
+        DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+        Log.d("TodayDate", "Today's date is " + dateFormat.format(cal.getTime()));
+        String Today = dateFormat.format(cal.getTime());
+        intentNOtificaation.putExtra("Water", "2");
+
+        // In reality, you would want to have a static variable for the request code instead of 192837
+        PendingIntent sender = PendingIntent.getBroadcast(getApplicationContext(), 192837, intentNOtificaation, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        // Get the AlarmManager service
+        AlarmManager am = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        // am.set(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), sender);
+        am.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), 60000 , sender);
+
+    }
+
+
+    private void NotificationWater() {
+
+        Calendar cal = Calendar.getInstance();
+        // add 5 minutes to the calendar object
+        cal.add(Calendar.MILLISECOND, 60000 * 60);
+        Intent intent = new Intent(MainActivity.this, AlarmReceiver.class);
+        intent.putExtra("Water", "1");
+        // In reality, you would want to have a static variable for the request code instead of 192837
+        PendingIntent sender = PendingIntent.getBroadcast(MainActivity.this, 1928237, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        // Get the AlarmManager service
+        AlarmManager am = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        // am.set(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), sender);
+        am.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), 60000 * 60, sender);
+
+    }
+
+    java.util.List<Tips_Object.TipsObObject> List;
+    public static String TipName = "", TipDetails = "";
+
+    private void GetTips() {
+
+        Gson gson = new Gson();
+        final JsonParserLocation jsonParserLocation = new JsonParserLocation();
+        JsonParserLocation.DeviceObject deviceObject = new JsonParserLocation.DeviceObject();
+        deviceObject.setPlatform("Android");
+        deviceObject.setResolution(myApplication.RESOLUATION);
+        deviceObject.setVersion(myApplication.APP_VERSION);
+        jsonParserLocation.setWSPassword("Medl@p$app17");
+        jsonParserLocation.setWSUsername("Medlabs");
+        jsonParserLocation.setUserId(Integer.parseInt(myApplication.USER_ID));
+        jsonParserLocation.setDevice(deviceObject);
+        jsonParserLocation.setPageIndex(1);
+        jsonParserLocation.setPageSize(1000);
+        final String request = gson.toJson(jsonParserLocation);
+
+        String Url = myApplication.GetTips;
+        StringRequest stringRequest = new StringRequest(Request.Method.POST,
+                Url, new Response.Listener<String>() {
+
+            @Override
+            public void onResponse(String response) {
+
+                if (response.contains("Success")) {
+
+                    Gson gson = new Gson();
+                    Tips_Object tips = new Tips_Object();
+                    tips = gson.fromJson(response, Tips_Object.class);
+                    List = tips.getTipsOb();
+
+                    Random rand = new Random();
+
+                    if (myApplication.GetLanguage().equals("en")) {
+                        TipName = List.get(rand.nextInt(List.size() - 1)).getTitle();
+                        try {
+                            TipDetails = List.get(List.size() - 1).getText().substring(0, 85) + " " + getString(R.string.more);
+
+                        } catch (Exception Ex) {
+                            TipDetails = List.get(List.size() - 1).getText() + " " + getString(R.string.more);
+                        }
+                    } else {
+                        TipName = List.get(List.size() - 1).getTitleAr();
+                        try {
+                            TipDetails = List.get(List.size() - 1).getTextAr().substring(0, 85) + " " + getString(R.string.more);
+                        } catch (Exception Ex) {
+                            TipDetails = List.get(List.size() - 1).getTextAr() + " " + getString(R.string.more);
+                        }
+                    }
+
+                    HomeFragment.Name.setText(TipName);
+                    HomeFragment.Details.setText(TipDetails);
+
+                } else {
+                    if (myApplication.GetLanguage().equals("en"))
+                        EasyToast.error(MainActivity.this, "Something Went Wrong!!");
+                    else
+                        EasyToast.error(MainActivity.this, " هناك خطأ ما");
+                }
+
+            }
+        },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                        if (AppUtils.isNetworkAvailable(MainActivity.this)) {
+                            EasyToast.error(MainActivity.this, getString(R.string.NO_INTERNET_CONNECTION));
+                        } else {
+                            EasyToast.error(MainActivity.this, getString(R.string.something_went_wrong));
+                        }
+
+                        if (error instanceof TimeoutError || error instanceof NoConnectionError) {
+                        } else if (error instanceof AuthFailureError) {
+                        } else if (error instanceof ServerError) {
+                        } else if (error instanceof NetworkError) {
+                        } else if (error instanceof ParseError) {
+                        }
+                    }
+                }) {
+            @Override
+            public Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> map = new HashMap<String, String>();
+                return map;
+            }
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+
+                Map<String, String> headers = new HashMap<>();
+                headers.put("Content-Type", "application/json");
+                return headers;
+            }
+
+
+            @Override
+            public byte[] getBody() throws AuthFailureError {
+                try {
+                    return request == null ? null : request.getBytes("utf-8");
+                } catch (UnsupportedEncodingException uee) {
+                    VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s", request, "utf-8");
+                    return null;
+                }
+            }
+
+
+            @Override
+            public String getBodyContentType() {
+                return "application/json";
+            }
+
+        };
+
+        stringRequest.setRetryPolicy(new DefaultRetryPolicy(5000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
+        RequestQueue requestQueue = Volley.newRequestQueue(MainActivity.this);
+        requestQueue.add(stringRequest);
+    }
 }

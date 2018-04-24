@@ -13,20 +13,6 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.EditText;
 
-import com.google.gson.Gson;
-import com.medialablk.easytoast.EasyToast;
-import com.mcc.medlabs.view.Activities.MainActivity;
-import com.mcc.medlabs.view.Objects.JsonParserLogin;
-import com.mcc.medlabs.view.Objects.Login_Object;
-import com.mcc.medlabs.view.R;
-import com.mcc.medlabs.view.Session.GlobalActions;
-import com.mcc.medlabs.view.Session.MyApplication;
-import com.mcc.medlabs.view.Session.SharedPrefrenceKeys;
-
-import java.io.UnsupportedEncodingException;
-import java.util.HashMap;
-import java.util.Map;
-
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -41,7 +27,20 @@ import com.android.volley.error.TimeoutError;
 import com.android.volley.error.VolleyError;
 import com.android.volley.request.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.gson.Gson;
+import com.mcc.medlabs.view.Activities.MainActivity;
+import com.mcc.medlabs.view.Objects.JsonParserLogin;
+import com.mcc.medlabs.view.Objects.Login_Object;
+import com.mcc.medlabs.view.R;
+import com.mcc.medlabs.view.Session.GlobalActions;
+import com.mcc.medlabs.view.Session.MyApplication;
+import com.mcc.medlabs.view.Session.SharedPrefrenceKeys;
 import com.mcc.medlabs.view.Utils.AppUtils;
+import com.medialablk.easytoast.EasyToast;
+
+import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -90,6 +89,14 @@ public class Login extends Fragment {
 
             Username = (EditText) view.findViewById(R.id.Username);
             Password = (EditText) view.findViewById(R.id.Password);
+
+            if (myApplication.GetLanguage().equals("en")) {
+                Username.setTextDirection(EditText.TEXT_DIRECTION_LTR);
+                Password.setTextDirection(EditText.TEXT_DIRECTION_LTR);
+            }else{
+                Username.setTextDirection(EditText.TEXT_DIRECTION_RTL);
+                Password.setTextAlignment(EditText.TEXT_ALIGNMENT_VIEW_START);
+            }
 
             view.findViewById(R.id.Login).setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -183,13 +190,17 @@ public class Login extends Fragment {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Progress.dismiss();
-                        if (AppUtils.isNetworkAvailable(getActivity())) {
-                            EasyToast.error(getActivity(), getString(R.string.NO_INTERNET_CONNECTION));
-                        } else {
-                            EasyToast.error(getActivity(), getString(R.string.something_went_wrong));
-                        }
+                        try {
+                            Progress.dismiss();
+                            if (AppUtils.isNetworkAvailable(getActivity())) {
+                                EasyToast.error(getActivity(), getString(R.string.NO_INTERNET_CONNECTION));
+                            } else {
+                                EasyToast.error(getActivity(), getString(R.string.something_went_wrong));
+                            }
 
+                        } catch (Exception Ex) {
+
+                        }
                         if (error instanceof TimeoutError || error instanceof NoConnectionError) {
                         } else if (error instanceof AuthFailureError) {
                         } else if (error instanceof ServerError) {

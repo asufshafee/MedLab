@@ -76,7 +76,7 @@
                     android:drawablePadding="@dimen/_10sdp"
                     android:drawableStart="@drawable/password_icon"
                     android:hint="@string/password"
-                    android:inputType="textEmailAddress"
+                    android:inputType="textPassword"
                     android:lines="1"
                     android:maxLines="1"
                     android:text="123456" />

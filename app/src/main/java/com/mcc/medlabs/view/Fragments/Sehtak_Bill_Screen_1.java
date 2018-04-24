@@ -33,6 +33,7 @@ import com.mcc.medlabs.view.R;
 import com.mcc.medlabs.view.Session.MyApplication;
 import com.mcc.medlabs.view.Utils.AppUtils;
 import com.medialablk.easytoast.EasyToast;
+import com.squareup.picasso.Picasso;
 
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -56,6 +57,7 @@ public class Sehtak_Bill_Screen_1 extends Fragment {
     MyApplication myApplication;
     TextView Name;
     Dialog Progress;
+    ImageView Image;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -69,6 +71,13 @@ public class Sehtak_Bill_Screen_1 extends Fragment {
         Name = (TextView) view.findViewById(R.id.Name);
         myApplication = (MyApplication) getActivity().getApplicationContext();
         WebView wv = (WebView) view.findViewById(R.id.Details);
+        Image = view.findViewById(R.id.Image);
+
+
+        if (!sahtakBilDeniaObObject.getImage().equals("")) {
+            Picasso.with(getContext()).load(sahtakBilDeniaObObject.getImage()).into(Image);
+
+        }
 
         ((MainActivity) getActivity()).ShowDownload_toolbar();
 

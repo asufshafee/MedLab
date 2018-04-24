@@ -298,9 +298,9 @@
     <string name="obese_class">فئة السمنة |</string>
     <string name="obese_class_2">فئة السمنة ||</string>
     <string name="bmi_clasification">تصنيف مؤشر كتلة الجسم:</string>
-    <string name="conformation">التشكل</string>
-    <string name="are_your_sure_to_submit">هل أنت متأكد من إرسال؟</string>
-    <string name="conform">مقاوم</string>
+    <string name="conformation">تأكيد</string>
+    <string name="are_your_sure_to_submit">هل أنت متأكد من إرسال التقييم؟</string>
+    <string name="conform">تأكيد</string>
     <string name="message_for_no_link">عذرا لا يوجد رابط للمشاركة</string>
     <string name="message_for_server_error">هناك خطأ ما!!</string>
     <string name="something_went_wrong">هناك خطأ ما</string>
@@ -313,6 +313,13 @@
     <string name="about_us">About Us</string>
     <string name="english_united_kingdom">English(United Kingdom)</string>
     <string name="notification">Notification</string>
-    <string name="about_developers">حول المطورين</string>
+    <string name="about_developers">حول المطور</string>
+    <string name="alllow">AlLOW</string>
+    <string name="deny">DENY</string>
+    <string name="allow_medlabs_to_access_your_app_time_usage">Allow Medlabs to Access Your App Time Usage</string>
+    <string name="permission">Permission</string>
+    <string name="termsandconditions">TermsAndConditions</string>
+    <string name="more">... (المزيد)</string>
+
 
 </resources>

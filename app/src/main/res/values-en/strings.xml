@@ -257,7 +257,7 @@ Please note that all of the laboratory results published on the website are not 
     <string name="Manage_My_Helth">إدارة صحتي</string>
     <string name="Settings">إعدادات</string>
     <string name="Featured_Test">اختبار متميز</string>
-    <string name="Help">مساعدة</string>
+    <string name="Help">Help</string>
     <string name="Logout">الخروج</string>
     <string name="BMI_Calculator">BMI Calculator</string>
     <string name="Feedback">تاثرات</string>
@@ -266,7 +266,7 @@ Please note that all of the laboratory results published on the website are not 
     <string name="search">Search..</string>
     <string name="_16"><![CDATA[\'< 16]]></string>
     <string name="turn_notification_on_or_off">Turn Notification ON or OFF</string>
-    <string name="language">language</string>
+    <string name="language">Language</string>
     <string name="water_remeinder">Water Remainder</string>
     <string name="bmi_calculator">BMI Calculator</string>
     <string name="time_used">Time Used</string>
@@ -316,5 +316,15 @@ Please note that all of the laboratory results published on the website are not 
     <string name="about_us">About Us</string>
     <string name="english_united_kingdom">English(United Kingdom)</string>
     <string name="notification">Notification</string>
-    <string name="about_developers">About Developers</string>
+    <string name="about_developers">About Developer</string>
+
+
+    <string name="water_reminder_1">You are doing great, </string>
+    <string name="water_reminder_2">more  cup to reach daily  intake water</string>
+    <string name="alllow">AlLOW</string>
+    <string name="deny">DENY</string>
+    <string name="allow_medlabs_to_access_your_app_time_usage">Allow Medlabs to Access Your App Time Usage</string>
+    <string name="permission">Permission</string>
+    <string name="termsandconditions">TermsAndConditions</string>
+    <string name="more">... (more)</string>
 </resources>

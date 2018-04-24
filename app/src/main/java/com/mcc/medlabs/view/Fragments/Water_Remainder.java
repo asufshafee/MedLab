@@ -17,7 +17,6 @@ import com.mcc.medlabs.view.Session.MyApplication;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -76,19 +75,19 @@ public class Water_Remainder extends Fragment {
 
         if (Glass == 0) {
             if (myApplication.GetLanguage().equals("en")) {
-                TextHeading.setText(String.valueOf(8 - Glass) + " more \n cup to reach daily \n intake water");
+                TextHeading.setText(String.valueOf(8 - Glass) +getString(R.string.water_reminder_2));
                 Text.setText(String.valueOf(Glass) + " of 8 glasses");
             } else {
-                TextHeading.setText(String.valueOf(8 - Glass) + " أكثر من \n كوب للوصول إلى اليومية \n كمية الماء");
+                TextHeading.setText(String.valueOf(8 - Glass) +getString(R.string.water_reminder_ar_2));
 
                 Text.setText(String.valueOf(Glass) + " من 8 أكواب");
             }
         } else {
             if (myApplication.GetLanguage().equals("en")) {
-                TextHeading.setText("You are doing great, " + String.valueOf(8 - Glass) + " more \n cup to reach daily \n intake water");
+                TextHeading.setText(getString(R.string.water_reminder_1) + String.valueOf(8 - Glass) +getString(R.string.water_reminder_2));
                 Text.setText(String.valueOf(Glass) + " of 8 glasses");
             } else {
-                TextHeading.setText("انت تبلي بلاء رائعا،" + String.valueOf(8 - Glass) + " أكثر من \n كوب للوصول إلى اليومية \n كمية الماء");
+                TextHeading.setText(getString(R.string.water_reminder_ar_1) + String.valueOf(8 - Glass) +getString(R.string.water_reminder_ar_2));
 
                 Text.setText(String.valueOf(Glass) + " من 8 أكواب");
             }
@@ -105,20 +104,18 @@ public class Water_Remainder extends Fragment {
 
                 if (Glass == 0) {
                     if (myApplication.GetLanguage().equals("en")) {
-                        TextHeading.setText(String.valueOf(8 - Glass) + " more \n cup to reach daily \n intake water");
+                        TextHeading.setText(String.valueOf(8 - Glass) +getString(R.string.water_reminder_2));
                         Text.setText(String.valueOf(Glass) + " of 8 glasses");
                     } else {
-                        TextHeading.setText(String.valueOf(8 - Glass) + " أكثر من \n كوب للوصول إلى اليومية \n كمية الماء");
-
+                        TextHeading.setText(String.valueOf(8 - Glass) +getString(R.string.water_reminder_ar_2));
                         Text.setText(String.valueOf(Glass) + " من 8 أكواب");
                     }
                 } else {
-                    if (myApplication.GetLanguage().equals("en")) {
-                        TextHeading.setText("You are doing great, " + String.valueOf(8 - Glass) + " more \n cup to reach daily \n intake water");
+                    if (myApplication.GetLanguage().equals("en")){
+                        TextHeading.setText(getString(R.string.water_reminder_1)+String.valueOf(8 - Glass) +getString(R.string.water_reminder_2));
                         Text.setText(String.valueOf(Glass) + " of 8 glasses");
                     } else {
-                        TextHeading.setText("انت تبلي بلاء رائعا،" + String.valueOf(8 - Glass) + " أكثر من \n كوب للوصول إلى اليومية \n كمية الماء");
-
+                        TextHeading.setText(getString(R.string.water_reminder_ar_1) + String.valueOf(8 - Glass) +getString(R.string.water_reminder_ar_2));
                         Text.setText(String.valueOf(Glass) + " من 8 أكواب");
                     }
                 }
@@ -128,6 +125,9 @@ public class Water_Remainder extends Fragment {
         view.findViewById(R.id.Increase).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
+
                 if (Glass != 8) {
                     Glass++;
                     MyApplication.setGLASS(Glass);
@@ -136,19 +136,19 @@ public class Water_Remainder extends Fragment {
 
                 if (Glass == 0) {
                     if (myApplication.GetLanguage().equals("en")) {
-                        TextHeading.setText(String.valueOf(8 - Glass) + " more \n cup to reach daily \n intake water");
+                        TextHeading.setText(String.valueOf(8 - Glass) +getString(R.string.water_reminder_2));
                         Text.setText(String.valueOf(Glass) + " of 8 glasses");
                     } else {
-                        TextHeading.setText(String.valueOf(8 - Glass) + " أكثر من \n كوب للوصول إلى اليومية \n كمية الماء");
+                        TextHeading.setText(String.valueOf(8 - Glass) +getString(R.string.water_reminder_ar_2));
 
                         Text.setText(String.valueOf(Glass) + " من 8 أكواب");
                     }
                 } else {
                     if (myApplication.GetLanguage().equals("en")) {
-                        TextHeading.setText("You are doing great, " + String.valueOf(8 - Glass) + " more \n cup to reach daily \n intake water");
+                        TextHeading.setText(getString(R.string.water_reminder_1)+String.valueOf(8 - Glass) +getString(R.string.water_reminder_2));
                         Text.setText(String.valueOf(Glass) + " of 8 glasses");
                     } else {
-                        TextHeading.setText("انت تبلي بلاء رائعا،" + String.valueOf(8 - Glass) + " أكثر من \n كوب للوصول إلى اليومية \n كمية الماء");
+                        TextHeading.setText(getString(R.string.water_reminder_ar_1) + String.valueOf(8 - Glass) +getString(R.string.water_reminder_ar_2));
 
                         Text.setText(String.valueOf(Glass) + " من 8 أكواب");
                     }
@@ -168,13 +168,12 @@ public class Water_Remainder extends Fragment {
     @Override
     public void onDestroy() {
 //        ((MainActivity) getActivity()).HideShare_toolbar();
-        int sixe=((MainActivity) getActivity()).getSupportFragmentManager().getBackStackEntryCount();
+        int sixe = ((MainActivity) getActivity()).getSupportFragmentManager().getBackStackEntryCount();
         if (((MainActivity) getActivity()).getSupportFragmentManager().getBackStackEntryCount() != 1)
             if (myApplication.GetLanguage().equals("en"))
                 ((MainActivity) getActivity()).Change_Tittle("Manage My Health");
             else {
                 ((MainActivity) getActivity()).Change_Tittle(getString(R.string.Manage_My_Helth));
-
             }
         super.onDestroy();
     }

@@ -32,7 +32,7 @@ import java.util.List;
 public class News_Adapter extends RecyclerView.Adapter<News_Adapter.MyHolder> {
     List<News_Object.NewsObObject> List;
     Context context;
-    int Current = 10;
+    int Current = 9;
     MyApplication myApplication;
 
     public News_Adapter(List<News_Object.NewsObObject> list, Context context) {
@@ -57,9 +57,10 @@ public class News_Adapter extends RecyclerView.Adapter<News_Adapter.MyHolder> {
 
         if (position == Current) {
             holder.Add.setVisibility(View.VISIBLE);
-            Current = Current + 10;
+            Current = Current + 9;
         } else {
-            holder.Add.setVisibility(View.GONE);
+            if (holder.Add.getVisibility() != View.VISIBLE)
+                holder.Add.setVisibility(View.GONE);
 
         }
         {
@@ -126,7 +127,7 @@ public class News_Adapter extends RecyclerView.Adapter<News_Adapter.MyHolder> {
 
         public MyHolder(View itemView) {
             super(itemView);
-            image=(ImageView)itemView.findViewById(R.id.Image);
+            image = (ImageView) itemView.findViewById(R.id.Image);
             News = (LinearLayout) itemView.findViewById(R.id.News);
             Add = (LinearLayout) itemView.findViewById(R.id.Add);
             Name = (TextView) itemView.findViewById(R.id.Name);

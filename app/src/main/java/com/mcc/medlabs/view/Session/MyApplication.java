@@ -2,13 +2,19 @@ package com.mcc.medlabs.view.Session;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 
 import com.crashlytics.android.Crashlytics;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.messaging.FirebaseMessaging;
+import com.mcc.medlabs.view.Objects.AppConst;
+import com.mcc.medlabs.view.Objects.DataManager;
+import com.mcc.medlabs.view.Objects.DbHistoryExecutor;
+import com.mcc.medlabs.view.Objects.DbIgnoreExecutor;
 import com.mcc.medlabs.view.Objects.JsonParserLogin;
 import com.mcc.medlabs.view.Objects.Login_Object;
+import com.mcc.medlabs.view.Objects.PreferenceManager;
 
 import br.vince.easysave.EasySave;
 import io.fabric.sdk.android.Fabric;
@@ -80,6 +86,16 @@ public class MyApplication extends Application {
     private static MyApplication mInstance;
 
     public void onCreate() {
+        DataManager.init();
+
+
+        PreferenceManager.init(this);
+        DbIgnoreExecutor.init(getApplicationContext());
+        DbHistoryExecutor.init(getApplicationContext());
+        DataManager.init();
+
+        PreferenceManager.init(this);
+
         FirebaseApp.initializeApp(getApplicationContext());
         FirebaseMessaging.getInstance().setAutoInitEnabled(true);
         super.onCreate();
@@ -130,6 +146,10 @@ public class MyApplication extends Application {
         return sharedPreferences.getString(LANGUAGE, "en");
     }
 
+    public static String GetLanguageStatic() {
+        return sharedPreferences.getString(LANGUAGE, "en");
+    }
+
     public void setLanguage(String language) {
         editor.putString(LANGUAGE, language);
         editor.apply();
@@ -172,8 +192,8 @@ public class MyApplication extends Application {
     }
 
     public static void setSECONDS(long Seconds) {
-        if (Seconds == 0) {
-            editorMedLabsTimeUsed.putLong("Secondsfortimeused", Seconds);
+        if (Seconds == -1) {
+            editorMedLabsTimeUsed.putLong("Secondsfortimeused", 0);
             editorMedLabsTimeUsed.apply();
             editorMedLabsTimeUsed.commit();
         } else {
@@ -243,4 +263,34 @@ public class MyApplication extends Application {
         editor.putBoolean("SPLASH", isSPLASH);
         editor.apply();
     }
+
+    public static boolean isCheckFor12Am() {
+        return sharedPreferences.getBoolean("CheckFor12Am", true);
+    }
+
+    public static void setCheckFor12Am(Boolean isSPLASH) {
+        editor.putBoolean("CheckFor12Am", isSPLASH);
+        editor.apply();
+    }
+
+    public static boolean isCheckFor3Hours() {
+        return sharedPreferences.getBoolean("CheckFor3Hours", true);
+    }
+
+    public static void setCheckFor3Hours(Boolean isSPLASH) {
+        editor.putBoolean("CheckFor3Hours", isSPLASH);
+        editor.apply();
+    }
+
+
+    public static boolean isTimeUsedPermission() {
+        return sharedPreferences.getBoolean("TimeUsedPermission", true);
+    }
+
+    public static void setTimeUsedPermission(Boolean isSPLASH) {
+        editor.putBoolean("TimeUsedPermission", isSPLASH);
+        editor.apply();
+    }
+
+
 }
